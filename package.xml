@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>valkyrie_testing_edi</name>
+  <version>0.0.0</version>
+  <description>The valkyrie_testing_edi package</description>
+
+  <maintainer email="v.ivan@ed.ac.uk">Vladimir Ivan</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>geometry_msgs</depend>
+  <depend>ihmc_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rospy_message_converter</depend>
+  <depend>std_msgs</depend>
+  <depend>tf_conversions</depend>
+  <depend>yaml</depend>
+</package>

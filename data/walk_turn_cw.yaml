@@ -1,0 +1,188 @@
+footstep_data_list: 
+  - 
+    robot_side: 1
+    location: 
+      x: 0.0502709405491
+      y: -0.11121021387
+      z: 0.00558504428181
+    orientation: 
+      x: 0.000174726217211
+      y: -0.000159517621636
+      z: -0.177760387958
+      w: 0.984073771878
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 0
+    location: 
+      x: 0.144725876093
+      y: 0.191539972649
+      z: 0.00570750857716
+    orientation: 
+      x: 0.000175521617923
+      y: -0.000158642000224
+      z: -0.182678514315
+      w: 0.983172672745
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 1
+    location: 
+      x: 0.0452475538268
+      y: -0.0405631673917
+      z: 0.0056034431996
+    orientation: 
+      x: 0.00020225744066
+      y: -0.000122747913592
+      z: -0.364567451109
+      w: 0.931176952903
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 0
+    location: 
+      x: 0.182106181986
+      y: 0.182589830016
+      z: 0.00571899604428
+    orientation: 
+      x: 0.000202868649458
+      y: -0.000121735096256
+      z: -0.36921875939
+      w: 0.929342483555
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 1
+    location: 
+      x: -0.00161014880567
+      y: 0.00293988905334
+      z: 0.00559831427811
+    orientation: 
+      x: 0.000222118296683
+      y: -8.14775114496e-05
+      z: -0.537152743525
+      w: 0.843484957867
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 0
+    location: 
+      x: 0.1763874418
+      y: 0.101406345392
+      z: 0.00569353149846
+    orientation: 
+      x: 0.00022252290607
+      y: -8.03659061268e-05
+      z: -0.541363436346
+      w: 0.8407886618
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 1
+    location: 
+      x: -0.0664991376184
+      y: 0.0111163557558
+      z: 0.00557625935597
+    orientation: 
+      x: 0.000233459235722
+      y: -3.8365451248e-05
+      z: -0.685841416112
+      w: 0.727750984864
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 0
+    location: 
+      x: 0.134902382917
+      y: 0.0168654833149
+      z: 0.00565365204834
+    orientation: 
+      x: 0.000233648143945
+      y: -3.7197680366e-05
+      z: -0.689471582875
+      w: 0.724312695203
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+  - 
+    robot_side: 1
+    location: 
+      x: -0.126624199278
+      y: 0.0101487250782
+      z: 0.00555337006068
+    orientation: 
+      x: 0.000233950757988
+      y: -3.52443673516e-05
+      z: -0.695498795466
+      w: 0.71852722254
+    predicted_contact_points: []
+    trajectory_type: 0
+    swing_height: 0.1
+    position_waypoints: []
+    swing_trajectory: []
+    swing_trajectory_blend_duration: 0.0
+    swing_duration: 0.0
+    transfer_duration: 0.0
+    unique_id: 0
+execution_timing: 0
+default_swing_duration: 1.20000004768
+default_transfer_duration: 1.0
+final_transfer_duration: 1.0
+execution_mode: 0
+previous_message_id: 0
+unique_id: 1523375422489503
