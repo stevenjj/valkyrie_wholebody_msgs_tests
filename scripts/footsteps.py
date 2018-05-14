@@ -21,16 +21,34 @@ import time
 
 def status(m):
   global ready
-  global lst_ready
+  global lstReady
   global stop
-  global has_stopped_moving
+  global hasStoppedMoving
   if m.data=='STANDING':
     ready = True
   else:
     ready = False
-  if stop and ready==True and lst_ready==False:
-    has_stopped_moving = True
-  lst_ready = ready
+  if stop and ready==True and lstReady==False:
+    hasStoppedMoving = True
+  lstReady = ready
+
+def footStatus(m):
+  global pause
+  global pauseAt
+  global ready
+  global pubPause
+  global lastStep
+
+  if pauseAt>0:
+    if m.status == 0 and m.footstep_index >= pauseAt:
+      print('Pausing the walking ...')
+      pause = True
+      message = PauseWalkingRosMessage()
+      message.pause = True
+      message.unique_id = 1
+      pubPause.publish(message)
+  if m.status == 1:
+     lastStep = m.footstep_index
 
 def callback(m):
   global pub
@@ -63,19 +81,28 @@ if __name__ == '__main__':
     print('Please specify the data file (YAML)!')
   else:
     stop = False
-    lst_ready = False
+    lstReady = False
     ready = False
-    has_stopped_moving = False
+    hasStoppedMoving = False
+    pauseAt = rospy.get_param('~PauseAtStep', '-1')
+    pause = False
+    lastStep = -1
     # Load YAML data
     data = load(open(rospy.get_param('~DataFile', '')))
     # Setup ROS node
     
     pub = rospy.Publisher('/ihmc_ros/valkyrie/control/footstep_list', FootstepDataListRosMessage, queue_size=10)
+    pubPause = rospy.Publisher('/ihmc_ros/valkyrie/control/pause_walking', PauseWalkingRosMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
-    while not has_stopped_moving and not rospy.is_shutdown():
+    rospy.Subscriber("/ihmc_ros/valkyrie/output/footstep_status", FootstepStatusRosMessage, footStatus)
+    while not hasStoppedMoving and not rospy.is_shutdown():
       time.sleep(0.1)
     print('Done')
-
+    if pause:
+      if lastStep == pauseAt:
+      	print('Stepping paused as requested')
+      else:
+        print('Pausing failed')

@@ -10,10 +10,11 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <depend>geometry_msgs</depend>
-  <depend>ihmc_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>rospy_message_converter</depend>
   <depend>std_msgs</depend>
   <depend>tf_conversions</depend>
   <depend>yaml</depend>
+  <depend>ihmc_msgs</depend>
+  <depend>val_description</depend>
 </package>

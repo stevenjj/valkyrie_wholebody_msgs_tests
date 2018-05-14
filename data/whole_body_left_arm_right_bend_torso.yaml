@@ -1,0 +1,2232 @@
+left_hand_trajectory_message: 
+  robot_side: 0
+  taskspace_trajectory_points: []
+  frame_information: 
+    trajectory_reference_frame_id: 0
+    data_reference_frame_id: 0
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 0
+right_hand_trajectory_message: 
+  robot_side: 1
+  taskspace_trajectory_points: []
+  frame_information: 
+    trajectory_reference_frame_id: 0
+    data_reference_frame_id: 0
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 0
+left_arm_trajectory_message: 
+  robot_side: 0
+  joint_trajectory_messages: 
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.300432622433
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.289987653494
+          velocity: -0.0848175795813
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.260172009468
+          velocity: -0.16725624519
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.213264599442
+          velocity: -0.246462202924
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.151544332504
+          velocity: -0.322337623011
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.0772900879383
+          velocity: -0.394777553302
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: -0.0072192135267
+          velocity: -0.463525871354
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: -0.0997046753764
+          velocity: -0.510261456443
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: -0.197887390852
+          velocity: -0.523598619465
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: -0.299488455057
+          velocity: -0.523599707677
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -0.402228981256
+          velocity: -0.523598435289
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.503830075264
+          velocity: -0.52359864389
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.602012753487
+          velocity: -0.510262813304
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.694498240948
+          velocity: -0.463525817639
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -0.77900749445
+          velocity: -0.394777511668
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -0.853261768818
+          velocity: -0.322337001567
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -0.914982020855
+          velocity: -0.246462002081
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -0.961889445782
+          velocity: -0.167256674532
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -0.991705060005
+          velocity: -0.0848174895586
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -1.00215005875
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: -1.24983882904
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: -1.25061261654
+          velocity: -0.00628301172479
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: -1.25282120705
+          velocity: -0.0123896010667
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: -1.25629591942
+          velocity: -0.0182570323396
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: -1.2608679533
+          velocity: -0.0238778182851
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: -1.26636850834
+          velocity: -0.029243895
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: -1.27262866497
+          velocity: -0.0343365916463
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: -1.27947974205
+          velocity: -0.037798713814
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: -1.28675282001
+          velocity: -0.038786546153
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: -1.29427909851
+          velocity: -0.0387865551728
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -1.30188977718
+          velocity: -0.0387864552299
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -1.30941605568
+          velocity: -0.0387865496323
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -1.31668913364
+          velocity: -0.0377988172363
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -1.32354021072
+          velocity: -0.0343365916463
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -1.32980036736
+          velocity: -0.029243895
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -1.33530092239
+          velocity: -0.0238777694582
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -1.33987295628
+          velocity: -0.0182570175686
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -1.34334766865
+          velocity: -0.0123896351226
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -1.34555625916
+          velocity: -0.00628300522804
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -1.34633004665
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.00786707084626
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.0101274745539
+          velocity: 0.0183554352408
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.0165798999369
+          velocity: 0.0361960508972
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.0267311688513
+          velocity: 0.0533370821851
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.0400881022215
+          velocity: 0.0697573343135
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.0561575181782
+          velocity: 0.0854341039279
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.0744462385774
+          velocity: 0.100311990116
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.0944610908628
+          velocity: 0.110426077988
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.115708887577
+          velocity: 0.11331239953
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.137696459889
+          velocity: 0.113312636818
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 0.159930616617
+          velocity: 0.113312306444
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 0.181918174028
+          velocity: 0.113312391164
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 0.203165978193
+          velocity: 0.110426359963
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 0.223180815578
+          velocity: 0.100311978524
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 0.241469547153
+          velocity: 0.0854341594172
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 0.257538974285
+          velocity: 0.0697571971962
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 0.270895898342
+          velocity: 0.0533370133893
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 0.281047165394
+          velocity: 0.036196116554
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 0.287499576807
+          velocity: 0.0183554132637
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 0.289759993553
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: -0.779003918171
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: -0.781176447868
+          velocity: -0.017641945836
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: -0.787378072739
+          velocity: -0.0347892429382
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: -0.797134816647
+          velocity: -0.0512640332758
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: -0.809972584248
+          velocity: -0.0670459509699
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: -0.825417399406
+          velocity: -0.0821132947835
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: -0.842995226383
+          velocity: -0.0964129624591
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: -0.862232148647
+          velocity: -0.106134016303
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: -0.882654070854
+          velocity: -0.10890794485
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: -0.903786957264
+          velocity: -0.108908300348
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -0.925156950951
+          velocity: -0.108908019721
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.94628983736
+          velocity: -0.108907954619
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.966711759567
+          velocity: -0.1061343067
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.985948681831
+          velocity: -0.0964131141434
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -1.00352656841
+          velocity: -0.0821133022088
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -1.01897132397
+          velocity: -0.0670456696104
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -1.03180909157
+          velocity: -0.0512638598538
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -1.04156577587
+          velocity: -0.0347892066168
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -1.04776740074
+          velocity: -0.0176420497195
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -1.04993999004
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 1.5497688055
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 1.5487446785
+          velocity: -0.00831624327837
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 1.54582130909
+          velocity: -0.0163992306538
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 1.54122209549
+          velocity: -0.0241651861468
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 1.53517055511
+          velocity: -0.0316045127667
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 1.52789008617
+          velocity: -0.0387072028527
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 1.51960408688
+          velocity: -0.0454478580147
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 1.51053607464
+          velocity: -0.0500301297229
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 1.50090944767
+          velocity: -0.0513379796436
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 1.49094760418
+          velocity: -0.0513378616343
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 1.48087418079
+          velocity: -0.051337729349
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 1.4709123373
+          velocity: -0.0513379842477
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 1.46128571033
+          velocity: -0.0500302666123
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 1.4522176981
+          velocity: -0.0454478580147
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 1.4439316988
+          velocity: -0.0387072028527
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 1.43665122986
+          velocity: -0.0316044481394
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 1.43059968948
+          velocity: -0.0241651665968
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 1.42600047588
+          velocity: -0.0163992757311
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 1.42307710648
+          velocity: -0.00831623467976
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 1.42205297947
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.0689655691385
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.0679232999682
+          velocity: -0.00846367913679
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.0649480894208
+          velocity: -0.0166899660171
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.0602673515677
+          velocity: -0.024593673154
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.0541084818542
+          velocity: -0.0321650476683
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.0466988869011
+          velocity: -0.039393595274
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.0382659733295
+          velocity: -0.0462537631394
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.0290371458977
+          velocity: -0.0509173581138
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.0192398056388
+          velocity: -0.052248237683
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.00910135917366
+          velocity: -0.0522483418081
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -0.00115078908857
+          velocity: -0.0522482071777
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.0112892352045
+          velocity: -0.0522482423695
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.0210865754634
+          velocity: -0.0509175024347
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.0303154047579
+          velocity: -0.0462537634032
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -0.0387483164668
+          velocity: -0.0393935905339
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -0.0461579114199
+          velocity: -0.0321649818949
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -0.0523167811334
+          velocity: -0.0245936615036
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -0.0569975227118
+          velocity: -0.0166900122166
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -0.0599727295339
+          velocity: -0.0084636624623
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -0.0610149987042
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.123505696654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.121796473861
+          velocity: -0.0138796193358
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.116917416453
+          velocity: -0.027369953545
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.109241448343
+          velocity: -0.0403312789166
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.0991414934397
+          velocity: -0.0527475919436
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.086990468204
+          velocity: -0.0646017240144
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.0731612965465
+          velocity: -0.0758517471771
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.0580269023776
+          velocity: -0.083499595004
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.0419602021575
+          velocity: -0.0856821053627
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.0253341216594
+          velocity: -0.0856822839603
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 0.00852157827467
+          velocity: -0.0856820679788
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.00810450408608
+          velocity: -0.0856821178476
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.0241712033749
+          velocity: -0.0834998334784
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.039305601269
+          velocity: -0.0758517477049
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -0.0531347692013
+          velocity: -0.0646017145342
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -0.0652857944369
+          velocity: -0.0527474840814
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -0.0753857493401
+          velocity: -0.0403312462872
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -0.0830617174506
+          velocity: -0.0273700287778
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -0.087940774858
+          velocity: -0.0138796049851
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -0.0896499976516
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+  execution_mode: 0
+  previous_message_id: -1
+  unique_id: 1526144914375463
+right_arm_trajectory_message: 
+  robot_side: 1
+  joint_trajectory_messages: 
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 0.299994111061
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 1.24996912479
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 0.00740855187178
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 0.778016448021
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: 1.55111932755
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -0.0711655318737
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+    - 
+      weight: .NaN
+      trajectory_points: 
+        - 
+          time: 1.0
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.244032
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.479109
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.704974
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 1.92135
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.127939
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.324415
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.51053
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.698046
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 2.892089
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.088309
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.282353
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.469868
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.655983
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 3.852459
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.059048
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.275425
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.501289
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.736366
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+        - 
+          time: 4.980399
+          position: -0.123805336654
+          velocity: 0.0
+          unique_id: 0
+      unique_id: 0
+  execution_mode: 0
+  previous_message_id: -1
+  unique_id: 1526144914375463
+chest_trajectory_message: 
+  taskspace_trajectory_points: 
+    - 
+      time: 1.0
+      orientation: 
+        x: -1.90440993732e-06
+        y: 5.6806715536e-06
+        z: -0.000671436758901
+        w: 0.999999774568
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 1.244032
+      orientation: 
+        x: 0.000700926118356
+        y: 0.00189047210613
+        z: -0.00463845041252
+        w: 0.999987209716
+      angular_velocity: 
+        x: 0.0117831494914
+        y: 0.0304693775533
+        z: -0.0644875871333
+      unique_id: -1
+    - 
+      time: 1.479109
+      orientation: 
+        x: 0.00278918384492
+        y: 0.00723949111682
+        z: -0.0159758185011
+        w: 0.999842279285
+      angular_velocity: 
+        x: 0.024543230782
+        y: 0.0595551480532
+        z: -0.127392948689
+      unique_id: -1
+    - 
+      time: 1.704974
+      orientation: 
+        x: 0.0063184070414
+        y: 0.015556802366
+        z: -0.0338472204556
+        w: 0.999285959723
+      angular_velocity: 
+        x: 0.0391878024486
+        y: 0.0864337268032
+        z: -0.188253445051
+      unique_id: -1
+    - 
+      time: 1.92135
+      orientation: 
+        x: 0.0114103725157
+        y: 0.0263049330325
+        z: -0.0574120122742
+        w: 0.997938732961
+      angular_velocity: 
+        x: 0.0563631733492
+        y: 0.110549268777
+        z: -0.247130964472
+      unique_id: -1
+    - 
+      time: 2.127939
+      orientation: 
+        x: 0.0181985277993
+        y: 0.0389154824977
+        z: -0.0858066167878
+        w: 0.995385163303
+      angular_velocity: 
+        x: 0.0763516351466
+        y: 0.131343256113
+        z: -0.304033616337
+      unique_id: -1
+    - 
+      time: 2.324415
+      orientation: 
+        x: 0.0267817421975
+        y: 0.0528020518161
+        z: -0.118132006034
+        w: 0.991231310421
+      angular_velocity: 
+        x: 0.0990583065851
+        y: 0.148248174189
+        z: -0.358805833841
+      unique_id: -1
+    - 
+      time: 2.51053
+      orientation: 
+        x: 0.0371877645918
+        y: 0.0673773526602
+        z: -0.153449862514
+        w: 0.985155065057
+      angular_velocity: 
+        x: 0.119649186676
+        y: 0.155444522536
+        z: -0.397145970966
+      unique_id: -1
+    - 
+      time: 2.698046
+      orientation: 
+        x: 0.0493474769227
+        y: 0.0820743519089
+        z: -0.19078814457
+        w: 0.976948571406
+      angular_velocity: 
+        x: 0.133735618255
+        y: 0.150243836429
+        z: -0.409899293856
+      unique_id: -1
+    - 
+      time: 2.892089
+      orientation: 
+        x: 0.0630805443034
+        y: 0.0963700920914
+        z: -0.229155586623
+        w: 0.966551275101
+      angular_velocity: 
+        x: 0.144403430948
+        y: 0.139772546182
+        z: -0.412379230622
+      unique_id: -1
+    - 
+      time: 3.088309
+      orientation: 
+        x: 0.0780922937178
+        y: 0.109809557553
+        z: -0.26756283986
+        w: 0.954072104958
+      angular_velocity: 
+        x: 0.154287577589
+        y: 0.128468505243
+        z: -0.414873424488
+      unique_id: -1
+    - 
+      time: 3.282353
+      orientation: 
+        x: 0.0939808503496
+        y: 0.122026694207
+        z: -0.305047523142
+        w: 0.939799496858
+      angular_velocity: 
+        x: 0.163128211593
+        y: 0.11666442947
+        z: -0.417326418809
+      unique_id: -1
+    - 
+      time: 3.469868
+      orientation: 
+        x: 0.110252564093
+        y: 0.132759578651
+        z: -0.340698745371
+        w: 0.92419891327
+      angular_velocity: 
+        x: 0.166318727453
+        y: 0.10222729165
+        z: -0.408961322444
+      unique_id: -1
+    - 
+      time: 3.655983
+      orientation: 
+        x: 0.126343272714
+        y: 0.141857341275
+        z: -0.373677744802
+        w: 0.907898020268
+      angular_velocity: 
+        x: 0.156599045402
+        y: 0.0828005786985
+        z: -0.373408633266
+      unique_id: -1
+    - 
+      time: 3.852459
+      orientation: 
+        x: 0.141642280664
+        y: 0.149276875896
+        z: -0.403230113191
+        w: 0.891661008718
+      angular_velocity: 
+        x: 0.137198000383
+        y: 0.062347398701
+        z: -0.319522135992
+      unique_id: -1
+    - 
+      time: 4.059048
+      orientation: 
+        x: 0.15551639206
+        y: 0.155068702113
+        z: -0.428687152749
+        w: 0.876353624112
+      angular_velocity: 
+        x: 0.11441157367
+        y: 0.0449384889223
+        z: -0.261954608402
+      unique_id: -1
+    - 
+      time: 4.275425
+      orientation: 
+        x: 0.167331398846
+        y: 0.159351899908
+        z: -0.449453602246
+        w: 0.862901288899
+      angular_velocity: 
+        x: 0.0888032959284
+        y: 0.0305264798712
+        z: -0.200963149014
+      unique_id: -1
+    - 
+      time: 4.501289
+      orientation: 
+        x: 0.176469985942
+        y: 0.162278589541
+        z: -0.464981809422
+        w: 0.852241703008
+      angular_velocity: 
+        x: 0.0608656225138
+        y: 0.0187313684204
+        z: -0.136721974075
+      unique_id: -1
+    - 
+      time: 4.736366
+      orientation: 
+        x: 0.182345861469
+        y: 0.16398947926
+        z: -0.474732589826
+        w: 0.845272977005
+      angular_velocity: 
+        x: 0.031039727565
+        y: 0.00886306855475
+        z: -0.0694416936241
+      unique_id: -1
+    - 
+      time: 4.980399
+      orientation: 
+        x: 0.184416126704
+        y: 0.164561142674
+        z: -0.478125931095
+        w: 0.842796485842
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+  frame_information: 
+    trajectory_reference_frame_id: -101
+    data_reference_frame_id: -107
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 1
+spine_trajectory_message: 
+  joint_trajectory_messages: []
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 0
+pelvis_trajectory_message: 
+  taskspace_trajectory_points: 
+    - 
+      time: 1.0
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 1.244032
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 1.479109
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 1.704974
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 1.92135
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 2.127939
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 2.324415
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 2.51053
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 2.698046
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 2.892089
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 3.088309
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 3.282353
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 3.469868
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 3.655983
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 3.852459
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 4.059048
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 4.275425
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 4.501289
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 4.736366
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+    - 
+      time: 4.980399
+      position: 
+        x: 0.0366363450885
+        y: -0.00044261792209
+        z: 1.0224609375
+      orientation: 
+        x: 3.03276190231e-06
+        y: -3.37059752672e-05
+        z: -0.000115452340725
+        w: 0.999999992763
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      unique_id: -1
+  frame_information: 
+    trajectory_reference_frame_id: -107
+    data_reference_frame_id: -107
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 1
+left_foot_trajectory_message: 
+  robot_side: 0
+  taskspace_trajectory_points: []
+  frame_information: 
+    trajectory_reference_frame_id: 0
+    data_reference_frame_id: 0
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 0
+right_foot_trajectory_message: 
+  robot_side: 1
+  taskspace_trajectory_points: []
+  frame_information: 
+    trajectory_reference_frame_id: 0
+    data_reference_frame_id: 0
+  use_custom_control_frame: False
+  control_frame_pose: 
+    translation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    rotation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+  execution_mode: 0
+  previous_message_id: 0
+  unique_id: 0
+unique_id: 1526144914375463
