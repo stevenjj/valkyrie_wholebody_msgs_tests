@@ -15,6 +15,7 @@ import os
 import rospy
 import numpy as np
 import tf
+from tf import TransformListener
 from tf_conversions import transformations
 import tf_conversions.posemath as pm
 import time
@@ -54,13 +55,22 @@ def callback(m):
   global pub
   global stop
   global data
+  global tfListener
   if ready:
     if not stop:
       print('Preparing the footstep message')
-      # Reset step height to zero
-      m.pose.pose.position.z = 0.0
+
       # Get current robot pose
-      pose = pm.fromMsg(m.pose.pose)
+      pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
+      pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
+      pos = (np.array(pos1)+np.array(pos2))*0.5
+      rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
+      midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
+      # release/0.10 changed from ankle to sole frames for specifying footsteps. This is a transform extracted by Doug
+      # soleToAnkleFrame.setTranslation(new Vector3D(footLength / 2.0 - footBack, 0.0, -ValkyriePhysicalProperties.ankleHeight))
+      # with: footLength = 0.24, footBack = 0.068, ankleHeight = 0.09
+      ankleToSoleOffset = pm.Vector(0.24 / 2.0 - 0.068, 0.0, -0.09)
+      pose = pm.fromMsg(m.pose.pose)*midFeet.Inverse()*pm.Frame(pm.Rotation(), ankleToSoleOffset)
       # Get footstep trajectopry from YAML 
       message = message_converter.convert_dictionary_to_ros_message('ihmc_msgs/FootstepDataListRosMessage', data)
       # Update the footstep frames
@@ -91,6 +101,7 @@ if __name__ == '__main__':
     data = load(open(rospy.get_param('~DataFile', '')))
     # Setup ROS node
     
+    tfListener = TransformListener()
     pub = rospy.Publisher('/ihmc_ros/valkyrie/control/footstep_list', FootstepDataListRosMessage, queue_size=10)
     pubPause = rospy.Publisher('/ihmc_ros/valkyrie/control/pause_walking', PauseWalkingRosMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
