@@ -14,6 +14,7 @@ catkin_package(
 
 install(DIRECTORY launch/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 install(DIRECTORY data/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/data)
+install(DIRECTORY ui/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/ui)
 FILE(GLOB python_scripts "${CMAKE_CURRENT_SOURCE_DIR}/scripts/*.py")
 catkin_install_python(PROGRAMS scripts/footsteps.py scripts/whole_body.py scripts/neck.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
