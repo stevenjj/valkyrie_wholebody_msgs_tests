@@ -225,7 +225,7 @@ default_transfer_duration: 1.0
 final_transfer_duration: 1.0
 #execution_mode: 0 # moved to queing properties
 #previous_message_id: 0 #moved to queing properties
-sequence_id: 1523386684797248
+sequence_id: 15
 
 trust_height_of_footsteps: False
 are_footsteps_adjustable: False
