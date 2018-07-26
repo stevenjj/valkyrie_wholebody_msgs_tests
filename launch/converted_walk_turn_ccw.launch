@@ -1,6 +1,6 @@
 <launch>
 
-  <node pkg="valkyrie_testing_edi" name="converted_footsteps.py" type="converted_footsteps.py" output="screen">
+  <node pkg="valkyrie_testing_edi" name="converted_footstep" type="converted_footstep.py" output="screen">
     <param name="DataFile" type="string" value="$(find valkyrie_testing_edi)/data/converted_walk_turn_ccw.yaml" />
   </node>
 

@@ -88,8 +88,8 @@ def callback(m):
 if __name__ == '__main__':
   rospy.init_node('ValkyrieShakeout')
   if not rospy.has_param('~DataFile'):
-  #  print('Please specify the data file (YAML)!')
-  #else:
+    print('Please specify the data file (YAML)!')
+  else:
     stop = False
     lstReady = False
     ready = False
@@ -98,8 +98,8 @@ if __name__ == '__main__':
     pause = False
     lastStep = -1
     # Load YAML data
-    #data = load(open(rospy.get_param('~DataFile', '')))
-    data = load(open('/home/val/uoe_ws/src/valkyrie_testing_edi/data/converted_walk_turn_ccw.yaml'))
+    data = load(open(rospy.get_param('~DataFile', '')))
+    #data = load(open('/home/val/uoe_ws/src/valkyrie_testing_edi/data/converted_walk_turn_ccw.yaml'))
     # Setup ROS node
     
     tfListener = TransformListener()
