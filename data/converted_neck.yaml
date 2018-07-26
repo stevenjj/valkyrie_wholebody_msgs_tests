@@ -2,8 +2,8 @@ sequence_id: 1
 jointspace_trajectory: 
     sequence_id: 1  
     joint_trajectory_messages:
-	-
-	  sequence_id: 1  
+        -
+          sequence_id: 1  
           trajectory_points: 
             - 
               sequence_id: 1
