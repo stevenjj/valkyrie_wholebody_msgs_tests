@@ -1,9 +1,9 @@
-sequence_id: 1
 jointspace_trajectory: 
+  - 
     sequence_id: 1  
     joint_trajectory_messages:
-	-
-	  sequence_id: 1  
+        - 
+          sequence_id: 1  
           trajectory_points: 
             - 
               sequence_id: 1
@@ -24,13 +24,13 @@ jointspace_trajectory:
               time: 2.0
               position: 0.7456046556
               velocity: 0.0
-              sequence_id: 1
+              unique_id: 1
             - 
               sequence_id: 1
               time: 4.0
               position: 0.0
               velocity: 0.0
-              sequence_id: 1
+              unique_id: 1
           weight: -1.0
         - 
           sequence_id: 1
@@ -44,9 +44,11 @@ jointspace_trajectory:
               sequence_id: 1
               time: 4.0
               position: 0.0
-              velocity: 0.0           
+              velocity: 0.0
+              unique_id: 1
           weight: -1.0
     queueing_properties:                     
+      - 
         sequence_id: 1
         execution_mode: 0
         message_id: 0
