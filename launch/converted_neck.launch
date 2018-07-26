@@ -5,7 +5,7 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args python" />
 
-  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="neck.py" name="ValkyrieNeckTestNode" output="screen">
+  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="converted_neck.py" name="ValkyrieNeckTestNode" output="screen">
     <param name="DataFile" type="string" value="$(find valkyrie_testing_edi)/data/converted_neck.yaml" />
   </node>
 </launch>

@@ -6,7 +6,7 @@ except ImportError:
   from yaml import Loader, Dumper
 
 from rospy_message_converter import message_converter
-from ihmc_msgs.msg import *
+from controller_msgs.msg import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 from geometry_msgs.msg import Point, Quaternion, Vector3
