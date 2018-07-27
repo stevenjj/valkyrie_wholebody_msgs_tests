@@ -48,7 +48,7 @@ def footStatus(m):
       message.pause = True
       message.sequence_id = 1
       pubPause.publish(message)
-  if m.status == 1:
+  if m.footstep_status == 1:
      lastStep = m.footstep_index
 
 def callback(m):
@@ -64,8 +64,8 @@ def callback(m):
       pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
       pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
 
-      print "Left foot World Frame Position: ", pos1, "Orientation:", rot1
-      print "Right foot world Frame position: ", pos2, "Orientation:", rot2    
+      print "Left foot Pelvis Frame Position: ", pos1, "Orientation:", rot1
+      print "Right foot Pelvis Frame position: ", pos2, "Orientation:", rot2    
 
       pos = (np.array(pos1)+np.array(pos2))*0.5
       rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     # Setup ROS node  
 
     tfListener = TransformListener()
-    pub = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10)
+    pub = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
     pubPause = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
