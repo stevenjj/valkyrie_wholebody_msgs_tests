@@ -1,6 +1,6 @@
 footstep_data_list: 
   - 
-    sequence_id: 0 #moved from bottom
+    sequence_id: 2 #moved from bottom
     robot_side: 1
     location: 
       x: 0.0204830933934
@@ -22,7 +22,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0
+    sequence_id: 2
     robot_side: 0
     location: 
       x: 0.0384063829711
@@ -44,7 +44,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0
+    sequence_id: 2
     robot_side: 1
     location: 
       x: 0.131759896164
@@ -66,7 +66,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom
+    sequence_id: 2 # moved from bottom
     robot_side: 0
     location: 
       x: 0.033562507811
@@ -88,7 +88,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom  
+    sequence_id: 2 # moved from bottom  
     robot_side: 1
     location: 
       x: 0.165964495147
@@ -110,7 +110,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom  
+    sequence_id: 2 # moved from bottom  
     robot_side: 0
     location: 
       x: -0.0193357752082
@@ -132,7 +132,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom   
+    sequence_id: 2 # moved from bottom   
     robot_side: 1
     location: 
       x: 0.163671861779
@@ -154,7 +154,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom   
+    sequence_id: 2 # moved from bottom   
     robot_side: 0
     location: 
       x: -0.0783720599882
@@ -176,7 +176,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom   
+    sequence_id: 2 # moved from bottom   
     robot_side: 1
     location: 
       x: 0.125594574096
@@ -198,7 +198,7 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     execution_delay_time: 0.0 
   - 
-    sequence_id: 0 # moved from bottom   
+    sequence_id: 2 # moved from bottom   
     robot_side: 0
     location: 
       x: -0.136105382139
@@ -231,8 +231,8 @@ trust_height_of_footsteps: False
 are_footsteps_adjustable: False
 offset_footsteps_with_execution_error: False
 queueing_properties:
-  sequence_id: 0
+  sequence_id: 2
   execution_mode: 0
-  message_id: 0
+  message_id: 2
   previous_message_id: 0
   execution_delay_time: 0

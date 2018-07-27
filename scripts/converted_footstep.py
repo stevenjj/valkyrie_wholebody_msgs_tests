@@ -63,6 +63,10 @@ def callback(m):
       # Get current robot pose
       pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
       pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
+
+      print "Left foot World Frame Position: ", pos1, "Orientation:", rot1
+      print "Right foot world Frame position: ", pos2, "Orientation:", rot2    
+
       pos = (np.array(pos1)+np.array(pos2))*0.5
       rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
       midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
