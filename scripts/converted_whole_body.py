@@ -160,8 +160,8 @@ if __name__ == '__main__':
     robotTime = 0
 
     tfListener = TransformListener()
-    pubWhole = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10)
-    pubStop = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/stop_all_trajectories', StopAllTrajectoryMessage, queue_size=10)
+    pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10)
+    pubStop = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectories', StopAllTrajectoryMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
