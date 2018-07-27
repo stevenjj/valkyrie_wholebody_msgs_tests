@@ -80,7 +80,7 @@ def getEndposeTrajectory(msg, t):
   extract_first(message.right_foot_trajectory_message.se3_trajectory.taskspace_trajectory_points, t)
   extract_first(message.chest_trajectory_message.so3_trajectory.taskspace_trajectory_points, t)
   extract_first(message.pelvis_trajectory_message.se3_trajectory.taskspace_trajectory_points, t)
-  for traj in message.left_arm_trajectory_message.joint_trajectory_messages:
+  for traj in message.left_arm_trajectory_message.jointspace_trajectory.joint_trajectory_messages:
     extract_first(traj.trajectory_points, t)
   for traj in message.right_arm_trajectory_message.jointspace_trajectory.joint_trajectory_messages:
     extract_first(traj.trajectory_points, t)
@@ -96,6 +96,17 @@ def getEndposeTrajectory(msg, t):
   message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
   message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
 #  message.spine_trajectory_message.execution_mode = 0
+
+  # Assign sequence id to execution mode:
+  message.left_hand_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.left_hand_trajectory_message.sequence_id  
+  message.right_hand_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.right_hand_trajectory_message.sequence_id    
+  message.left_foot_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.left_foot_trajectory_message.sequence_id    
+  message.right_foot_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.right_foot_trajectory_message.sequence_id    
+  message.chest_trajectory_message.so3_trajectory.queueing_properties.sequence_id = message.chest_trajectory_message.sequence_id
+  message.pelvis_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.pelvis_trajectory_message.sequence_id  
+  message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.sequence_id =   message.left_arm_trajectory_message.sequence_id
+  message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.sequence_id =   message.right_arm_trajectory_message.sequence_id
+
 
   return message
 
@@ -117,7 +128,7 @@ def callback(m):
   global pose
   global tfListener
   robotTime = m.header.stamp.to_sec()
-  if ready:
+  if ready:    
     if not stop:
       # Get current robot pose
       pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
@@ -147,10 +158,10 @@ if __name__ == '__main__':
     data = load(open(rospy.get_param('~DataFile', '')))
     # Setup ROS node
     robotTime = 0
-    
+
     tfListener = TransformListener()
-    pubWhole = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryRosMessage, queue_size=10)
-    pubStop = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/stop_all_trajectories', StopAllTrajectoryRosMessage, queue_size=10)
+    pubWhole = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10)
+    pubStop = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/stop_all_trajectories', StopAllTrajectoryMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
@@ -159,7 +170,7 @@ if __name__ == '__main__':
       if stop:
         print('Preparing the footstep message')
         # Get footstep trajectopry from YAML 
-        message = message_converter.convert_dictionary_to_ros_message('controller_msgs/WholeBodyTrajectoryRosMessage', data)
+        message = message_converter.convert_dictionary_to_ros_message('controller_msgs/WholeBodyTrajectoryMessage', data)
         transformWholeBody(message)
         print('Executing prep move...')
         maxT = 0.0
