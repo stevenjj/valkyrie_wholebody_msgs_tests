@@ -41,10 +41,10 @@ def footStatus(m):
   global lastStep
 
   if pauseAt>0:
-    if m.status == 0 and m.footstep_index >= pauseAt:
+    if m.footstep_status == 0 and m.footstep_index >= pauseAt:
       print('Pausing the walking ...')
       pause = True
-      message = PauseWalkingRosMessage()
+      message = PauseWalkingMessage()
       message.pause = True
       message.sequence_id = 1
       pubPause.publish(message)
