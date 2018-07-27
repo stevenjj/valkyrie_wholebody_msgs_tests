@@ -33,29 +33,29 @@ def status(m):
     hasStoppedMoving = True
   lstReady = ready
 
-def footStatus(m):
-  global pause
-  global pauseAt
-  global ready
-  global pubPause
-  global lastStep
+#def footStatus(m):
+#  global pause
+#  global pauseAt
+#  global ready
+#  global pubPause
+#  global lastStep
 
-  if pauseAt>0:
-    if m.footstep_status == 0 and m.footstep_index >= pauseAt:
-      print('Pausing the walking ...')
-      pause = True
-      message = PauseWalkingMessage()
-      message.pause = True
-      message.sequence_id = 1
-      pubPause.publish(message)
-  if m.footstep_status == 1:
-     lastStep = m.footstep_index
+  #if pauseAt>0:
+  #  if m.footstep_status == 0 and m.footstep_index >= pauseAt:
+  #    print('Pausing the walking ...')
+  #    pause = True
+  #    message = PauseWalkingMessage()
+  #    message.pause = True #    message.sequence_id = 1
+  #    pubPause.publish(message)
+  #if m.footstep_status == 1:
+  #   lastStep = m.footstep_index
 
 def callback(m):
   global pub
   global stop
   global data
   global tfListener
+  global numberOfFootstepsInList
   if ready:
     if not stop:
       print('Preparing the footstep message')
@@ -64,8 +64,8 @@ def callback(m):
       pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
       pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
 
-      print "Left foot Pelvis Frame Position: ", pos1, "Orientation:", rot1
-      print "Right foot Pelvis Frame position: ", pos2, "Orientation:", rot2    
+      #print "Left foot Pelvis Frame Position: ", pos1, "Orientation:", rot1
+      #print "Right foot Pelvis Frame position: ", pos2, "Orientation:", rot2    
 
       pos = (np.array(pos1)+np.array(pos2))*0.5
       rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
@@ -78,6 +78,7 @@ def callback(m):
       # Get footstep trajectopry from YAML 
       message = message_converter.convert_dictionary_to_ros_message('controller_msgs/FootstepDataListMessage', data)
       # Update the footstep frames
+      numberOfFootstepsInList = len(message.footstep_data_list)
       for step in message.footstep_data_list:
         pstep = pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
         msg = pm.toMsg(pstep)
@@ -101,6 +102,8 @@ if __name__ == '__main__':
     pauseAt = rospy.get_param('~PauseAtStep', '-1')
     pause = False
     lastStep = -1
+    numberOfStatusesReceived = 0
+    numberOfFootstepsInList = 100
     # Load YAML data
     data = load(open(rospy.get_param('~DataFile', '')))
     #data = load(open('/home/val/uoe_ws/src/valkyrie_testing_edi/data/converted_walk_turn_ccw.yaml'))
@@ -108,18 +111,18 @@ if __name__ == '__main__':
 
     tfListener = TransformListener()
     pub = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
-    pubPause = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10)
+    #pubPause = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10, latch=True)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
-    rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
+    #rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
 
     while not hasStoppedMoving and not rospy.is_shutdown():
-      time.sleep(0.1)
+        time.sleep(0.1)
     print('Done')
-    if pause:
-      if lastStep == pauseAt:
-      	print('Stepping paused as requested')
-      else:
-        print('Pausing failed')
+    #if pause:
+    #  if lastStep == pauseAt:
+    #  	print('Stepping paused as requested')
+    #  else:
+    #    print('Pausing failed')
