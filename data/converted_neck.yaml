@@ -10,11 +10,6 @@ jointspace_trajectory:
               time: 2.0
               position: 0.670474
               velocity: 0.0
-            - 
-              sequence_id: 1
-              time: 4.0
-              position: 0.0
-              velocity: 0.0
           weight: -1.0
         - 
           sequence_id: 1
@@ -25,12 +20,6 @@ jointspace_trajectory:
               position: 0.7456046556
               velocity: 0.0
               sequence_id: 1
-            - 
-              sequence_id: 1
-              time: 4.0
-              position: 0.0
-              velocity: 0.0
-              sequence_id: 1
           weight: -1.0
         - 
           sequence_id: 1
@@ -39,12 +28,7 @@ jointspace_trajectory:
               sequence_id: 1
               time: 2.0
               position: -0.67144
-              velocity: 0.0                 
-            - 
-              sequence_id: 1
-              time: 4.0
-              position: 0.0
-              velocity: 0.0           
+              velocity: 0.0                          
           weight: -1.0
     queueing_properties:                     
         sequence_id: 1
