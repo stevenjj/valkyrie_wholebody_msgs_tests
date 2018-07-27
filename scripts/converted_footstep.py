@@ -100,16 +100,17 @@ if __name__ == '__main__':
     # Load YAML data
     data = load(open(rospy.get_param('~DataFile', '')))
     #data = load(open('/home/val/uoe_ws/src/valkyrie_testing_edi/data/converted_walk_turn_ccw.yaml'))
-    # Setup ROS node
-    
+    # Setup ROS node  
+
     tfListener = TransformListener()
-    pub = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10)
+    pub = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10)
     pubPause = rospy.Publisher('/ihmc_ros/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
     rospy.Subscriber("/ihmc_ros/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
+
     while not hasStoppedMoving and not rospy.is_shutdown():
       time.sleep(0.1)
     print('Done')
