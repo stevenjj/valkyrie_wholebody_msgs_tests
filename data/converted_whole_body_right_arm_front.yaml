@@ -198,8 +198,8 @@ right_arm_trajectory_message:
 #          z: 0.0
 #        sequence_id: 2 
 #    frame_information: 
-#      trajectory_reference_frame_id: -101
-#      data_reference_frame_id: -101
+#      trajectory_reference_frame_id: 83766130
+#      data_reference_frame_id: 1
 #    use_custom_control_frame: False
 #    control_frame_pose: 
 #      position: 
@@ -239,8 +239,8 @@ right_arm_trajectory_message:
 #          z: 0.0
 #        sequence_id: 2 
 #    frame_information: 
-#      trajectory_reference_frame_id: -106
-#      data_reference_frame_id: -106
+#      trajectory_reference_frame_id: 83766130
+#      data_reference_frame_id: 1
 #    use_custom_control_frame: False
 #    control_frame_pose: 
 #      position: 
@@ -261,8 +261,8 @@ left_foot_trajectory_message:
     sequence_id: 2 
     taskspace_trajectory_points: []
     frame_information: 
-      trajectory_reference_frame_id: 0
-      data_reference_frame_id: 0
+      trajectory_reference_frame_id: 0 # I believe this should be 83766130
+      data_reference_frame_id: 0 # I believe this should be 1
     use_custom_control_frame: False
     control_frame_pose: 
       position: 
@@ -283,8 +283,8 @@ right_foot_trajectory_message:
     sequence_id: 2 
     taskspace_trajectory_points: []
     frame_information: 
-      trajectory_reference_frame_id: 0
-      data_reference_frame_id: 0
+      trajectory_reference_frame_id: 0 # I believe this should be 83766130
+      data_reference_frame_id: 0 # I believe this should be 1
     use_custom_control_frame: False
     control_frame_pose: 
       position: 
