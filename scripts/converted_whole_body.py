@@ -36,8 +36,8 @@ def wait(t, pause=False):
   t0 = robotTime
   while robotTime-t0<t and not rospy.is_shutdown():
     if pause and pauseAt>0.0 and pauseAt<robotTime-t0:
-      msg=StopAllTrajectoryRosMessage()
-      msg.unique_id = 1
+      msg=StopAllTrajectoryMessage()
+      msg.sequence_id = 3
       pubStop.publish(msg)
       break
     time.sleep(0.01)
@@ -98,14 +98,14 @@ def getEndposeTrajectory(msg, t):
 #  message.spine_trajectory_message.execution_mode = 0
 
   # Assign sequence id to execution mode:
-  message.left_hand_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.left_hand_trajectory_message.sequence_id  
-  message.right_hand_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.right_hand_trajectory_message.sequence_id    
-  message.left_foot_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.left_foot_trajectory_message.sequence_id    
-  message.right_foot_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.right_foot_trajectory_message.sequence_id    
-  message.chest_trajectory_message.so3_trajectory.queueing_properties.sequence_id = message.chest_trajectory_message.sequence_id
-  message.pelvis_trajectory_message.se3_trajectory.queueing_properties.sequence_id = message.pelvis_trajectory_message.sequence_id  
-  message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.sequence_id =   message.left_arm_trajectory_message.sequence_id
-  message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.sequence_id =   message.right_arm_trajectory_message.sequence_id
+  message.left_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.left_hand_trajectory_message.sequence_id  
+  message.right_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.right_hand_trajectory_message.sequence_id    
+  message.left_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.left_foot_trajectory_message.sequence_id    
+  message.right_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.right_foot_trajectory_message.sequence_id    
+  message.chest_trajectory_message.so3_trajectory.queueing_properties.message_id = 2 #message.chest_trajectory_message.sequence_id
+  message.pelvis_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.pelvis_trajectory_message.sequence_id  
+  message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2 # message.left_arm_trajectory_message.sequence_id
+  message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2 # message.right_arm_trajectory_message.sequence_id
 
 
   return message
@@ -160,8 +160,9 @@ if __name__ == '__main__':
     robotTime = 0
 
     tfListener = TransformListener()
-    pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10)
-    pubStop = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectories', StopAllTrajectoryMessage, queue_size=10)
+  
+    pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
+    pubStop = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)

@@ -33,12 +33,12 @@ def status(m):
     hasStoppedMoving = True
   lstReady = ready
 
-#def footStatus(m):
-#  global pause
-#  global pauseAt
-#  global ready
-#  global pubPause
-#  global lastStep
+def footStatus(m):
+  global pause
+  global pauseAt
+  global ready
+  global pubPause
+  global lastStep
 
   #if pauseAt>0:
   #  if m.footstep_status == 0 and m.footstep_index >= pauseAt:
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
-    #rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
+    rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
 
     while not hasStoppedMoving and not rospy.is_shutdown():
         time.sleep(0.1)
