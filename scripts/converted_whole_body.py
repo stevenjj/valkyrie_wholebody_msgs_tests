@@ -176,10 +176,10 @@ if __name__ == '__main__':
         print('Executing prep move...')
         maxT = 0.0
         msg = getEndposeTrajectory(message, prepTime)
-        pubWhole.publish(msg)
+        #pubWhole.publish(msg)
         wait(prepTime)
         print('Executing whole body trajectory...')
-        pubWhole.publish(message)
+        #pubWhole.publish(message)
         print('Waiting for execution...')
         wait(maxT, True)
         break
