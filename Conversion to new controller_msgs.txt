@@ -45,16 +45,18 @@ For joints:
 - Add jointspace_trajectory and indent joint_trajectory_messages
 - Change trajectory_points so it only contains 1 trajectory point 
 
-For Chest:
-- Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
-- Add default values of selection and weight matrices
+For pelvis, left foot and right foot trajectory messages
+- Add se3_trajectory and indent lines right before the old execution_mode text
+- (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
 - Change frame id -107 to new world frame id: 83766130
 
-For pelvis, left foot and right foot trajectory messages
-- Add se3_trajectory and indent lines right before the old execution_mode text
-- Add default values of selection and weight matrices
+For Chest:
+- Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
+- (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
+- Change frame id -107 to new world frame id: 83766130
+
 
 # TO DO:
 - Retest right arm up trajectory message (with the spine trajectory) 
