@@ -42,10 +42,11 @@ It's best to check available controller options with `ros2 topic list`
 # --------------------------------------------------------------
 YAML file conversion checklist:
 - Change unique_id: to sequence_id: 1 (nonzero numbers)
-- Commend out execution_mode: 0 and previous_message_id: 0
+- Comment out execution_mode: 0 and previous_message_id: 0
 - Change weight: .NaN to weight: -1.0
 - Change translation: to position:
 - Change rotation: to orientation:
+
 For joints:
 - Add jointspace_trajectory and indent joint_trajectory_messages
    - add sequence_id
@@ -56,7 +57,7 @@ For pelvis, left foot and right foot trajectory messages
     - add sequence_id
 - (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
-- Change frame id 83766130 to new world frame id: 83766130
+- Change frame id -107 to new world frame id: 83766130
 
     angular_selection_matrix:
       sequence_id: 1
@@ -86,7 +87,7 @@ For Chest:
   - add sequence_id
 - (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
-- Change frame id 83766130 to new world frame id: 83766130
+- Change frame id -107 to new world frame id: 83766130
 
     selection_matrix:
       sequence_id: 1
