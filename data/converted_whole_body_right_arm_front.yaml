@@ -19,7 +19,7 @@ left_hand_trajectory_message:
     #execution_mode: 0 # delete
     #previous_message_id: 0 # delete
     # End of indentation
-  sequence_id: 2 # Change sequence_id from unique_id. Set it  to 0.
+  sequence_id: 2 # Change sequence_id from unique_id. Set it to non-zero.
 right_hand_trajectory_message: 
   robot_side: 1
   se3_trajectory: # Add this and indent lines below 
