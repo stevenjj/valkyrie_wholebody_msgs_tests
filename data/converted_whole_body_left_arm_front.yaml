@@ -93,7 +93,8 @@ left_arm_trajectory_message:
         sequence_id: 1
       - 
         weight: -1.0
-        trajectory_points: 
+        trajectory_points:
+          - 
             time: 6.759296
             position: 0.0131484158337
             velocity: 0.0
