@@ -104,17 +104,17 @@ left_foot_trajectory_message:
   robot_side: 0
   se3_trajectory:
     angular_selection_matrix:
-      sequence_id: 2
+      sequence_id: 1
       x_selected: true
       y_selected: true
       z_selected: true
     linear_selection_matrix:
-      sequence_id: 2
+      sequence_id: 1
       x_selected: true
       y_selected: true
       z_selected: true
     angular_weight_matrix:
-      sequence_id: 2
+      sequence_id: 1
       weight_frame_id: 0
       x_weight: -1
       y_weight: -1
@@ -130,7 +130,7 @@ left_foot_trajectory_message:
         time: 1
         position: 
           x: -0.0314506641569
-          y: 0.101983538762
+          y: 0.141983538762
           z: 0.145949992162
         orientation: 
           x: -0.000115850270959
