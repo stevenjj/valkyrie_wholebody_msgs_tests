@@ -84,10 +84,9 @@ def getEndposeTrajectory(msg, t):
     extract_first(traj.trajectory_points, t)
   for traj in message.right_arm_trajectory_message.jointspace_trajectory.joint_trajectory_messages:
     extract_first(traj.trajectory_points, t)
- for traj in message.spine_trajectory_message.jointspace_trajectory.joint_trajectory_messages:
-   extract_first(traj.trajectory_points, t)
+#  for traj in message.spine_trajectory_message.jointspace_trajectory.joint_trajectory_messages:
+#    extract_first(traj.trajectory_points, t)
 
-  # Execution mode is explicitly set to 0. 
   message.left_hand_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0	
   message.right_hand_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
   message.left_foot_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
@@ -96,18 +95,18 @@ def getEndposeTrajectory(msg, t):
   message.pelvis_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
   message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
   message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
-  message.spine_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
+#  message.spine_trajectory_message.execution_mode = 0
 
-  # Assign sequence id to queieing_properties.message_id mode:
-  message.left_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = message.left_hand_trajectory_message.sequence_id  
-  message.right_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = message.right_hand_trajectory_message.sequence_id    
-  message.left_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = message.left_foot_trajectory_message.sequence_id    
-  message.right_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = message.right_foot_trajectory_message.sequence_id    
-  message.chest_trajectory_message.so3_trajectory.queueing_properties.message_id = message.chest_trajectory_message.sequence_id
-  message.pelvis_trajectory_message.se3_trajectory.queueing_properties.message_id = message.pelvis_trajectory_message.sequence_id  
-  message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = message.left_arm_trajectory_message.sequence_id
-  message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = message.right_arm_trajectory_message.sequence_id
-  message.spine_trajectory_message.jointspace_trajectory.queueing_properties.message_id = message.spine_trajectory_message.sequence_id
+  # Assign sequence id to execution mode:
+  message.left_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.left_hand_trajectory_message.sequence_id  
+  message.right_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.right_hand_trajectory_message.sequence_id    
+  message.left_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.left_foot_trajectory_message.sequence_id    
+  message.right_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.right_foot_trajectory_message.sequence_id    
+  message.chest_trajectory_message.so3_trajectory.queueing_properties.message_id = 2 #message.chest_trajectory_message.sequence_id
+  message.pelvis_trajectory_message.se3_trajectory.queueing_properties.message_id = 2 #message.pelvis_trajectory_message.sequence_id  
+  message.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2 # message.left_arm_trajectory_message.sequence_id
+  message.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2 # message.right_arm_trajectory_message.sequence_id
+
 
   return message
 
@@ -187,3 +186,4 @@ if __name__ == '__main__':
       else:
         time.sleep(0.1)
     print('Done')
+

@@ -224,12 +224,12 @@ chest_trajectory_message:
   #execution_mode: 0 # Moved to queueing_properties 
   #previous_message_id: 0 # Moved to queueing_properties 
   sequence_id: 1
-spine_trajectory_message: 
-  jointspace_trajectory:
-    joint_trajectory_messages: []
+#spine_trajectory_message: 
+#  jointspace_trajectory:
+#    joint_trajectory_messages: []
   #execution_mode: 0 # Moved to queueing_properties 
   #previous_message_id: 0 # Moved to queueing_properties 
-  sequence_id: 1
+#  sequence_id: 1
 pelvis_trajectory_message: 
   se3_trajectory: # Add this and indent lines below 
     angular_selection_matrix:
