@@ -33,6 +33,8 @@ Notes regarding the conversion from old IHMC messages to new IHMC ROS1 to ROS2 M
 /ihmc/valkyrie/humanoid_control/input/whole_body_trajectory
 /ihmc/valkyrie/humanoid_control/input/stop_all_trajectory
 
+It's best to check available controller options with `ros2 topic list`
+
 9. The ROS1 publisher needs to having latching enabled. In python this is accomplished by setting the argument, latch=True at the publisher's initialization
 
 10. spine trajectory is not in the new whole body controller messages
@@ -126,7 +128,7 @@ Converted Python scripts
 
 Tested ROS1 Messages
 	WholeBodyTrajectoryMessage
-		ArmTrajectoryMessage (Status: Good. Left and right arms g.)
+		ArmTrajectoryMessage (Status: Good. Left and right arm trajectories work reliably)
 		FootTrajectoryMessage  (Status: Good. Left foot works. Presumably Right foot also works)
 		PelvisTrajectoryMessage (Status: Good. We only tried changing positions, but orientation seems to be correct)
 		ChestTrajectoryMessage (Status: Good.)
