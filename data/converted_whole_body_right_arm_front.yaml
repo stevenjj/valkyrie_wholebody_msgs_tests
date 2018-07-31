@@ -226,46 +226,68 @@ chest_trajectory_message:
     #previous_message_id: 0
   sequence_id: 2 
 
-#pelvis_trajectory_message: 
-#  se3_trajectory: # Add this and indent lines below 
-#    taskspace_trajectory_points: 
-#      - 
-#        time: 6.757999
-#        position: 
-#          x: 0.0366097912192
-#          y: -0.000440257892478
-#          z: 1.0224583149
-#        orientation: 
-#          x: 1.58786883161e-06
-#          y: -3.8066584102e-05
-#          z: -7.56527585523e-05
-#          w: 0.999999996413
-#        linear_velocity: 
-#          x: 0.0
-#          y: 0.0
-#          z: 0.0
-#        angular_velocity: 
-#          x: 0.0
-#          y: 0.0
-#          z: 0.0
-#        sequence_id: 2 
-#    frame_information: 
-#      trajectory_reference_frame_id: 83766130
-#      data_reference_frame_id: 1
-#    use_custom_control_frame: False
-#    control_frame_pose: 
-#      position: 
-#        x: 0.0
-#        y: 0.0
-#        z: 0.0
-#      orientation: 
-#        x: 0.0
-#        y: 0.0
-#        z: 0.0
-#        w: 0.0
-#    #execution_mode: 0
-#    #previous_message_id: 0
-#  sequence_id: 2 
+pelvis_trajectory_message: 
+  se3_trajectory: # Add this and indent lines below 
+    taskspace_trajectory_points: 
+      - 
+        time: 6.757999
+        position: 
+          x: 0.0366097912192
+          y: -0.000440257892478
+          z: 1.0224583149
+        orientation: 
+          x: 1.58786883161e-06
+          y: -3.8066584102e-05
+          z: -7.56527585523e-05
+          w: 0.999999996413
+        linear_velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        angular_velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        sequence_id: 2 
+    angular_selection_matrix:
+      sequence_id: 2
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    linear_selection_matrix:
+      sequence_id: 2
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    angular_weight_matrix:
+      sequence_id: 2
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1
+    linear_weight_matrix:
+      sequence_id: 2
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1
+    frame_information: 
+      trajectory_reference_frame_id: 83766130
+      data_reference_frame_id: 83766130
+    use_custom_control_frame: False
+    control_frame_pose: 
+      position: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      orientation: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 0.0
+    #execution_mode: 0
+    #previous_message_id: 0
+  sequence_id: 2 
 left_foot_trajectory_message: 
   robot_side: 0
   se3_trajectory:  
