@@ -117,7 +117,7 @@ Converted files:
 	whole_body_left_arm_front.yaml (Good. Only 1 waypoint per message)
 	whole_body_right_arm_front.yaml (Good. Only 1 waypoint per message)
 	whole_body_nominal.yaml (Good. Pelvis, torso and arms go back to the "home" position. Feet are not moved.)
-	whole_body_left_foot_lift (Good. Left foot is raised, and switches the CoP to the right foot. But the robot_motion_status )
+	whole_body_left_foot_lift (Good. Left foot is raised, and switches the CoP to the right foot. But the robot_motion_status remains in the "IN_MOTION" state. )
 
 Converted Python scripts
 	neck.py (Good)
@@ -136,7 +136,7 @@ Tested ROS1 Messages
 	PauseWalkingMessage (Status: Good. sequence_id should be greater than the foot message)
 	NeckTrajectoryMessage (Status: Good. message_id must not be 0)
 	PelvisHeightTrajectoryMessage (Status: Good. )
-
+	FootLoadBearingMessage (Status: Good?. Left Foot can be loaded again once lifted up. But, it cannot be unloaded while it's down)
 
 
 
