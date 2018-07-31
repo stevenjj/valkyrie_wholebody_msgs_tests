@@ -100,6 +100,45 @@ For Chest:
 
 
 # TO DO:
-- Retest right arm up trajectory message (with the spine trajectory) 
-- Test footsteps with pause message
-- Test left arm up trajectory
+- Retest right arm up trajectory message (with the spine trajectory) DONE
+- Test footsteps with pause message DONE
+- Test left arm up trajectory DONE
+- Test lift foot up DONE
+	- Robot enters IN_MOTION state. She does not exit from this state and go back to STANDING 
+- Test whole body nominal DONE
+
+#------------------------------------------------------------------------------
+Status of ROS1 -> ROS2 bridge message testing
+
+Converted files:
+	neck.yaml (Good)
+	walk_forward.yaml (Good)
+	walk_turn_ccw.yaml (Steps on herself. Likely just the message definition.)
+	whole_body_left_arm_front.yaml (Good. Only 1 waypoint per message)
+	whole_body_right_arm_front.yaml (Good. Only 1 waypoint per message)
+	whole_body_nominal.yaml (Good. Pelvis, torso and arms go back to the "home" position. Feet are not moved.)
+	whole_body_left_foot_lift (Good. Left foot is raised, and switches the CoP to the right foot. But the robot_motion_status )
+
+Converted Python scripts
+	neck.py (Good)
+	footstep.py (Good. We disabled the Pause Walking pub. But we've confirmed pause walking works as a ROS message)
+	whole_body.py (Good. We have not confirmed StopAllTrajectories message due to current API limits)
+
+Tested ROS1 Messages
+	WholeBodyTrajectoryMessage
+		ArmTrajectoryMessage (Status: Good. Left and right arms g.)
+		FootTrajectoryMessage  (Status: Good. Left foot works. Presumably Right foot also works)
+		PelvisTrajectoryMessage (Status: Good. We only tried changing positions, but orientation seems to be correct)
+		ChestTrajectoryMessage (Status: Good.)
+		HeadTrajectoryMessage (Status: Untested. All Fields are Empty)
+		HandTrajectoryMessage (Status: Untested.)		
+
+	PauseWalkingMessage (Status: Good. sequence_id should be greater than the foot message)
+	NeckTrajectoryMessage (Status: Good. message_id must not be 0)
+	PelvisHeightTrajectoryMessage (Status: Good. )
+
+
+
+
+
+
