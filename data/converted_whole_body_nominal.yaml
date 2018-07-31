@@ -47,6 +47,7 @@ left_arm_trajectory_message:
       - 
         weight: -1.0
         trajectory_points: 
+           -
             time: 2.759284
             position: 0.300196617842
             velocity: 0.0
