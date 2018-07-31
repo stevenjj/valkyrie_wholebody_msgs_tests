@@ -25,10 +25,11 @@ def status(m):
   global ready
   global stop
   global pauseAt
-  if m.data=='STANDING':
-    ready = True
-  else:
-    ready = False
+  ready = True
+#  if m.data=='STANDING':
+#    ready = True
+#  else:
+#    ready = False
 
 def wait(t, pause=False):
   global robotTime
