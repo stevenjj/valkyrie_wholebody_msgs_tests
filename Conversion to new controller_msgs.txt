@@ -1,0 +1,34 @@
+Notes regarding the conversion from old IHMC messages to new IHMC ROS1 to ROS2 Messages:
+
+1. unique_id is now sequence_id. It's best if these are set to non-zero values
+
+2. The world frame ID is now 83766130
+
+3. In general, all default values must be set explicitly when sending ROS1 messages to the to ROS1-to-ROS2 bridge. For instance:
+
+	3a. All trajectories need to have 
+	controller_msgs/QueueableMessage queueing_properties with
+
+	queueing_properties.message_id != 0 # The neck trajectory doesn't accept zero message_id's. Setting this equal to a nonzero sequence id should be fine.
+	queueing_properties.execution_mode = 0 # This must be set explicitly to a particular execution_mode
+
+	3b. Selection and Weight matrices for SO3 and SE3 messages must be defined to the default values explicitly.
+	# These matrices must be set to their default values explicitly
+
+	controller_msgs/SelectionMatrix3DMessage angular_selection_matrix
+	controller_msgs/SelectionMatrix3DMessage linear_selection_matrix
+	controller_msgs/WeightMatrix3DMessage angular_weight_matrix
+	controller_msgs/WeightMatrix3DMessage linear_weight_matrix
+
+5. Currently, the API can only take 1 trajectory waypoint for all types of trajectories.
+
+6. Each trajectory type is either jointspace_trajectory, se3_trajectory, so3_trajectory, so the message fields for the joint_trajectory_messages and taskspace_trajectory_points are under this new message field.
+
+7. Default value for weight message field is now -1 not .Nan
+
+8. Topic names for publishing have been changed. Use:
+
+/ihmc/valkyrie/humanoid_control/input/footstep_data_list
+/ihmc/valkyrie/humanoid_control/input/neck_trajectory
+/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory
+/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory

@@ -225,7 +225,11 @@ chest_trajectory_message:
     #execution_mode: 0
     #previous_message_id: 0
   sequence_id: 2 
-
+spine_trajectory_message: 
+  sequence_id: 2
+  jointspace_trajectory: # Add this and indent lines below
+    joint_trajectory_messages: []
+    # End of indentation
 pelvis_trajectory_message: 
   se3_trajectory: # Add this and indent lines below 
     taskspace_trajectory_points: 
@@ -294,8 +298,8 @@ left_foot_trajectory_message:
     sequence_id: 2 
     taskspace_trajectory_points: []
     frame_information: 
-      trajectory_reference_frame_id: 0 # I believe this should be 83766130
-      data_reference_frame_id: 0 # I believe this should be 1
+      trajectory_reference_frame_id: 0 
+      data_reference_frame_id: 0 # 
     use_custom_control_frame: False
     control_frame_pose: 
       position: 
@@ -316,8 +320,8 @@ right_foot_trajectory_message:
     sequence_id: 2 
     taskspace_trajectory_points: []
     frame_information: 
-      trajectory_reference_frame_id: 0 # I believe this should be 83766130
-      data_reference_frame_id: 0 # I believe this should be 1
+      trajectory_reference_frame_id: 0 
+      data_reference_frame_id: 0
     use_custom_control_frame: False
     control_frame_pose: 
       position: 
