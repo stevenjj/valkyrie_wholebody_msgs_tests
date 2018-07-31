@@ -35,6 +35,8 @@ Notes regarding the conversion from old IHMC messages to new IHMC ROS1 to ROS2 M
 
 9. The ROS1 publisher needs to having latching enabled. In python this is accomplished by setting the argument, latch=True at the publisher's initialization
 
+10. spine trajectory is not in the new whole body controller messages
+
 # --------------------------------------------------------------
 YAML file conversion checklist:
 - Change unique_id: to sequence_id: 1 (nonzero numbers)
