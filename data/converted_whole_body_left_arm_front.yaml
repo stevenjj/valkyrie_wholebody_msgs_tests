@@ -107,6 +107,7 @@ left_arm_trajectory_message:
             position: -0.00026057951618
             velocity: 0.0
             sequence_id: 1
+        sequence_id: 1
   #execution_mode: 0 # Moved to queueing_properties 
   #previous_message_id: -1 # moved to queueing_properties
   sequence_id: 1
@@ -176,6 +177,7 @@ right_arm_trajectory_message:
             position: -0.129934638739
             velocity: 0.0
             sequence_id: 1
+        sequence_id: 1
   #execution_mode: 0 # Moved to queueing_properties 
   #previous_message_id: -1 # moved to queueing_properties
   sequence_id: 1
