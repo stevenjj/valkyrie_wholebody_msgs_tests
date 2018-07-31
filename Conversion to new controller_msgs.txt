@@ -49,13 +49,48 @@ For pelvis, left foot and right foot trajectory messages
 - Add se3_trajectory and indent lines right before the old execution_mode text
 - (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
-- Change frame id -107 to new world frame id: 83766130
+- Change frame id 83766130 to new world frame id: 83766130
+
+    angular_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    linear_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    angular_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1
+    linear_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1  
 
 For Chest:
 - Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
 - (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
-- Change frame id -107 to new world frame id: 83766130
+- Change frame id 83766130 to new world frame id: 83766130
+
+    selection_matrix:
+      sequence_id: 1
+      x_selected: true 
+      y_selected: true 
+      z_selected: true 
+    weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1    
 
 
 # TO DO:
