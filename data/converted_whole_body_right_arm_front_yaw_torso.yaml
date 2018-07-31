@@ -17,9 +17,9 @@ left_hand_trajectory_message:
         y: 0.0
         z: 0.0
         w: 0.0
-  #execution_mode: 0
-  #previous_message_id: 0
-  sequence_id: 1
+    #execution_mode: 0
+    #previous_message_id: 0
+    sequence_id: 1
 right_hand_trajectory_message: 
   robot_side: 1
   se3_trajectory:
@@ -51,8 +51,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -1.04579997063
+            time: 5.112443
+            position: 0.300432652235
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -60,8 +60,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.664004981518
+            time: 5.112443
+            position: -1.24983882904
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -69,8 +69,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.222399994731
+            time: 5.112443
+            position: 0.00786705967039
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -78,8 +78,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.393855988979
+            time: 5.112443
+            position: -0.779003918171
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -87,8 +87,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 1.42205297947
+            time: 5.112443
+            position: 1.5497688055
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -96,8 +96,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 0.0709550008178
+            time: 5.112443
+            position: 0.0689653530717
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -105,8 +105,8 @@ left_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.0896499976516
+            time: 5.112443
+            position: 0.123505651951
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -122,8 +122,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 0.299897819757
+            time: 5.112443
+            position: -1.04579997063
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -131,8 +131,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 1.24986505508
+            time: 5.112443
+            position: 0.664004981518
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -140,8 +140,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 0.00867693033069
+            time: 5.112443
+            position: -0.222399994731
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -149,8 +149,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 0.777724325657
+            time: 5.112443
+            position: 0.393855988979
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -158,8 +158,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: 1.54961037636
+            time: 5.112443
+            position: 1.42205297947
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -167,8 +167,8 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.072546094656
+            time: 5.112443
+            position: 0.0709550008178
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
@@ -176,16 +176,17 @@ right_arm_trajectory_message:
         weight: -1.0
         trajectory_points: 
           - 
-            time: 5.11377
-            position: -0.130466118455
+            time: 5.112443
+            position: -0.0896499976516
             velocity: 0.0
             sequence_id: 1
         sequence_id: 1
   #execution_mode: 0
   #previous_message_id: -1
   sequence_id: 1
+
 chest_trajectory_message: 
-  so3_trajectory:   
+  so3_trajectory:
     sequence_id: 1
     selection_matrix:
       sequence_id: 1
@@ -197,15 +198,15 @@ chest_trajectory_message:
       weight_frame_id: 0
       x_weight: -1
       y_weight: -1
-      z_weight: -1      
+      z_weight: -1        
     taskspace_trajectory_points: 
       - 
-        time: 5.11377
+        time: 5.112443
         orientation: 
-          x: 7.32437269386e-06
-          y: -3.15367274503e-05
-          z: -0.475195192229
-          w: 0.879880405643
+          x: -1.57974588127e-05
+          y: -3.54264638001e-05
+          z: 0.475068587587
+          w: 0.879948768727
         angular_velocity: 
           x: 0.0
           y: 0.0
@@ -256,16 +257,16 @@ pelvis_trajectory_message:
       z_weight: -1      
     taskspace_trajectory_points: 
       - 
-        time: 5.11377
+        time: 5.112443
         position: 
-          x: 0.0367115959525
-          y: -0.000407802843256
-          z: 1.02245533466
+          x: 0.0366096273065
+          y: -0.00044194192742
+          z: 1.02245593071
         orientation: 
-          x: -8.53947219613e-06
-          y: -3.12296178049e-05
-          z: -6.58692950355e-05
-          w: 0.999999997307
+          x: 2.9320631145e-06
+          y: -3.86781210533e-05
+          z: -7.80134575275e-05
+          w: 0.999999996205
         linear_velocity: 
           x: 0.0
           y: 0.0
@@ -315,7 +316,6 @@ left_foot_trajectory_message:
   #execution_mode: 0
   #previous_message_id: 0
   sequence_id: 1
-
 right_foot_trajectory_message: 
   robot_side: 1
   se3_trajectory:
