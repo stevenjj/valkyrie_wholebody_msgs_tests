@@ -166,11 +166,11 @@ if __name__ == '__main__':
     pubStop = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True)
     
     # Parse Test
-    #message = message_converter.convert_dictionary_to_ros_message('controller_msgs/WholeBodyTrajectoryMessage', data)
-    #print('Testing message parsing')
-    #maxT = 0.0
-    #msg = getEndposeTrajectory(message, prepTime)
-    #pubWhole.publish(msg)
+    # message = message_converter.convert_dictionary_to_ros_message('controller_msgs/WholeBodyTrajectoryMessage', data)
+    # print('Testing message parsing')
+    # maxT = 0.0
+    # msg = getEndposeTrajectory(message, prepTime)
+    pubWhole.publish(msg)
     # End Parse Test
 
     print('Waiting for robot pose and robot to stop moving...')

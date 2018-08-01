@@ -39,6 +39,8 @@ It's best to check available controller options with `ros2 topic list`
 
 10. spine trajectory is not in the new whole body controller messages
 
+The checklist below was used to convert the yaml files to the correct message format:
+
 # --------------------------------------------------------------
 YAML file footstep message list conversion checklist:
 	- change unique_id to sequence_id: 1 (ideally nonzero numbers)
@@ -66,6 +68,7 @@ YAML file whole body message conversion checklist:
 - Change weight: .NaN to weight: -1.0
 - Change translation: to position:
 - Change rotation: to orientation:
+- Delete spine_trajectory_message as it is no longer in the whole body message
 
 For joints:
 - Add jointspace_trajectory and indent joint_trajectory_messages
@@ -79,6 +82,7 @@ For pelvis, left foot and right foot trajectory messages
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
 - Change frame id -107 to new world frame id: 83766130
 
+- add message fields under se3_trajectory
     angular_selection_matrix:
       sequence_id: 1
       x_selected: true
@@ -108,7 +112,7 @@ For Chest:
 - (for active messages) Add default values of selection and weight matrices
 - Remove taskspace_trajectory_points so it only contains 1 waypoint
 - Change frame id -107 to new world frame id: 83766130
-
+- add message fields under so3_trajectory: 
     selection_matrix:
       sequence_id: 1
       x_selected: true 
@@ -153,7 +157,6 @@ Converted files:
 	walk_forward_pause.launch (we have to reenable the pause walking pub)
 	whole_body_right_foot_lift.yaml
 
-
 	Remaining files to convert:
 	whole_body_left_arm_low
 	wohle_body_left_arm_side
@@ -164,7 +167,6 @@ Converted files:
 	whole_body_right_wrist (We don't have wrists to test)
 
 	whole_body_T_pose
-
 	whole_body_spine 	# The spine is just a joint trajectory message now
 
 
