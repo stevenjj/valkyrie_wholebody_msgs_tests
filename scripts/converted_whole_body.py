@@ -170,7 +170,7 @@ if __name__ == '__main__':
     # print('Testing message parsing')
     # maxT = 0.0
     # msg = getEndposeTrajectory(message, prepTime)
-    pubWhole.publish(msg)
+    # pubWhole.publish(msg)
     # End Parse Test
 
     print('Waiting for robot pose and robot to stop moving...')
