@@ -118,6 +118,14 @@ if __name__ == '__main__':
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
     rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, footStatus)
 
+    # Parse Test
+    # print('Testing message parse')
+    # message = message_converter.convert_dictionary_to_ros_message('controller_msgs/FootstepDataListMessage', data)    
+    # pub.publish(message)
+    # print('Published parsed message test')
+    # End Parse test
+
+
     while not hasStoppedMoving and not rospy.is_shutdown():
         time.sleep(0.1)
     print('Done')

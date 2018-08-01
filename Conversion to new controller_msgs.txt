@@ -45,6 +45,8 @@ YAML file footstep message list conversion checklist:
 	- for each footstep message, add default value for 
 		touchdown_duration: -1
 	- comment out execution_mode: 0 and previous_message_id: 0
+	- rename predicted_contact_points to predicted_contact_points_2d
+	- rename position_waypoints to custom_position_waypoints
 	- add new default message fields:
 
 trust_height_of_footsteps: False
@@ -121,12 +123,15 @@ For Chest:
 
 
 # TO DO:
-- Retest right arm up trajectory message (with the spine trajectory) DONE
+- Retest right arm up trajectory message DONE
 - Test footsteps with pause message DONE
 - Test left arm up trajectory DONE
 - Test lift foot up DONE
 	- Robot enters IN_MOTION state. She does not exit from this state and go back to STANDING 
 - Test whole body nominal DONE
+
+- Write foot load bearing script
+- Write spine joint trajectory script
 
 #------------------------------------------------------------------------------
 Status of ROS1 -> ROS2 bridge message testing
@@ -146,6 +151,8 @@ Converted files:
 	walk_turn_cw.yaml
 	walk_backward.yaml
 	walk_forward_pause.launch (we have to reenable the pause walking pub)
+	whole_body_right_foot_lift.yaml
+
 
 	Remaining files to convert:
 	whole_body_left_arm_low

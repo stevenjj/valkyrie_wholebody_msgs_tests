@@ -10,10 +10,10 @@ footstep_data_list:
       y: -0.000188183942786
       z: 0.000868960690506
       w: 0.999999594462
-    predicted_contact_points: []
+    predicted_contact_points_2d: []
     trajectory_type: 0
     swing_height: 0.1
-    position_waypoints: []
+    custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
     swing_duration: 0.0
@@ -31,10 +31,10 @@ footstep_data_list:
       y: -0.000187464473883
       z: -0.00413102731049
       w: 0.999991439278
-    predicted_contact_points: []
+    predicted_contact_points_2d: []
     trajectory_type: 0
     swing_height: 0.1
-    position_waypoints: []
+    custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
     swing_duration: 0.0
@@ -52,10 +52,10 @@ footstep_data_list:
       y: -0.000188071079281
       z: 8.24440995453e-05
       w: 0.99999996861
-    predicted_contact_points: []
+    predicted_contact_points_2d: []
     trajectory_type: 0
     swing_height: 0.1
-    position_waypoints: []
+    custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
     swing_duration: 0.0
@@ -73,10 +73,10 @@ footstep_data_list:
       y: -0.00018805141614
       z: -5.45003768669e-05
       w: 0.999999970523
-    predicted_contact_points: []
+    predicted_contact_points_2d: []
     trajectory_type: 0
     swing_height: 0.1
-    position_waypoints: []
+    custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
     swing_duration: 0.0
