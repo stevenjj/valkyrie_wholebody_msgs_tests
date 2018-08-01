@@ -40,7 +40,25 @@ It's best to check available controller options with `ros2 topic list`
 10. spine trajectory is not in the new whole body controller messages
 
 # --------------------------------------------------------------
-YAML file conversion checklist:
+YAML file footstep message list conversion checklist:
+	- change unique_id to sequence_id: 1 (ideally nonzero numbers)
+	- for each footstep message, add default value for 
+		touchdown_duration: -1
+	- comment out execution_mode: 0 and previous_message_id: 0
+	- add new default message fields:
+
+trust_height_of_footsteps: False
+are_footsteps_adjustable: False
+offset_footsteps_with_execution_error: False
+queueing_properties:
+  sequence_id: 1
+  execution_mode: 0
+  message_id: 1
+  previous_message_id: 0
+  execution_delay_time: 0	
+
+
+YAML file whole body message conversion checklist:
 - Change unique_id: to sequence_id: 1 (nonzero numbers)
 - Comment out execution_mode: 0 and previous_message_id: 0
 - Change weight: .NaN to weight: -1.0
