@@ -22,7 +22,7 @@ Notes regarding the conversion from old IHMC messages to new IHMC ROS1 to ROS2 M
 
 5. Currently, the API can only take 1 trajectory waypoint for all types of trajectories.
 
-6. Each trajectory type is either jointspace_trajectory, se3_trajectory, so3_trajectory, so the message fields for the joint_trajectory_messages and taskspace_trajectory_points are under this new message field.
+6. Each trajectory type is either a jointspace_trajectory, se3_trajectory, or an so3_trajectory, so the message fields for the joint_trajectory_messages and taskspace_trajectory_points are under this new message field.
 
 7. Default value for weight message field is now -1.0 not .Nan
 
@@ -75,7 +75,28 @@ For joints:
    - add sequence_id
 - Change trajectory_points so it only contains 1 trajectory point 
 
-For pelvis, left foot and right foot trajectory messages
+For Chest:
+- Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
+  - add sequence_id
+- (for active messages) Add default values of selection and weight matrices
+- Remove taskspace_trajectory_points so it only contains 1 waypoint
+- Change frame id -107 to new world frame id: 83766130
+- add message fields under so3_trajectory: 
+    selection_matrix:
+      sequence_id: 1
+      x_selected: true 
+      y_selected: true 
+      z_selected: true 
+    weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1    
+
+
+For pelvis, left foot and right foot trajectory messages:
+
 - Add se3_trajectory and indent lines right before the old execution_mode text
     - add sequence_id
 - (for active messages) Add default values of selection and weight matrices
@@ -106,24 +127,7 @@ For pelvis, left foot and right foot trajectory messages
       y_weight: -1
       z_weight: -1  
 
-For Chest:
-- Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
-  - add sequence_id
-- (for active messages) Add default values of selection and weight matrices
-- Remove taskspace_trajectory_points so it only contains 1 waypoint
-- Change frame id -107 to new world frame id: 83766130
-- add message fields under so3_trajectory: 
-    selection_matrix:
-      sequence_id: 1
-      x_selected: true 
-      y_selected: true 
-      z_selected: true 
-    weight_matrix:
-      sequence_id: 1
-      weight_frame_id: 0
-      x_weight: -1
-      y_weight: -1
-      z_weight: -1    
+
 
 
 # TO DO:
@@ -157,29 +161,31 @@ Converted files and their status:
 		- Status: Acceptable. We increased the space between the foot. Contains only 1 waypoint message. The left foot is raised, and she switches the CoP to the right foot. But, the robot_motion_status remains in the "IN_MOTION" state. She also does not put her foot back down. So no further messages can be sent, unless we renable the left foot contact with the FootLoadBearing Message.  )
 
 Converted but needs testing (reset to nominal after every run.):
-	whole_body_right_foot_lift.yaml (we increased the distance between the feet0)
+	whole_body_right_foot_lift.yaml (we increased the distance between the feet)
 	whole_body_left_arm_front_yaw_torso.yaml
 	whole_body_right_arm_front_yaw_torso.yaml
+
 	whole_body_left_arm_low.yaml
+	whole_body_right_arm_low.yaml
+
+	whole_body_left_arm_right_bend_torso.yaml
 
 	walk_forward_pause.launch (we have to reenable the pause walking pub)
 	walk_backward.yaml
 	walk_turn_cw.yaml
 
 Remaining files to convert:
-	whole_body_left_arm_right_bend_torso
 	whole_body_left_arm_side
 
-	whole_body_right_arm_low
 	whole_body_right_arm_left_bend_torso
 	whole_body_right_arm_side
 
 	whole_body_T_pose
-	whole_body_spine 	# The spine is just a joint trajectory message now
 
-	whole_body_right_arm_side_pause # We cannot test this because the API only allows 1 trajectory message
+	whole_body_spine 	# The spine is just a joint trajectory message now
 	whole_body_left_wrist (We don't have wrists to test)
 	whole_body_right_wrist (We don't have wrists to test)
+	whole_body_right_arm_side_pause.launch # We cannot test this because the API only allows 1 trajectory message
 
 
 Converted Python scripts
