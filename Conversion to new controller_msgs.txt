@@ -178,12 +178,13 @@ Converted but needs testing (reset to nominal after every run.):
 	whole_body_left_arm_side.yaml
 	whole_body_right_arm_side.yaml
 
+	whole_body_T_pose.yaml
+
 	walk_forward_pause.launch (we have to reenable the pause walking pub)
 	walk_backward.yaml
 	walk_turn_cw.yaml
 
 Remaining files to convert:
-	whole_body_T_pose
 
 	whole_body_spine 	# The spine is just a joint trajectory message now
 	whole_body_left_wrist (We don't have wrists to test)
