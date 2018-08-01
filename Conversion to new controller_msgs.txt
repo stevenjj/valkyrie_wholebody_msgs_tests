@@ -163,9 +163,13 @@ Converted files and their status:
 		- Status: Good. Pelvis, torso and arms go back to the "home" position. Feet do not move. Only 1 waypoint per message
 	- whole_body_left_foot_lift 
 		- Status: Acceptable. We increased the space between the foot. Contains only 1 waypoint message. The left foot is raised, and she switches the CoP to the right foot. But, the robot_motion_status remains in the "IN_MOTION" state. She also does not put her foot back down. So no further messages can be sent, unless we renable the left foot contact with the FootLoadBearing Message.  )
+	- whole_body_right_foot_lift.yaml (we increased the distance between the feet)
+		- Status: Acceptable. Same as left foot lift
+	- whole_body_left_arm_front_yaw_torso.yaml
+		- Status: Good. 
+
 
 Converted but needs testing (reset to nominal after every run.):
-	whole_body_right_foot_lift.yaml (we increased the distance between the feet)
 	whole_body_left_arm_front_yaw_torso.yaml
 	whole_body_right_arm_front_yaw_torso.yaml
 
@@ -184,7 +188,12 @@ Converted but needs testing (reset to nominal after every run.):
 	walk_backward.yaml
 	walk_turn_cw.yaml
 
+	walk_in_place.yaml
+	load_left_foot.yaml
+	load_right_foot.yaml	
+
 Remaining files to convert:
+
 	whole_body_spine 	# The spine is just a joint trajectory message now
 	whole_body_left_wrist (We don't have wrists to test)
 	whole_body_right_wrist (We don't have wrists to test)
