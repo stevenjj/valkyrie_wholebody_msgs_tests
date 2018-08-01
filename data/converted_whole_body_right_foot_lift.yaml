@@ -131,6 +131,28 @@ right_foot_trajectory_message:
   robot_side: 1
   se3_trajectory:
     sequence_id: 1
+    angular_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    linear_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    angular_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1
+    linear_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1      
     taskspace_trajectory_points: 
       - 
         time: 1
