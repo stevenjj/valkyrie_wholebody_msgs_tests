@@ -132,13 +132,36 @@ For Chest:
 Status of ROS1 -> ROS2 bridge message testing
 
 Converted files:
-	neck.yaml (Good)
-	walk_forward.yaml (Good)
-	walk_turn_ccw.yaml (Steps on herself. Likely just the message definition.)
-	whole_body_left_arm_front.yaml (Good. Only 1 waypoint per message)
-	whole_body_right_arm_front.yaml (Good. Only 1 waypoint per message)
-	whole_body_nominal.yaml (Good. Pelvis, torso and arms go back to the "home" position. Feet are not moved.)
-	whole_body_left_foot_lift (Good. Left foot is raised, and switches the CoP to the right foot. But the robot_motion_status remains in the "IN_MOTION" state. )
+	- neck.yaml (Status: Good)
+	- walk_forward.yaml (Status: Good)
+	- walk_turn_ccw.yaml (Steps on herself. Likely just the message definition.)
+	- whole_body_left_arm_front.yaml (Status: Good. Only 1 waypoint per message)
+	- whole_body_right_arm_front.yaml (Status: Good. Only 1 waypoint per message)
+	- whole_body_nominal.yaml (Status: Good. Pelvis, torso and arms go back to the "home" position. Feet are not moved.)
+	- whole_body_left_foot_lift (Status: Good. We increased the space between the foot. Contains only 1 waypoint message. The left foot is raised, and she switches the CoP to the right foot. But, the robot_motion_status remains in the "IN_MOTION" state. She also does not put her foot back down. So no further messages can be sent, unless we renable the left foot contact with the FootLoadBearing Message.  )
+
+	Converted but needs testing:
+	whole_body_left_arm_front_yaw_torso.yaml
+	whole_body_right_arm_front_yaw_torso.yaml
+	walk_turn_cw.yaml
+	walk_backward.yaml
+	walk_forward_pause.launch (we have to reenable the pause walking pub)
+
+	Remaining files to convert:
+	whole_body_left_arm_low
+	wohle_body_left_arm_side
+	whole_body_left_wrist (We don't have wrists to test)
+
+	whole_body_right_arm_low
+	wohle_body_right_arm_side
+	whole_body_right_wrist (We don't have wrists to test)
+
+	whole_body_T_pose
+
+	whole_body_spine 	# The spine is just a joint trajectory message now
+
+
+
 
 Converted Python scripts
 	neck.py (Good)
@@ -154,9 +177,9 @@ Tested ROS1 Messages
 		HeadTrajectoryMessage (Status: Untested. All Fields are Empty)
 		HandTrajectoryMessage (Status: Untested.)		
 
-	PauseWalkingMessage (Status: Good. sequence_id should be greater than the foot message)
+	PauseWalkingMessage (Status: Good. We tested with a sequence_id greater than the foot message)
 	NeckTrajectoryMessage (Status: Good. message_id must not be 0)
-	PelvisHeightTrajectoryMessage (Status: Good. )
+	PelvisHeightTrajectoryMessage (Status: Good.)
 	FootLoadBearingMessage (Status: Good?. Left Foot can be loaded again once lifted up. But, it cannot be unloaded while it's down)
 
 
