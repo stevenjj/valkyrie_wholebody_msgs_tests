@@ -40,15 +40,15 @@ def footStatus(m):
   global pubPause
   global lastStep
 
-  #if pauseAt>0:
-  #  if m.footstep_status == 0 and m.footstep_index >= pauseAt:
-  #    print('Pausing the walking ...')
-  #    pause = True
-  #    message = PauseWalkingMessage()
-  #    message.pause = True #    message.sequence_id = 1
-  #    pubPause.publish(message)
-  #if m.footstep_status == 1:
-  #   lastStep = m.footstep_index
+  if pauseAt>0:
+    if m.footstep_status == 0 and m.footstep_index >= pauseAt:
+      print('Pausing the walking ...')
+      pause = True
+      message = PauseWalkingMessage()
+      message.pause = True #    message.sequence_id = 1
+      pubPause.publish(message)
+  if m.footstep_status == 1:
+     lastStep = m.footstep_index
 
 def callback(m):
   global pub
@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     tfListener = TransformListener()
     pub = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
-    #pubPause = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10, latch=True)
+    pubPause = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10, latch=True)
     print('Waiting for robot pose and robot to stop moving...')
     time.sleep(0.5)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
@@ -129,8 +129,8 @@ if __name__ == '__main__':
     while not hasStoppedMoving and not rospy.is_shutdown():
         time.sleep(0.1)
     print('Done')
-    #if pause:
-    #  if lastStep == pauseAt:
-    #  	print('Stepping paused as requested')
-    #  else:
-    #    print('Pausing failed')
+    if pause:
+      if lastStep == pauseAt:
+      	print('Stepping paused as requested')
+      else:
+        print('Pausing failed')
