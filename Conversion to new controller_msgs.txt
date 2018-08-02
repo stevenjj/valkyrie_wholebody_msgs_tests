@@ -154,7 +154,7 @@ Converted files and their status:
 	- walk_forward.yaml 
 		- Status: Good
 	- walk_turn_ccw.yaml 
-		- Status: Steps on herself. Likely just the message definition.
+		- Status: Changed parameters. Needs retesting.
 	- whole_body_left_arm_front.yaml 
 		- Status: Good. But only 1 waypoint per message
 	- whole_body_right_arm_front.yaml 
@@ -167,37 +167,43 @@ Converted files and their status:
 		- Status: Acceptable. Same as left foot lift
 	- whole_body_left_arm_front_yaw_torso.yaml
 		- Status: Good. 
-
+	- whole_body_left_arm_front_yaw_torso.yaml
+		- Status: Good
+	- whole_body_right_arm_front_yaw_torso.yaml
+		- Status: Good
+	- whole_body_left_arm_low.yaml
+		- Status: Good	
+	- whole_body_right_arm_low.yaml
+		- Status: Good
+	- whole_body_left_arm_right_bend_torso.yaml
+		- Status: Good
+	- whole_body_right_arm_left_bend_torso.yaml
+		- Status: Good
+	- whole_body_left_arm_side.yaml
+		- Status: Good
+	- whole_body_right_arm_side.yaml
+		- Status: Good
+	- whole_body_T_pose.yaml
+		- Status: Good
+	- walk_forward_pause.launch
+		- Status: Good
+	- walk_in_place.yaml
+		- Status: Good. New script which squares the feet to the mid frame orientation spaced at 0.125m.
+	- walk_backward.yaml
+		- Status: Good
 
 Converted but needs testing (reset to nominal after every run.):
-	whole_body_left_arm_front_yaw_torso.yaml
-	whole_body_right_arm_front_yaw_torso.yaml
-
-	whole_body_left_arm_low.yaml
-	whole_body_right_arm_low.yaml
-
-	whole_body_left_arm_right_bend_torso.yaml
-	whole_body_right_arm_left_bend_torso.yaml
-
-	whole_body_left_arm_side.yaml
-	whole_body_right_arm_side.yaml
-
-	whole_body_T_pose.yaml
-
-	walk_forward_pause.launch (we have to reenable the pause walking pub)
-	walk_backward.yaml
 	walk_turn_cw.yaml
 
-	walk_in_place.yaml
 	load_left_foot.yaml
 	load_right_foot.yaml	
 
 Remaining files to convert:
-
-	whole_body_spine 	# The spine is just a joint trajectory message now
 	whole_body_left_wrist (We don't have wrists to test)
 	whole_body_right_wrist (We don't have wrists to test)
 	whole_body_right_arm_side_pause.launch # We cannot test this because the API only allows 1 trajectory message
+
+	whole_body_spine 	# The spine is just a joint trajectory message. We have to write a script for this message
 
 
 Converted Python scripts
@@ -207,6 +213,8 @@ Converted Python scripts
 		- Status: Good. We disabled the Pause Walking pub. But we've confirmed pause walking works as a ROS message)
 	whole_body.py 
 		- Status: Good. We have not confirmed StopAllTrajectories message due to current API limits)
+	converted_load_foot.py
+		- Status: Untested for now. Rostopic echo seems ok.
 
 Tested ROS1 Messages
 	WholeBodyTrajectoryMessage
