@@ -1,82 +1,246 @@
-# Valkyrie Hardware Testing Scripts
-This package contains scripts for testing Valkyrie hardware behaviour.
+Notes regarding the conversion from old IHMC messages to new IHMC ROS1 to ROS2 Messages:
 
-These tests use the IHMC ROS API as it is used at the University Of Edinburgh. Failure to complete all of these test will result in loss of functionality of the robot. These tests should be run regulalry and especially before/after upgrades and maintenance visits.
-All scripts are tested in the IHMC simulator (SCS).
+1. unique_id is now sequence_id. It's best if these are set to non-zero values
 
-This test suit has been designed and tested with the following versions of the software components:
-- NASA API - Fievel
-- IHMC Robotics Toolbox - 0.10.0
-- OpenHumanoids - private repo 4ac67a0b
+2. The world frame ID is now 83766130
 
-## Walking tests
-The walking tests are manual. Each creates a foostep plan which will be executed on the robot. The operator has to visually confirm that the execution was correct. The behaviour to look out for is:
-- Drift (how far off the target did the robot walk)
-- Pelvis stability and oscillations (especially in single foot support)
-- Foot stomping
-- Falls
+3. In general, all the required default values must be set explicitly when sending ROS1 messages to the to ROS1-to-ROS2 bridge. For instance:
 
-Each test will subscribe to the robot pose and offset the stored trajectory relative to the current pose (in case of drift). The test will only start if the robot is the `STANDING` state.
-Each of the tests will also start a TF listener. Before running any of the tests, run the state publisher using:
+	3a. All trajectories need to have 
+	controller_msgs/QueueableMessage queueing_properties with
 
-```roslaunch valkyrie_testing_edi robot_state.launch```
+	queueing_properties.message_id != 0 # The neck trajectory doesn't accept zero message_id's. Setting this equal to a nonzero sequence id should be fine.
+	queueing_properties.execution_mode = 0 # This must be set explicitly to a particular execution_mode
 
-Tests:
-- Walking forward
-  ```roslaunch valkyrie_testing_edi walk_forward.launch```
-  The robot walks 4 short steps forwards relative where the robot is standing.
-- Walking backward
-  ```roslaunch valkyrie_testing_edi walk_backward.launch```
-  The robot walks 4 short steps backwards relative where the robot is standing.
-- Turn clockwise
-  ```roslaunch valkyrie_testing_edi walk_turn_cw.launch```
-  The robot turns clockwise 90 degrees around the position where it's standing.
-- Turn counter-clockwise
-  ```roslaunch valkyrie_testing_edi walk_turn_ccw.launch```
-  The robot turns counter-clockwise 90 degrees around the position where it's standing.
-- Pause a walking walking trajectory
-  ```roslaunch valkyrie_testing_edi walk_forward_pause.launch```
-  The robot is commanded to walk 4 short steps forward but the execution is pased after the first step. The second step should finish and the robot should stop executing only two steps.
-- Nominal pose
-  ```roslaunch valkyrie_testing_edi whole_body_nominal.launch```
-  The robot will move into the prep pose (over 5s) and then move into the nominal pose (slight squat, arms on the side).
-- Raise the left/right arm forwards
-  ```roslaunch valkyrie_testing_edi whole_body_left_arm_front.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_front.launch```
-  The robot will move into the prep pose (over 5s) and then raise its left/right arm forward.
-- Raise the left/right arm sideways
-  ```roslaunch valkyrie_testing_edi whole_body_left_arm_side.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_side.launch```
-  The robot will move into the prep pose (over 5s) and then raise its left/right arm sideways.
-- Raise the left/right arm across and bend over
-  ```roslaunch valkyrie_testing_edi whole_body_left_arm_right_bend_torso.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_left_bend_torso.launch```
-  The robot will move into the prep pose (over 5s) and then move its left/right arm across towards the opposite side while banding the back.
-- Raise the left/right arm forward and bend over
-  ```roslaunch valkyrie_testing_edi whole_body_left_arm_front_yaw_torso.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_front_yaw_torso.launch```
-  The robot will move into the prep pose (over 5s) and then reach with its left/right arm forward while banding the back.
-- Raise the left/right arm forward and squat
-  ```roslaunch valkyrie_testing_edi whole_body_left_arm_low.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_low.launch```
-  The robot will move into the prep pose (over 5s) and then reach with its left/right arm forward while squatting.
-- Move left/right wrist
-  ```roslaunch valkyrie_testing_edi whole_body_left_wrist.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_wrist.launch```
-  The robot will move into the prep pose (over 5s) and then left/right wrist along both axis close to their limits.
-- T pose with both arms
-  ```roslaunch valkyrie_testing_edi whole_body_T_pose.launch```
-  The robot will move into the prep pose (over 5s) and then move into a T pose (bose arms raised on the sides).
-- Start moving right arm sideways but stop the motion after 2s
-  ```roslaunch valkyrie_testing_edi whole_body_right_arm_side_pause.launch```
-  The robot will move into the prep pose (over 5s) and then raise its right arm sideways but stop the motion after 2s.
-- Move the chest using the spine message (joint angles)
-  ```roslaunch valkyrie_testing_edi whole_body_spine.launch```
-  The robot will move into the prep pose (over 5s) and then move all three back joints using the spine message.
-- Move the neck
-  ```roslaunch valkyrie_testing_edi neck.launch```
-  Turn the head left, forward and up (moving all three neck joints) then move the head back to zero configuration.
-- Lift left/right foot
-  ```roslaunch valkyrie_testing_edi whole_body_left_foot_lift.launch```
-  ```roslaunch valkyrie_testing_edi whole_body_right_foot_lift.launch```
-  Lift the left/right foot and then put it back on the ground.
+	3b. Selection and Weight matrices for SO3 and SE3 messages must be defined to the default values explicitly.
+	# These matrices must be set to their default values explicitly
+
+	controller_msgs/SelectionMatrix3DMessage angular_selection_matrix
+	controller_msgs/SelectionMatrix3DMessage linear_selection_matrix
+	controller_msgs/WeightMatrix3DMessage angular_weight_matrix
+	controller_msgs/WeightMatrix3DMessage linear_weight_matrix
+
+5. Currently, the API can only take 1 trajectory waypoint for all types of trajectories.
+
+6. Each trajectory type is either a jointspace_trajectory, se3_trajectory, or an so3_trajectory, so the message fields for the joint_trajectory_messages and taskspace_trajectory_points are under this new message field.
+
+7. Default value for weight message field is now -1.0 not .Nan
+
+8. Topic names for publishing have been changed. Use:
+
+/ihmc/valkyrie/humanoid_control/input/footstep_data_list
+/ihmc/valkyrie/humanoid_control/input/neck_trajectory
+/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory
+/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory
+
+It's best to check available controller options with `ros2 topic list`
+
+9. The ROS1 publisher needs to having latching enabled. In python this is accomplished by setting the argument, latch=True at the publisher's initialization
+
+10. spine trajectory is not in the new whole body controller messages
+
+The checklist below was used to convert the yaml files to the correct message format:
+
+# --------------------------------------------------------------
+YAML file footstep message list conversion checklist:
+	- change unique_id to sequence_id: 1 (ideally nonzero numbers)
+	- for each footstep message, add default value for 
+		touchdown_duration: -1
+	- comment out execution_mode: 0 and previous_message_id: 0
+	- rename predicted_contact_points to predicted_contact_points_2d
+	- rename position_waypoints to custom_position_waypoints
+	- add new default message fields:
+
+trust_height_of_footsteps: False
+are_footsteps_adjustable: False
+offset_footsteps_with_execution_error: False
+queueing_properties:
+  sequence_id: 1
+  execution_mode: 0
+  message_id: 1
+  previous_message_id: 0
+  execution_delay_time: 0	
+
+
+YAML file whole body message conversion checklist:
+- Change unique_id: to sequence_id: 1 (nonzero numbers)
+- Comment out execution_mode: 0 and previous_message_id: 0
+- Change weight: .NaN to weight: -1.0
+- Change translation: to position:
+- Change rotation: to orientation:
+- Delete spine_trajectory_message as it is no longer in the whole body message
+
+For joints:
+- Add jointspace_trajectory and indent joint_trajectory_messages
+   - add sequence_id
+- Change trajectory_points so it only contains 1 trajectory point 
+
+For Chest:
+- Add so3_trajectory and indent the lines right before the old execution_mode text (eg: taskspace_trajectory_points, frame_information, etc.)
+  - add sequence_id
+- (for active messages) Add default values of selection and weight matrices
+- Remove taskspace_trajectory_points so it only contains 1 waypoint
+- Change frame id -107 to new world frame id: 83766130
+- add message fields under so3_trajectory: 
+    selection_matrix:
+      sequence_id: 1
+      x_selected: true 
+      y_selected: true 
+      z_selected: true 
+    weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1    
+
+
+For pelvis, left foot and right foot trajectory messages:
+
+- Add se3_trajectory and indent lines right before the old execution_mode text
+    - add sequence_id
+- (for active messages) Add default values of selection and weight matrices
+- Remove taskspace_trajectory_points so it only contains 1 waypoint
+- Change frame id -107 to new world frame id: 83766130
+
+- add message fields under se3_trajectory
+    angular_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    linear_selection_matrix:
+      sequence_id: 1
+      x_selected: true
+      y_selected: true
+      z_selected: true
+    angular_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1
+    linear_weight_matrix:
+      sequence_id: 1
+      weight_frame_id: 0
+      x_weight: -1
+      y_weight: -1
+      z_weight: -1  
+
+
+
+#------------------------------------------------------------------------------
+Status of ROS1 -> ROS2 bridge message testing
+
+Converted files and their status:
+	- neck.yaml 
+		- Status: Good
+	- walk_forward.yaml 
+		- Status: Good
+	- walk_turn_ccw.yaml 
+		- Status: Changed parameters. Needs retesting.
+	- whole_body_left_arm_front.yaml 
+		- Status: Good. But only 1 waypoint per message
+	- whole_body_right_arm_front.yaml 
+		- Status: Good. Only 1 waypoint per message
+	- whole_body_nominal.yaml 
+		- Status: Good. Pelvis, torso and arms go back to the "home" position. Feet do not move. Only 1 waypoint per message
+	- whole_body_left_foot_lift 
+		- Status: Acceptable. We increased the space between the foot. Contains only 1 waypoint message. The left foot is raised, and she switches the CoP to the right foot. But, the robot_motion_status remains in the "IN_MOTION" state. She also does not put her foot back down. So no further messages can be sent, unless we renable the left foot contact with the FootLoadBearing Message.  )
+	- whole_body_right_foot_lift.yaml (we increased the distance between the feet)
+		- Status: Acceptable. Same as left foot lift
+	- whole_body_left_arm_front_yaw_torso.yaml
+		- Status: Good. 
+	- whole_body_left_arm_front_yaw_torso.yaml
+		- Status: Good
+	- whole_body_right_arm_front_yaw_torso.yaml
+		- Status: Good
+	- whole_body_left_arm_low.yaml
+		- Status: Good	
+	- whole_body_right_arm_low.yaml
+		- Status: Good
+	- whole_body_left_arm_right_bend_torso.yaml
+		- Status: Good
+	- whole_body_right_arm_left_bend_torso.yaml
+		- Status: Good
+	- whole_body_left_arm_side.yaml
+		- Status: Good
+	- whole_body_right_arm_side.yaml
+		- Status: Good
+	- whole_body_T_pose.yaml
+		- Status: Good
+	- walk_forward_pause.launch
+		- Status: Good
+	- walk_in_place.yaml
+		- Status: Good. New script which squares the feet to the mid frame orientation spaced at 0.125m.
+	- walk_backward.yaml
+		- Status: Good
+	- load_left_foot.yaml
+		- Status: Good
+	- load_right_foot.yaml	
+		- Status: Good
+	- walk_turn_cw.yaml
+		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run 
+	- walk_turn_ccw.yaml
+		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run
+	- whole_body_left_wrist 
+		- Status: Seems Ok. Left arm moves, but we don't have forearms with wrists to test.
+	- whole_body_right_wrist 
+		- Status: Seems Ok. Right arm moves, but we don't have forearms with wrists to test.
+
+Remaining files to convert:
+	whole_body_right_arm_side_pause.launch 
+		Status: We cannot test this because the API only allows 1 trajectory message
+	whole_body_spine 	
+		Status: The spine is just a joint trajectory message. We have to write a dedicated script for this message
+
+Converted Python scripts
+	neck.py 
+		- Status: Good
+	footstep.py 
+		- Status: Good. 
+	whole_body.py 
+		- Status: Good. We have not confirmed StopAllTrajectories message due to current API limits)
+	converted_load_foot.py
+		- Status: Good. Loads the foot if it is unloaded.
+
+Tested ROS1 Messages
+	WholeBodyTrajectoryMessage
+		ArmTrajectoryMessage 
+			- Status: Good. Left and right arm trajectories work reliably
+		FootTrajectoryMessage  
+			- Status: Good. Left foot works. Presumably Right foot also works
+		PelvisTrajectoryMessage 
+			- Status: Good. We only tried changing positions, but orientation seems to be correct. selection and weight matrices must be specified
+		ChestTrajectoryMessage 
+			- Status: Good. selection and weight matrices must be specified
+		HeadTrajectoryMessage 
+			- Status: Untested. All Fields are Empty
+		HandTrajectoryMessage 
+			- Status: Untested.		
+
+	PauseWalkingMessage 
+		- Status: Good. We tested with a sequence_id greater than the foot message
+	NeckTrajectoryMessage 
+		- Status: Good. message_id must not be 0
+	PelvisHeightTrajectoryMessage 
+		- Status: Good.
+	FootLoadBearingMessage 
+		- Status: Acceptable. Left Foot can be loaded again once it is lifted up. But, it cannot be unloaded while being loaded and in contact with the ground
+
+
+TO DO:
+- DONE Retest right arm up trajectory message
+- DONE Test footsteps with pause message 
+- DONE Test left arm up trajectory
+- DONE Test lift foot up 
+	- Robot enters IN_MOTION state. She does not exit from this state and go back to STANDING 
+- DONE Test whole body nominal 
+- DONE Write foot load bearing script
+-	DONE Finish conversion of wrist
+-	Modify T-pose angles to reduce singularity shaking
+- Write spine joint trajectory script to convert spine message
+-	Write Go Home script. Try using the queue.
+-	Write python script which sends the entire test suite
+
+
