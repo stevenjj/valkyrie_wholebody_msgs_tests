@@ -128,8 +128,6 @@ For pelvis, left foot and right foot trajectory messages:
       z_weight: -1  
 
 
-
-
 # TO DO:
 - Retest right arm up trajectory message DONE
 - Test footsteps with pause message DONE
@@ -142,7 +140,7 @@ For pelvis, left foot and right foot trajectory messages:
 - Write spine joint trajectory script
 
 TO DO:
-  Foot load bearing script
+  Foot load bearing script DONE
   spine script
 
 #------------------------------------------------------------------------------
@@ -194,12 +192,15 @@ Converted files and their status:
 
 Converted but needs testing (reset to nominal after every run.):
 	walk_turn_cw.yaml
+	walk_turn_ccw.yaml
 
 	load_left_foot.yaml
 	load_right_foot.yaml	
 
-Remaining files to convert:
 	whole_body_left_wrist (We don't have wrists to test)
+
+
+Remaining files to convert:
 	whole_body_right_wrist (We don't have wrists to test)
 	whole_body_right_arm_side_pause.launch # We cannot test this because the API only allows 1 trajectory message
 
@@ -241,6 +242,8 @@ Tested ROS1 Messages
 		- Status: Acceptable. Left Foot can be loaded again once it is lifted up. But, it cannot be unloaded while being loaded and in contact with the ground
 
 
-
-
-
+TO DO:
+	Finish conversion of wrist and spine
+	Go Home message. Try using the queue.
+	Modify T-pose angles to reduce singularity shaking
+	Write python script which sends the entire test suite
