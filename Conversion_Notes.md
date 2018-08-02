@@ -137,8 +137,6 @@ Converted files and their status:
 		- Status: Good
 	- walk_forward.yaml 
 		- Status: Good
-	- walk_turn_ccw.yaml 
-		- Status: Changed parameters. Needs retesting.
 	- whole_body_left_arm_front.yaml 
 		- Status: Good. But only 1 waypoint per message
 	- whole_body_right_arm_front.yaml 
