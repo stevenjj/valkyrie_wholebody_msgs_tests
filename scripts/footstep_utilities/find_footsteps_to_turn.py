@@ -17,20 +17,20 @@ def footstep_out(r, theta):
 	xy_position = R_feet.dot(np.array([r*math.cos(theta), r*math.sin(theta)]))
 	(qx, qy, qz, qw) = (0.0, 0.0, math.sin(theta/2.0), math.cos(theta/2.0))
 	orientation = [qx, qy, qz, qw] 
-	return (np.round(xy_position, decimals=3), orientation)
+	return (np.round(xy_position, decimals=4), orientation)
 
 
 # Provides a list of angles for the orientation of each foot to reach a desired final angle
-def angles_out(des_final_angle, max_angle_per_step, degrees_tolerance = np.pi/180.0):
+def angles_out(des_final_angle, max_angle_per_step, rads_tolerance = np.pi/180.0):
 	# Compute number of full steps the robot can do
 	factor = des_final_angle/max_angle_per_step
 	num_full_steps = int(np.abs(factor))
 	# Do full steps 
 	angles = [(i+1)*max_angle_per_step*np.sign(des_final_angle) for i in range(num_full_steps)]
 
-	# Check if we are off by more than the degrees_tolerance
+	# Check if we are off by more than the rads_tolerance
 	final_step_delta_angle = np.fabs(des_final_angle) - (max_angle_per_step*num_full_steps)
-	if final_step_delta_angle > degrees_tolerance:
+	if final_step_delta_angle > rads_tolerance:
 		# Do a final step if we are
 		final_step_angle = des_final_angle 
 		angles.append(final_step_angle)
@@ -55,18 +55,18 @@ if __name__ == '__main__':
 	# space between midfeet and foot
 	r = np.fabs(0.175)
 	# the maximum turning angle per step
-	max_angle_per_step = np.fabs(np.pi/6.001) # must be < PI/6.0 to comply with IHMC controller limits
+	max_angle_per_step = np.fabs(np.pi/6.005) # must be < PI/6.0 to comply with IHMC controller limits
 	# the desired final heading angle:
-	des_final_angle = -np.pi/2.0
+	des_final_angle = np.pi/2.0
 	# Final heading tolerance of 1 degree
-	degrees_tolerance = np.pi/180.0
+	rads_tolerance = np.pi/180.0
 
 	print "Absolute foot distance from midfeet = ", r, " meters"
 	print "Desired Final Heading Angle = ", des_final_angle, " radians"	
 	print "Maximum Angle per step = ", max_angle_per_step, " radians"
-	print "Final heading tolerance = ", degrees_tolerance, " degrees"	
+	print "Final heading tolerance = ", rads_tolerance*180.0/np.pi, " degrees"	
 	print " "
-	angles =  angles_out(des_final_angle, max_angle_per_step, degrees_tolerance)
+	angles =  angles_out(des_final_angle, max_angle_per_step, rads_tolerance)
 	print "Angle waypoint list for each footstep: "
 	print angles
 	print " "

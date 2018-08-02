@@ -2,14 +2,14 @@ footstep_data_list:
   -
     robot_side: 1
     location:
-      x: -0.0875  #0.1515
-      y: -0.1515  #-0.0875
+      x: -0.0875 
+      y: -0.1516 
       z: 0.0
     orientation:
       x: 0.0
       y: 0.0
-      z: -0.25877 #-0.130526
-      w: 0.965937  #91444
+      z: -0.25877 
+      w: 0.965937  
     predicted_contact_points_2d: []
     trajectory_type: 0
     swing_height: 0.1
@@ -20,111 +20,111 @@ footstep_data_list:
     transfer_duration: 0.0
     touchdown_duration: -1
     sequence_id: 0
-#  -
-#    robot_side: 0
-#    location:
-#      x: 0.0875 #-0.1515
-#      y: 0.1515 #0.0875
-#      z: 0.0
-#    orientation:
-#      x: 0.0
-#      y: 0.0
-#      z: -0.2588
-#      w: 0.9659
-#    predicted_contact_points_2d: []
-#    trajectory_type: 0
-#    swing_height: 0.1
-#    custom_position_waypoints: []
-#    swing_trajectory: []
-#    swing_trajectory_blend_duration: 0.0
-#    swing_duration: 0.0
-#    transfer_duration: 0.0
-#    touchdown_duration: -1
-#    sequence_id: 0
-#  -
-#    robot_side: 1
-#    location:
-#      x: -0.1515 #0.0875
-#      y: -0.0875 #-0.1515
-#      z: 0.0
-#    orientation:
-#      x: 0.0
-#      y: 0.0
-#      z: -0.5
-#      w: 0.866025
-#    predicted_contact_points_2d: []
-#    trajectory_type: 0
-#    swing_height: 0.1
-#    custom_position_waypoints: []
-#    swing_trajectory: []
-#    swing_trajectory_blend_duration: 0.0
-#    swing_duration: 0.0
-#    transfer_duration: 0.0
-#    touchdown_duration: -1
-#    sequence_id: 0
-#  -
-#    robot_side: 0
-#    location:
-#      x: 0.1515 #-0.0875
-#      y: 0.0875 #0.1515
-#      z: 0.0
-#    orientation:
-#      x: 0.0
-#      y: 0.0
-#      z: -0.5
-#      w: 0.866025
-#    predicted_contact_points_2d: []
-#    trajectory_type: 0
-#    swing_height: 0.1
-#    custom_position_waypoints: []
-#    swing_trajectory: []
-#    swing_trajectory_blend_duration: 0.0
-#    swing_duration: 0.0
-#    transfer_duration: 0.0
-#    touchdown_duration: -1
-#    sequence_id: 0
-#  -
-#    robot_side: 1
-#    location:
-#      x: -0.175 #0.0
-#      y: 0.0 #-0.175
-#      z: 0.00559831427811
-#    orientation:
-#      x: 0.0
-#      y: 0.0
-#      z: -0.707106
-#      w: 0.707106
-#    predicted_contact_points_2d: []
-#    trajectory_type: 0
-#    swing_height: 0.1
-#    custom_position_waypoints: []
-#    swing_trajectory: []
-#    swing_trajectory_blend_duration: 0.0
-#    swing_duration: 0.0
-#    transfer_duration: 0.0
-#    touchdown_duration: -1
-#    sequence_id: 0
-#  -
-#    robot_side: 0
-#    location:
-#      x: 0.175 #0.0
-#      y: 0.0 #0.175
-#      z: 0.0
-#    orientation:
-#      x: 0.0
-#      y: 0.0
-#      z: -0.707106
-#      w: 0.707106
-#    predicted_contact_points_2d: []
-#    trajectory_type: 0
-#    swing_height: 0.1
-#    custom_position_waypoints: []
-#    swing_trajectory: []
-#    swing_trajectory_blend_duration: 0.0
-#    swing_duration: 0.0
-#    transfer_duration: 0.0
-#    touchdown_duration: -1
-#    sequence_id: 0
+ -
+   robot_side: 0
+   location:
+     x: 0.0875 
+     y: 0.1516 
+     z: 0.0
+   orientation:
+     x: 0.0
+     y: 0.0
+     z: -0.25877
+     w: 0.965937
+   predicted_contact_points_2d: []
+   trajectory_type: 0
+   swing_height: 0.1
+   custom_position_waypoints: []
+   swing_trajectory: []
+   swing_trajectory_blend_duration: 0.0
+   swing_duration: 0.0
+   transfer_duration: 0.0
+   touchdown_duration: -1
+   sequence_id: 0
+ -
+   robot_side: 1
+   location:
+     x: -0.1515 #0.0875
+     y: -0.0875 #-0.1515
+     z: 0.0
+   orientation:
+     x: 0.0
+     y: 0.0
+     z: -0.4996
+     w: 0.8662
+   predicted_contact_points_2d: []
+   trajectory_type: 0
+   swing_height: 0.1
+   custom_position_waypoints: []
+   swing_trajectory: []
+   swing_trajectory_blend_duration: 0.0
+   swing_duration: 0.0
+   transfer_duration: 0.0
+   touchdown_duration: -1
+   sequence_id: 0
+ -
+   robot_side: 0
+   location:
+     x: 0.1515 #-0.0875
+     y: 0.0875 #0.1515
+     z: 0.0
+   orientation:
+     x: 0.0
+     y: 0.0
+     z: -0.4996
+     w: 0.8662
+   predicted_contact_points_2d: []
+   trajectory_type: 0
+   swing_height: 0.1
+   custom_position_waypoints: []
+   swing_trajectory: []
+   swing_trajectory_blend_duration: 0.0
+   swing_duration: 0.0
+   transfer_duration: 0.0
+   touchdown_duration: -1
+   sequence_id: 0
+ -
+   robot_side: 1
+   location:
+     x: -0.175 #0.0
+     y: 0.0 #-0.175
+     z: 0.0
+   orientation:
+     x: 0.0
+     y: 0.0
+     z: -0.7066
+     w: 0.7075
+   predicted_contact_points_2d: []
+   trajectory_type: 0
+   swing_height: 0.1
+   custom_position_waypoints: []
+   swing_trajectory: []
+   swing_trajectory_blend_duration: 0.0
+   swing_duration: 0.0
+   transfer_duration: 0.0
+   touchdown_duration: -1
+   sequence_id: 0
+ -
+   robot_side: 0
+   location:
+     x: 0.175 #0.0
+     y: 0.0 #0.175
+     z: 0.0
+   orientation:
+     x: 0.0
+     y: 0.0
+     z: -0.7066
+     w: 0.7075
+   predicted_contact_points_2d: []
+   trajectory_type: 0
+   swing_height: 0.1
+   custom_position_waypoints: []
+   swing_trajectory: []
+   swing_trajectory_blend_duration: 0.0
+   swing_duration: 0.0
+   transfer_duration: 0.0
+   touchdown_duration: -1
+   sequence_id: 0
 execution_timing: 0
 default_swing_duration: 1.20000004768
 default_transfer_duration: 1.0
