@@ -1,8 +1,8 @@
 import math
 import numpy as np
 
-# Mid Feet Frame: positive x-coordinate is forward, positive y-coordinate is to the left.
-# world Frame: positive x-coordinate is to the right, positive y-coordinate is forward.
+# Mid Feet Frame: positive x-coordinate is up, positive y-coordinate is to the left.
+# world Frame: positive x-coordinate is to the right, positive y-coordinate is up.
 # Define rhe Rotation matrix which expresses a world-frame in mid-feet frame:
 R_feet = np.array([[0, 1], \
 		    	   [-1, 0]]) 
@@ -28,14 +28,14 @@ def angles_out(des_final_angle, max_angle_per_step, degrees_tolerance = np.pi/18
 	# Do full steps 
 	angles = [(i+1)*max_angle_per_step*np.sign(des_final_angle) for i in range(num_full_steps)]
 
-	# Check if we are off by more than 1 degrees
+	# Check if we are off by more than the degrees_tolerance
 	final_step_delta_angle = np.fabs(des_final_angle) - (max_angle_per_step*num_full_steps)
 	if final_step_delta_angle > degrees_tolerance:
-		# Do a final step
-		final_step_angle = des_final_angle - (max_angle_per_step*num_full_steps)
+		# Do a final step if we are
+		final_step_angle = des_final_angle 
 		angles.append(final_step_angle)
 
-	print "Final heading error is ", final_step_delta_angle*180/np.pi, " degrees"
+	print "Final heading error is ", (np.fabs(des_final_angle) - np.fabs(angles[-1]))*180/np.pi, " degrees"
 
 	return angles
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 	# space between midfeet and foot
 	r = np.fabs(0.175)
 	# the maximum turning angle per step
-	max_angle_per_step = (np.pi/6.001)
+	max_angle_per_step = np.fabs(np.pi/6.001) # must be < PI/6.0 to comply with IHMC controller limits
 	# the desired final heading angle:
 	des_final_angle = -np.pi/2.0
 	# Final heading tolerance of 1 degree
