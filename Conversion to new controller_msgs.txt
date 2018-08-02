@@ -128,20 +128,6 @@ For pelvis, left foot and right foot trajectory messages:
       z_weight: -1  
 
 
-# TO DO:
-- Retest right arm up trajectory message DONE
-- Test footsteps with pause message DONE
-- Test left arm up trajectory DONE
-- Test lift foot up DONE
-	- Robot enters IN_MOTION state. She does not exit from this state and go back to STANDING 
-- Test whole body nominal DONE
-
-- Write foot load bearing script
-- Write spine joint trajectory script
-
-TO DO:
-  Foot load bearing script DONE
-  spine script
 
 #------------------------------------------------------------------------------
 Status of ROS1 -> ROS2 bridge message testing
@@ -189,33 +175,34 @@ Converted files and their status:
 		- Status: Good. New script which squares the feet to the mid frame orientation spaced at 0.125m.
 	- walk_backward.yaml
 		- Status: Good
-
-Converted but needs testing (reset to nominal after every run.):
-	walk_turn_cw.yaml
-	walk_turn_ccw.yaml
-
-	load_left_foot.yaml
-	load_right_foot.yaml	
-
-	whole_body_left_wrist (We don't have wrists to test)
-
+	- load_left_foot.yaml
+		- Status: Good
+	- load_right_foot.yaml	
+		- Status: Good
+	- walk_turn_cw.yaml
+		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run 
+	- walk_turn_ccw.yaml
+		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run
+	- whole_body_left_wrist 
+		- Status: Seems Ok. Left arm moves, but we don't have forearms with wrists to test.
+	- whole_body_right_wrist 
+		- Status: Seems Ok. Right arm moves, but we don't have forearms with wrists to test.
 
 Remaining files to convert:
-	whole_body_right_wrist (We don't have wrists to test)
-	whole_body_right_arm_side_pause.launch # We cannot test this because the API only allows 1 trajectory message
-
-	whole_body_spine 	# The spine is just a joint trajectory message. We have to write a script for this message
-
+	whole_body_right_arm_side_pause.launch 
+		Status: We cannot test this because the API only allows 1 trajectory message
+	whole_body_spine 	
+		Status: The spine is just a joint trajectory message. We have to write a dedicated script for this message
 
 Converted Python scripts
 	neck.py 
 		- Status: Good
 	footstep.py 
-		- Status: Good. We disabled the Pause Walking pub. But we've confirmed pause walking works as a ROS message)
+		- Status: Good. 
 	whole_body.py 
 		- Status: Good. We have not confirmed StopAllTrajectories message due to current API limits)
 	converted_load_foot.py
-		- Status: Untested for now. Rostopic echo seems ok.
+		- Status: Good. Loads the foot if it is unloaded.
 
 Tested ROS1 Messages
 	WholeBodyTrajectoryMessage
@@ -243,7 +230,17 @@ Tested ROS1 Messages
 
 
 TO DO:
-	Finish conversion of wrist and spine
-	Go Home message. Try using the queue.
-	Modify T-pose angles to reduce singularity shaking
-	Write python script which sends the entire test suite
+- DONE Retest right arm up trajectory message
+- DONE Test footsteps with pause message 
+- DONE Test left arm up trajectory
+- DONE Test lift foot up 
+	- Robot enters IN_MOTION state. She does not exit from this state and go back to STANDING 
+- DONE Test whole body nominal 
+- DONE Write foot load bearing script
+-	DONE Finish conversion of wrist
+-	Modify T-pose angles to reduce singularity shaking
+- Write spine joint trajectory script to convert spine message
+-	Write Go Home script. Try using the queue.
+-	Write python script which sends the entire test suite
+
+
