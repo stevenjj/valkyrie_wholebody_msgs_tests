@@ -45,6 +45,8 @@ STATE_INDEX_TO_NAME = {0 : "STATE_LOAD_MESSAGE",
 					   3 : "STATE_WAIT_FOR_EXECUTION", 
 					   4: "STATE_TERMINATE_PROGRAM"}
 
+ROBOT_STATUSES = ["STANDING", "IN_MOTION"]
+
 # Do not change these default values! If you do, be sure to change the queueable messages as well
 QUEABLE_STARTING_MESSAGE_ID = 100 # message id which indicates this is the start of a queued message 
 QUEABLE_ENDING_MESSAGE_ID = 200 # message id which indicates this is the last message part of the queue
@@ -73,16 +75,20 @@ class TestParams:
 
 class Test_Suite_State_Machine:
 	def __init__(self):
+		# Robot related Variables
 		self.robot_status = "Unknown Status"
 		self.robot_pose = pm.Frame(pm.Rotation.Quaternion(0, 0, 0, 1), pm.Vector(0.0, 0.0, 0.0))
-		self.list_of_tests = []
-		self.current_test = None
-
-		self.state = STATE_LOAD_MESSAGE # Initialize state to read_yaml_file
-		self.test_index = -1 # Starts at invalid index
-
 		self.robot_time = None
 		self.updated_robot_pose = False
+		self.robot_status = "unspecified status"
+		self.robot_stopped_moving = False
+
+		self.footstep_pause_interrupt = False
+		self.state = STATE_LOAD_MESSAGE # Initialize state to load message	
+
+		self.list_of_tests = []
+		self.current_test = None
+		self.test_index = -1 # Starts at invalid index
 
 		self.package_path = ""
 
@@ -99,8 +105,14 @@ class Test_Suite_State_Machine:
 			# Populate Fields
 			test_params.filepath = self.package_path + "/" + test_info['filepath']
 			test_params.message_type =  test_info['message_type']
-			test_params.wait_time_after_publishing =  test_info['wait_time_after_publishing']
 
+			if 'wait_time_after_publishing' in test_info:
+				test_params.wait_time_after_publishing =  test_info['wait_time_after_publishing']
+			else:
+				test_params.wait_time_after_publishing = test_info['default_wait_time_after_publishing']				
+
+			if 'update_pose' in test_info:
+				test_params.update_pose = test_info['update_pose']
 			if 'pause_at_step' in test_info:
 				test_params.pause_at_step =  test_info['pause_at_step']
 			if 'pause_at_time' in test_info:
@@ -125,31 +137,60 @@ class Test_Suite_State_Machine:
 			self.test_index = 0
 		return True
 
-	def read_yaml_file(self):
-		return
-
 	def robot_pose_callback(self, msg):
 		# Update robot time
 		self.robot_time = msg.header.stamp.to_sec()		
-		if self.state == STATE_UPDATE_ROBOT_POSE:
+
+		# Gets the SE3 transform from world to the midfeet frame.
+		if self.state == STATE_UPDATE_ROBOT_POSE and not(self.updated_robot_pose):
 			print ('  Robot Pose Callback')
+			# Get current robot pose
+			pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
+			pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
+			pos = (np.array(pos1)+np.array(pos2))*0.5
+			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
+			midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
+			ankleToSoleOffset = pm.Vector(0.24 / 2.0 - 0.068, 0.0, -0.09)
+			self.robot_pose = pm.fromMsg(msg.pose.pose)*midFeet.Inverse()*pm.Frame(pm.Rotation(), ankleToSoleOffset)			
+
+			'''
+			# Ideally we look up the CoP frames correctly.
+			pos1, rot1 =  tfListener.lookupTransform("/pelvis", "/leftFootCoPFrame", rospy.Time())
+			pos2, rot2 =  tfListener.lookupTransform("/pelvis", "/rightFootCoPFrame", rospy.Time())
+			# Then the robot pose should be:
+			pos = (np.array(pos1)+np.array(pos2))*0.5
+			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
+			midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))			
+			self.robot_pose = pm.fromMsg(m.pose.pose)*midFeet		
+			'''
 			self.updated_robot_pose = True
+
 		return
 
 	def robot_motion_status_callback(self, msg):
-		# Check motion status
-		# if pause is requested, do an interrupt and publish stop message
-		# wait()
-		# change state to read yaml
+		self.robot_status = msg.data
+		if self.robot_status == "STANDING":
+			self.robot_stopped_moving = True
+		else:
+			self.robot_stopped_moving = False
 
-		return		
 	def footstep_status_callback(self, msg):
 		# Check footstep status
-		# If pause is requested. Do an interrupt and publish stop message
-		# wait()
-		# change state to read_yaml
+		# If pause is requested. Do an interrupt and publish stop message then wait()
+		# change state to load next test
+		if (self.current_test.message_type == "controller_msgs/FootstepDataListMessage"):
+			if self.current_test.pause_at_step > 0:
+				if msg.footstep_status == 0 and msg.footstep_index >= self.current_test.pause_at_step:
+					print('Pausing the walking ...')
+					pause = True
+					message = PauseWalkingMessage()
+					message.pause = True     
+					message.sequence_id = 10
+					pubPause.publish(message)
 
-		return	
+					# Change state and enable an interrupt
+					self.footstep_pause_interrupt = True
+					self.change_state_to(STATE_LOAD_MESSAGE)
 
 	# Data is written w.r.t Midfoot frame. These transformations will express position and orientation w.r.t World Frame 
 	def transformSO3(self):
@@ -168,6 +209,7 @@ class Test_Suite_State_Machine:
 
 	# Processing Logic Definition of each state 
 	def process_state_load_message(self):
+		self.disable_interrupts()
 		# We have Programs to run
 		if ((self.test_index >= 0) and self.test_index < len(self.list_of_tests)):
 			print('  Loading the message...')		
@@ -178,26 +220,79 @@ class Test_Suite_State_Machine:
 				self.change_state_to(STATE_UPDATE_ROBOT_POSE)					
 			else:
 				self.change_state_to(STATE_PUBLISH_MSG)
-
 		# We don't have tests to run
 		elif (self.test_index < 0):
 			print "  Warning: No tests to run."
 			self.change_state_to(STATE_TERMINATE_PROGRAM)					
 		# We have finished the test suite
 		else:
+			print "  Published all test messages"
 			self.change_state_to(STATE_TERMINATE_PROGRAM)		
 
 	def process_state_update_robot_pose(self):
-		print('  Updating robot pose...')
+		print('  Waiting for the robot pose to be updated...')
 		if (self.updated_robot_pose):
 			self.updated_robot_pose = False
 			self.change_state_to(STATE_PUBLISH_MSG)
 
+	def process_state_publish_msg(self):
+		global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
+		print('  Publishing message...')
+
+		if self.current_test.message_type in ACCEPTED_MESSAGES:
+			if self.current_test.message_type == "controller_msgs/GoHomeMessage":
+				pubGoHome.publish(self.current_test.message)
+
+			print "    Publishing data from yaml file: ", self.current_test.filepath
+			self.change_state_to(STATE_WAIT_FOR_EXECUTION)
+		else:
+			print "    Error! Message type", self.current_test.message_type, "is not supported"
+			self.change_state_to(STATE_TERMINATE_PROGRAM)
+
+	def process_state_wait_for_execution(self):
+		print('  Waiting for execution...')
+		if self.current_test.queued_message:
+			print "  Waiting for", self.current_test.wait_time_after_publishing, "seconds"
+		else:
+			print "  Waiting for", self.current_test.wait_time_after_publishing, "seconds and for the robot to stop moving"
+
+		self.wait(self.current_test.wait_time_after_publishing)
+		# Load the next message only if the robot is standing or if the message is in the middle of a queue
+		if self.robot_stopped_moving or self.current_test.queued_message:
+			# Ready for the next message
+			if self.test_index < len(self.list_of_tests):
+				self.test_index += 1 
+			self.change_state_to(STATE_LOAD_MESSAGE)
+
+
+	def disable_interrupts(self):
+		self.footstep_pause_interrupt = False
+
+	def wait(self, time_to_wait):
+		global pubStopTrajectory
+		start_time = rospy.Time().now().to_sec() #self.robot_time
+		current_time = rospy.Time().now().to_sec()
+		interval = current_time - start_time
+		while (interval) < time_to_wait and not rospy.is_shutdown():
+			current_time = rospy.Time().now().to_sec()
+
+			interval = current_time - start_time
+			if self.footstep_pause_interrupt:
+				self.disable_interrupts()
+				break
+			if (self.current_test.pause_at_time > 0.0) and (interval > self.current_test.pause_at_time):
+			      msg = StopAllTrajectoryMessage()
+			      msg.sequence_id = 10
+			      pubStopTrajectory.publish(msg)
+			      break
+			time.sleep(0.01)
+
 
 	# Main State Machine Loop
 	def run(self):
-		print "Test Suite state:", STATE_INDEX_TO_NAME[self.state]
-		self.output_status()
+		print STATE_INDEX_TO_NAME[self.state]
+		if self.test_index < len(self.list_of_tests):
+			self.output_status()
 
 		# Begin State Machine Logic Loop
 		# STATE_LOAD_MESSAGE
@@ -206,12 +301,16 @@ class Test_Suite_State_Machine:
 		# STATE_UPDATE_ROBOT_POSE 
 		elif self.state == STATE_UPDATE_ROBOT_POSE:
 			self.process_state_update_robot_pose()
+		elif self.state == STATE_PUBLISH_MSG:
+			self.process_state_publish_msg()
+		elif self.state == STATE_WAIT_FOR_EXECUTION:
+			self.process_state_wait_for_execution()
 		# STATE_TERMINATE_PROGRAM
 		elif (self.state == STATE_TERMINATE_PROGRAM):
 			print "    Terminating program"
 			return False
 		else:
-			print self.state, "is an uknown state"
+			print self.state, "is an unknown state"
 			return False
 
 		# Pseudo Code:
