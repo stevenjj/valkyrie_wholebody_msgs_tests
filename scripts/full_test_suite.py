@@ -55,6 +55,7 @@ class TestParams:
 	def __init__(self):
 		self.filepath = ""
 		self.wait_time_after_publishing = 0.0
+		self.update_pose = True
 		self.queued_message = False # whether or not the message is part of a queue
 		self.pause_at_step = -1 # If negative, steps will not be paused
 		self.pause_at_time = -1.0 # If negative, the trajectory will not be paused
@@ -81,7 +82,7 @@ class Test_Suite_State_Machine:
 		self.test_index = -1 # Starts at invalid index
 
 		self.robot_time = None
-		self.update_robot_pose = False
+		self.updated_robot_pose = False
 
 		self.package_path = ""
 
@@ -109,7 +110,7 @@ class Test_Suite_State_Machine:
 
 			try:
 				if test_params.load_message():
-					#self.list_of_tests.append(test_params)
+					self.list_of_tests.append(test_params)
 					print "Successfully Loaded test ", test_params.filepath
 				else:
 					return False
@@ -130,11 +131,9 @@ class Test_Suite_State_Machine:
 	def robot_pose_callback(self, msg):
 		# Update robot time
 		self.robot_time = msg.header.stamp.to_sec()		
-
-		# if update_robot_pose: 
-			# update robot pose
-			# updated_robot_pose = True
-		
+		if self.state == STATE_UPDATE_ROBOT_POSE:
+			print ('  Robot Pose Callback')
+			self.updated_robot_pose = True
 		return
 
 	def robot_motion_status_callback(self, msg):
@@ -167,26 +166,52 @@ class Test_Suite_State_Machine:
 		self.state = new_state
 		print "  Changing state to ", STATE_INDEX_TO_NAME[self.state]
 
+	# Processing Logic Definition of each state 
+	def process_state_load_message(self):
+		# We have Programs to run
+		if ((self.test_index >= 0) and self.test_index < len(self.list_of_tests)):
+			print('  Loading the message...')		
+			self.current_test = self.list_of_tests[self.test_index]
+
+			# Check if this test wants to update the pose or not
+			if self.current_test.update_pose:
+				self.change_state_to(STATE_UPDATE_ROBOT_POSE)					
+			else:
+				self.change_state_to(STATE_PUBLISH_MSG)
+
+		# We don't have tests to run
+		elif (self.test_index < 0):
+			print "  Warning: No tests to run."
+			self.change_state_to(STATE_TERMINATE_PROGRAM)					
+		# We have finished the test suite
+		else:
+			self.change_state_to(STATE_TERMINATE_PROGRAM)		
+
+	def process_state_update_robot_pose(self):
+		print('  Updating robot pose...')
+		if (self.updated_robot_pose):
+			self.updated_robot_pose = False
+			self.change_state_to(STATE_PUBLISH_MSG)
+
+
+	# Main State Machine Loop
 	def run(self):
 		print "Test Suite state:", STATE_INDEX_TO_NAME[self.state]
 		self.output_status()
 
 		# Begin State Machine Logic Loop
+		# STATE_LOAD_MESSAGE
 		if self.state == STATE_LOAD_MESSAGE:
-			# Check if we have any tests to run
-			if (self.test_index < 0):
-				print "  Warning: No tests to run."
-				self.change_state_to(STATE_TERMINATE_PROGRAM)
-			else:
-				# We have Programs to run
-				if self.test_index < len(self.list_of_tests):
-					print('  Loading the message...')		
-				else:
-					self.change_state_to(STATE_TERMINATE_PROGRAM)
-
-
+			self.process_state_load_message()
+		# STATE_UPDATE_ROBOT_POSE 
+		elif self.state == STATE_UPDATE_ROBOT_POSE:
+			self.process_state_update_robot_pose()
+		# STATE_TERMINATE_PROGRAM
 		elif (self.state == STATE_TERMINATE_PROGRAM):
 			print "    Terminating program"
+			return False
+		else:
+			print self.state, "is an uknown state"
 			return False
 
 		# Pseudo Code:
@@ -244,39 +269,37 @@ class Test_Suite_State_Machine:
 
 
 def run_test(data):
-    test_suite_obj = Test_Suite_State_Machine()
-    # Set package path
-    package_path = rospy.get_param('~TestSuitePackagePath', '')
-    test_suite_obj.set_package_path(package_path)
+	global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
+	test_suite_obj = Test_Suite_State_Machine()
 
-    # Load data and run tests
-    if test_suite_obj.load_data(data):
+	# Set package path
+	package_path = rospy.get_param('~TestSuitePackagePath', '')
+	test_suite_obj.set_package_path(package_path)
 
-        # Advertise Publishers
-        pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
-        pubNeck = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/neck_trajectory', NeckTrajectoryMessage, queue_size=10, latch=True)
-        pubFootSteps = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
-        pubFootLoadBearing = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/foot_load_bearing', FootLoadBearingMessage, queue_size=10, latch=True)
-        pubGoHome = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/go_home', GoHomeMessage, queue_size=10, latch=True)
+	# Advertise Publishers
+	pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
+	pubNeck = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/neck_trajectory', NeckTrajectoryMessage, queue_size=10, latch=True)
+	pubFootSteps = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
+	pubFootLoadBearing = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/foot_load_bearing', FootLoadBearingMessage, queue_size=10, latch=True)
+	pubGoHome = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/go_home', GoHomeMessage, queue_size=10, latch=True)
+	pubStopTrajectory = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True)
+	pubPauseWalking = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10, latch=True)
 
-        pubStopTrajectory = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True)
-        pubPauseWalking = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/pause_walking', PauseWalkingMessage, queue_size=10, latch=True)
+	# Define Subscribers
+	rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, test_suite_obj.robot_pose_callback)
+	rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, test_suite_obj.robot_motion_status_callback)
+	rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, test_suite_obj.footstep_status_callback)
 
-        # Define Subscribers
-        rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, test_suite_obj.robot_pose_callback)
-        rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, test_suite_obj.robot_motion_status_callback)
-        rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, test_suite_obj.footstep_status_callback)
+	# Load data and run tests
+	if test_suite_obj.load_data(data):
+	    # Run the Loop
+	    while not rospy.is_shutdown() and test_suite_obj.run():
+	   		time.sleep(0.5)
 
-        # Run the Loop
-        while not rospy.is_shutdown():
-        	if test_suite_obj.run():
-        		time.sleep(0.5)
-        	else:
-        		break
-    else:
-        print ("Error occured in reading the input data file")
+	else:
+	    print ("Error occured in reading the input data file")
 
-    print('Done')	
+	print('Done')	
 
 
 if __name__ == '__main__':
