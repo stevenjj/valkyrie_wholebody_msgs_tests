@@ -109,7 +109,7 @@ class Test_Suite_State_Machine:
 
 			try:
 				if test_params.load_message():
-					self.list_of_tests.append(test_params)
+					#self.list_of_tests.append(test_params)
 					print "Successfully Loaded test ", test_params.filepath
 				else:
 					return False
@@ -120,7 +120,8 @@ class Test_Suite_State_Machine:
 				return False
 
 		# Set index to valid number
-		self.test_index = 0
+		if len(self.list_of_tests) > 0:
+			self.test_index = 0
 		return True
 
 	def read_yaml_file(self):
@@ -163,8 +164,8 @@ class Test_Suite_State_Machine:
 		print "  Running Test", (self.test_index + 1) , "out of", len(self.list_of_tests), "tests"
 
 	def change_state_to(self, new_state):
-		print "  Changing state to ", STATE_INDEX_TO_NAME[self.state]
 		self.state = new_state
+		print "  Changing state to ", STATE_INDEX_TO_NAME[self.state]
 
 	def run(self):
 		print "Test Suite state:", STATE_INDEX_TO_NAME[self.state]
