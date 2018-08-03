@@ -1,10 +1,14 @@
 default_wait_time_after_publishing: 1.0
 list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.0
   - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.0
   - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 3.0  
   - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 3.0
