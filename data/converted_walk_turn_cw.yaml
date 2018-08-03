@@ -61,7 +61,7 @@ footstep_data_list:
 #    swing_duration: 0.0
 #    transfer_duration: 0.0
 #    touchdown_duration: -1
-#    sequence_id: 3
+#    sequence_id: 1
 #  -
 #    robot_side: 0
 #    location:
@@ -82,7 +82,7 @@ footstep_data_list:
 #    swing_duration: 0.0
 #    transfer_duration: 0.0
 #    touchdown_duration: -1
-#    sequence_id: 0
+#    sequence_id: 1
 # -
 #   robot_side: 1
 #   location:
@@ -103,7 +103,7 @@ footstep_data_list:
 #   swing_duration: 0.0
 #   transfer_duration: 0.0
 #   touchdown_duration: -1
-#   sequence_id: 0
+#   sequence_id: 1
 # -
 #   robot_side: 0
 #   location:
@@ -124,7 +124,7 @@ footstep_data_list:
 #   swing_duration: 0.0
 #   transfer_duration: 0.0
 #   touchdown_duration: -1
-#   sequence_id: 0
+#   sequence_id: 1
 execution_timing: 0
 default_swing_duration: 1.20000004768
 default_transfer_duration: 1.0

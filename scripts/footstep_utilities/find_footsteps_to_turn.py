@@ -55,7 +55,7 @@ if __name__ == '__main__':
 	# space between midfeet and foot
 	r = np.fabs(0.175)
 	# the maximum turning angle per step
-	max_angle_per_step = np.fabs(np.pi/12.0) # must be < PI/6.0 to comply with IHMC controller limits
+	max_angle_per_step = np.fabs(np.pi/6.0) # must be < PI/6.0 to comply with IHMC controller limits
 	# the desired final heading angle:
 	des_final_angle = np.pi/2.0
 	# Final heading tolerance of 1 degree

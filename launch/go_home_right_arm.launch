@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args python" />
+
+  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="go_home.py" name="ValkyrieNeckTestNode" output="screen">
+    <param name="DataFile" type="string" value="$(find valkyrie_testing_edi)/data/go_home_right_arm.yaml" />
+
+  </node>
+</launch>

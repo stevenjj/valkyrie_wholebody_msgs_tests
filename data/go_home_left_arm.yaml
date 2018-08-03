@@ -1,0 +1,5 @@
+sequence_id: 1
+humanoid_body_part: 0 # Arm Go Home
+robot_side: 0  # Left Arm
+trajectory_time: 3.0
+execution_delay_time: 0.0
