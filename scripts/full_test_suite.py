@@ -193,12 +193,34 @@ class Test_Suite_State_Machine:
 					self.change_state_to(STATE_LOAD_MESSAGE)
 
 	# Data is written w.r.t Midfoot frame. These transformations will express position and orientation w.r.t World Frame 
-	def transformSO3(self):
-		return
-	def transformSE3(self):
-		return
-	def transformFootsteps(self):
-		return
+	def transformSO3(self, msg):
+		curPos = pm.Frame(pm.Rotation.Quaternion(msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w), pm.Vector(0,0,0))
+		curVel = pm.Twist(pm.Vector(0,0,0), pm.Vector(msg.angular_velocity.x, msg.angular_velocity.y, msg.angular_velocity.z))
+		pos = self.robot_pose*curPos
+		vel = self.robot_pose*curVel
+		tmp = pm.toMsg(pos)
+		msg.orientation = tmp.orientation
+		msg.angular_velocity = Vector3(vel.rot.x(), vel.rot.y(), vel.rot.z())
+
+	def transformSE3(self, msg):
+		curPos = pm.Frame(pm.Rotation.Quaternion(msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w), pm.Vector(msg.position.x, msg.position.y, msg.position.z))
+		curVel = pm.Twist(pm.Vector(msg.linear_velocity.x, msg.linear_velocity.y, msg.linear_velocity.z), pm.Vector(msg.angular_velocity.x, msg.angular_velocity.y, msg.angular_velocity.z))
+		pos = self.robot_pose*curPos
+		vel = self.robot_pose*curVel
+		tmp = pm.toMsg(pos)
+		msg.position = tmp.position
+		msg.orientation = tmp.orientation
+		msg.linear_velocity = Vector3(vel.vel.x(), vel.vel.y(), vel.vel.z())
+		msg.angular_velocity = Vector3(vel.rot.x(), vel.rot.y(), vel.rot.z())
+
+	def transformFootsteps(self, msg):
+		numberOfFootstepsInList = len(msg.footstep_data_list)
+		for step in msg.footstep_data_list:
+			pstep = self.robot_pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
+			msg = pm.toMsg(pstep)
+			step.location = msg.position
+			step.orientation = msg.orientation
+
 	# -----------------------------------------------------------------------------------------------
 	def output_status(self):
 		print "  Running Test", (self.test_index + 1) , "out of", len(self.list_of_tests), "tests"
@@ -242,7 +264,6 @@ class Test_Suite_State_Machine:
 		if self.current_test.message_type in ACCEPTED_MESSAGES:
 			if self.current_test.message_type == "controller_msgs/GoHomeMessage":
 				pubGoHome.publish(self.current_test.message)
-
 			print "    Publishing data from yaml file: ", self.current_test.filepath
 			self.change_state_to(STATE_WAIT_FOR_EXECUTION)
 		else:
