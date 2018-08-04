@@ -1,0 +1,12 @@
+default_wait_time_after_publishing: 1.0
+list_of_tests:
+  - filepath: "data/converted_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 2.5
+    update_pose: False
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 2.5
+    update_pose: False   
+    queued_message: True

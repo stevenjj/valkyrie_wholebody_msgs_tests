@@ -30,8 +30,12 @@ import rospy
 
 # Define accepted types
 ACCEPTED_TYPES = ["wholebody", "neck", "walk", "load", "go_home", "wholebody_with_pause", "walk_with_pause"]
-ACCEPTED_MESSAGES = ["controller_msgs/FootstepDataListMessage", 
-					 "controller_msgs/GoHomeMessage"]
+ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
+					 "controller_msgs/NeckTrajectoryMessage", #]
+					 "controller_msgs/FootstepDataListMessage"]
+
+#"controller_msgs/FootstepDataListMessage"
+#"controller_msgs/WholeBodyTrajectoryMessage"
 
 # Define states
 STATE_LOAD_MESSAGE = 0
@@ -221,6 +225,38 @@ class Test_Suite_State_Machine:
 			step.location = msg.position
 			step.orientation = msg.orientation
 
+	def prepare_wholebody_msg(self, msg):
+		print "Transforming wholebody messages to world frame as needed..."
+		for this_message in msg.chest_trajectory_message.so3_trajectory.taskspace_trajectory_points:
+			transformSO3(this_message)
+		for this_message in msg.pelvis_trajectory_message.se3_trajectory.taskspace_trajectory_points:
+			transformSE3(this_message)
+		for this_message in msg.left_foot_trajectory_message.se3_trajectory.taskspace_trajectory_points:
+			transformSE3(this_message)
+		for this_message in msg.right_foot_trajectory_message.se3_trajectory.taskspace_trajectory_points:
+			transformSE3(this_message)
+
+		print "Enforcing all of these messages to have an execution mode of OVERRIDE"
+		msg.left_hand_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0	
+		msg.right_hand_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
+		msg.left_foot_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
+		msg.right_foot_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
+		msg.chest_trajectory_message.so3_trajectory.queueing_properties.execution_mode = 0
+		msg.pelvis_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0
+		msg.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
+		msg.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.execution_mode = 0
+
+		print "Enforcing all of these messages to have an identical message id"
+		msg.left_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2  
+		msg.right_hand_trajectory_message.se3_trajectory.queueing_properties.message_id = 2    
+		msg.left_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2   
+		msg.right_foot_trajectory_message.se3_trajectory.queueing_properties.message_id = 2  
+		msg.chest_trajectory_message.so3_trajectory.queueing_properties.message_id = 2 
+		msg.pelvis_trajectory_message.se3_trajectory.queueing_properties.message_id = 2
+		msg.left_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2
+		msg.right_arm_trajectory_message.jointspace_trajectory.queueing_properties.message_id = 2 
+
+
 	# -----------------------------------------------------------------------------------------------
 	def output_status(self):
 		print "  Running Test", (self.test_index + 1) , "out of", len(self.list_of_tests), "tests"
@@ -234,8 +270,9 @@ class Test_Suite_State_Machine:
 		self.disable_interrupts()
 		# We have Programs to run
 		if ((self.test_index >= 0) and self.test_index < len(self.list_of_tests)):
-			print('  Loading the message...')		
 			self.current_test = self.list_of_tests[self.test_index]
+			print "  Loaded yaml file:", self.current_test.filepath
+			print "    with message type:", self.current_test.message_type			
 
 			# Check if this test wants to update the pose or not
 			if self.current_test.update_pose:
@@ -259,12 +296,23 @@ class Test_Suite_State_Machine:
 
 	def process_state_publish_msg(self):
 		global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
-		print('  Publishing message...')
+		print('  Preparing message...')
+		can_publish = False
 
 		if self.current_test.message_type in ACCEPTED_MESSAGES:
+			can_publish = True
 			if self.current_test.message_type == "controller_msgs/GoHomeMessage":
 				pubGoHome.publish(self.current_test.message)
-			print "    Publishing data from yaml file: ", self.current_test.filepath
+			elif self.current_test.message_type == "controller_msgs/NeckTrajectoryMessage":
+				pubNeck.publish(self.current_test.message)
+			elif self.current_test.message_type == "controller_msgs/FootstepDataListMessage":
+				self.transformFootsteps(self.current_test.message)
+				pubFootSteps.publish(self.current_test.message)
+			else:
+				can_publish = False
+
+		if can_publish:
+			print "    Publishing message..."
 			self.change_state_to(STATE_WAIT_FOR_EXECUTION)
 		else:
 			print "    Error! Message type", self.current_test.message_type, "is not supported"
@@ -296,8 +344,8 @@ class Test_Suite_State_Machine:
 		interval = current_time - start_time
 		while (interval) < time_to_wait and not rospy.is_shutdown():
 			current_time = rospy.Time().now().to_sec()
-
 			interval = current_time - start_time
+
 			if self.footstep_pause_interrupt:
 				self.disable_interrupts()
 				break
@@ -322,8 +370,10 @@ class Test_Suite_State_Machine:
 		# STATE_UPDATE_ROBOT_POSE 
 		elif self.state == STATE_UPDATE_ROBOT_POSE:
 			self.process_state_update_robot_pose()
+		# STATE_PUBLISH_MSG
 		elif self.state == STATE_PUBLISH_MSG:
 			self.process_state_publish_msg()
+		# STATE_WAIT_FOR_EXECUTION 
 		elif self.state == STATE_WAIT_FOR_EXECUTION:
 			self.process_state_wait_for_execution()
 		# STATE_TERMINATE_PROGRAM
@@ -333,57 +383,6 @@ class Test_Suite_State_Machine:
 		else:
 			print self.state, "is an unknown state"
 			return False
-
-		# Pseudo Code:
-		'''
-			if state == read_yaml:
-				if test_index < total_tests:
-					read_yaml
-				else:
-					state = Done
-
-				if (message_id > QUEABLE_STARTING_MESSAGE_ID) and (message_id < QUEABLE_ENDING_MESSAGE_ID)):
-  				 	perform transforms using previous pose, publish, wait for 1 second then read the next file.
-					change state to read_yaml.
-					Read the file. and immediately publish the message
-					state = publish_msg
-
-				else:
-					This is a regular message
-					Read Message.
-					Change State to update_robot_pose
-
-			else if state == update_robot_pose:
-				# wait for robot pose to be updated by a callback
-				if updated_robot_pose:
-					updated_robot_pose = False
-					state = publish_msg
-
-			else if state == publish_msg:
-				# Transform message
-				# Extract wait command
-				if robot_stopped_moving or message_is_queuable:
-				
-				# Publish Message
-
-				state = wait_for_execution
-
-			else if state == wait_for_execution:
-				# Wait for execution unless the message is queueable
-				if not(message_is_queueable):
-					wait()
-				else:
-					wait(1.0) # Wait to ensure that ros2 receives the message
-
-				# If the message is queuable read the next yaml file
-				if message_is_queueable or robot_stopped_moving:
-					message_is_queuable = False
-					state = read_yaml
-
-			else if state = DONE:
-				return state
-
-		'''
 
 		return True
 

@@ -1,0 +1,8 @@
+default_wait_time_after_publishing: 1.0
+list_of_tests:
+  - filepath: "data/converted_walk_turn_cw.yaml"
+    message_type: "controller_msgs/FootstepDataListMessage"
+    wait_time_after_publishing: 10.0
+  - filepath: "data/converted_walk_turn_cw.yaml"
+    message_type: "controller_msgs/FootstepDataListMessage"
+    wait_time_after_publishing: 10.0
