@@ -18,6 +18,29 @@
 #      (optional) pause_at_time: Positive real number. Time during a trajectory (not a footstep) should a StopAllTrajectories message be sent 
 default_wait_time_after_publishing: 1.0
 list_of_tests:
+  # Neck Move
+  - filepath: "data/converted_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 2.5
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 2.5
+  # Right Foot Lift then down
+  - filepath: "data/converted_whole_body_right_foot_lift.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    queued_message: True
+    wait_time_after_publishing: 5.0   
+  - filepath: "data/converted_load_right_foot.yaml"
+    message_type: "controller_msgs/FootLoadBearingMessage"
+    wait_time_after_publishing: 2.0 
+  # Left Foot Lift then down
+  - filepath: "data/converted_whole_body_left_foot_lift.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    queued_message: True
+    wait_time_after_publishing: 5.0 
+  - filepath: "data/converted_load_left_foot.yaml"
+    message_type: "controller_msgs/FootLoadBearingMessage"
+    wait_time_after_publishing: 2.0
   # Right Arm Front Move
   - filepath: "data/converted_whole_body_right_arm_front.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
@@ -66,6 +89,248 @@ list_of_tests:
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
+  # Right Arm Front Yaw Torso Move
+  - filepath: "data/converted_whole_body_right_arm_front_yaw_torso.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Left Arm Low Move
+  - filepath: "data/converted_whole_body_left_arm_front_yaw_torso.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Right Arm Front Move
+  - filepath: "data/converted_whole_body_right_arm_low.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Left Arm Low Move
+  - filepath: "data/converted_whole_body_left_arm_low.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  
+  # Right Arm Bend Torso Move
+  - filepath: "data/converted_whole_body_right_arm_left_bend_torso.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Left Arm Bend Torso Move
+  - filepath: "data/converted_whole_body_left_arm_right_bend_torso.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Right Arm Side Move
+  - filepath: "data/converted_whole_body_right_arm_side.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Left Arm Side Move
+  - filepath: "data/converted_whole_body_left_arm_side.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Right Arm Wrist Move
+  - filepath: "data/converted_whole_body_right_wrist.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+  # Left Arm Wrist Move
+  - filepath: "data/converted_whole_body_left_wrist.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 7.0   
+  # GO HOME ALL
+  - filepath: "data/go_home_pelvis.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_chest.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5
+    queued_message: True
+  - filepath: "data/go_home_left_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_right_arm.yaml"
+    message_type: "controller_msgs/GoHomeMessage"
+    wait_time_after_publishing: 0.5  
+    queued_message: True
+  - filepath: "data/go_home_neck.yaml"
+    message_type: "controller_msgs/NeckTrajectoryMessage"
+    wait_time_after_publishing: 3.0
+
   # Walk forward, walk back, walk forward, pause after 2 steps, then step in place
   - filepath: "data/converted_walk_forward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
