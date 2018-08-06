@@ -406,6 +406,9 @@ class Test_Suite_State_Machine:
 
 def run_test(data):
 	global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
+	global tfListener
+
+	tfListener = TransformListener()
 	test_suite_obj = Test_Suite_State_Machine()
 
 	# Set package path
