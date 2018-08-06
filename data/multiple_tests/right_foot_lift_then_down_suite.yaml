@@ -18,7 +18,6 @@ default_wait_time_after_publishing: 1.0
 list_of_tests:
   - filepath: "data/converted_whole_body_right_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    update_pose: False
     queued_message: True
     wait_time_after_publishing: 5.0   
   - filepath: "data/converted_load_right_foot.yaml"
