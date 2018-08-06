@@ -153,8 +153,8 @@ class Test_Suite_State_Machine:
 
 			'''
 			# Ideally we look up the CoP frames correctly.
-			pos1, rot1 =  tfListener.lookupTransform("/pelvis", "/leftFootCoPFrame", rospy.Time())
-			pos2, rot2 =  tfListener.lookupTransform("/pelvis", "/rightFootCoPFrame", rospy.Time())
+			pos1, rot1 =  tfListener.lookupTransform("/pelvis", "/leftCOP_Frame", rospy.Time())
+			pos2, rot2 =  tfListener.lookupTransform("/pelvis", "/rightCOP_Frame", rospy.Time())
 			# Then the robot pose should be:
 			pos = (np.array(pos1)+np.array(pos2))*0.5
 			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
