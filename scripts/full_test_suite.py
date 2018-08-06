@@ -11,7 +11,7 @@ except ImportError:
 from controller_msgs.msg import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
-from geometry_msgs.msg import Point, Quaternion
+from geometry_msgs.msg import Point, Quaternion, Vector3
 
 # Import ROS Utilities
 from rospy_message_converter import message_converter
@@ -30,10 +30,16 @@ import rospy
 
 # Define accepted types
 ACCEPTED_TYPES = ["wholebody", "neck", "walk", "load", "go_home", "wholebody_with_pause", "walk_with_pause"]
+# ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
+# 					 "controller_msgs/NeckTrajectoryMessage",
+# 					 "controller_msgs/FootstepDataListMessage",
+# 					 "controller_msgs/FootLoadBearingMessage"]
+
 ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
 					 "controller_msgs/NeckTrajectoryMessage",
 					 "controller_msgs/FootstepDataListMessage",
-					 "controller_msgs/FootLoadBearingMessage"]
+					 "controller_msgs/FootLoadBearingMessage",
+					 "controller_msgs/WholeBodyTrajectoryMessage"]
 
 #"controller_msgs/FootstepDataListMessage"
 #"controller_msgs/WholeBodyTrajectoryMessage"
@@ -234,13 +240,13 @@ class Test_Suite_State_Machine:
 	def prepare_wholebody_msg(self, msg):
 		print "Transforming wholebody messages to world frame as needed..."
 		for this_message in msg.chest_trajectory_message.so3_trajectory.taskspace_trajectory_points:
-			transformSO3(this_message)
+			self.transformSO3(this_message)
 		for this_message in msg.pelvis_trajectory_message.se3_trajectory.taskspace_trajectory_points:
-			transformSE3(this_message)
+			self.transformSE3(this_message)
 		for this_message in msg.left_foot_trajectory_message.se3_trajectory.taskspace_trajectory_points:
-			transformSE3(this_message)
+			self.transformSE3(this_message)
 		for this_message in msg.right_foot_trajectory_message.se3_trajectory.taskspace_trajectory_points:
-			transformSE3(this_message)
+			self.transformSE3(this_message)
 
 		print "Enforcing all of these messages to have an execution mode of OVERRIDE"
 		msg.left_hand_trajectory_message.se3_trajectory.queueing_properties.execution_mode = 0	

@@ -238,7 +238,16 @@ TO DO:
 -	DONE Finish conversion of wrist
 -	Modify T-pose angles to reduce singularity shaking
 - Write spine joint trajectory script to convert spine message
--	Write Go Home script. Try using the queue.
--	Write python script which sends the entire test suite
+- DONE	Write Go Home script. Try using the queue.
+- DONE	Write python script which sends the entire test suite
 
+- DONE Normalize quaternion before sending out
+
+- Test unit quaternion normalization for the footsteps. 
+	- Use the turn cw script.
+	- Uncomment lines after 2 steps are successful
+- Test Go Home suite
+- Test Neck suite
+- Test Turn cw suite
+- Test right arm front then go home suite
 
