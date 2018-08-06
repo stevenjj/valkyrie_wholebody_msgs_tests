@@ -250,4 +250,4 @@ TO DO:
 - Test Neck suite
 - Test Turn cw suite
 - Test right arm front then go home suite
-
+- Test right foot lift then down suite
