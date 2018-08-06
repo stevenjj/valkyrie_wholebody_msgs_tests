@@ -59,6 +59,11 @@ def transformSE3(msg):
   tmp = pm.toMsg(pos)
   msg.position = tmp.position
   msg.orientation = tmp.orientation
+  # Normalize orientation
+  quat_original = np.array([msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w])
+  quat_normalized = quat_original/np.linalg.norm(quat_original)
+  # Update orientation
+  msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w = quat_normalized[0], quat_normalized[1], quat_normalized[2], quat_normalized[3]
   msg.linear_velocity = Vector3(vel.vel.x(), vel.vel.y(), vel.vel.z())
   msg.angular_velocity = Vector3(vel.rot.x(), vel.rot.y(), vel.rot.z())
 
@@ -70,6 +75,11 @@ def transformSO3(msg):
   vel = pose*curVel
   tmp = pm.toMsg(pos)
   msg.orientation = tmp.orientation
+  # Normalize orientation
+  quat_original = np.array([msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w])
+  quat_normalized = quat_original/np.linalg.norm(quat_original)
+  # Update orientation
+  msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w = quat_normalized[0], quat_normalized[1], quat_normalized[2], quat_normalized[3]  
   msg.angular_velocity = Vector3(vel.rot.x(), vel.rot.y(), vel.rot.z())
 
 
