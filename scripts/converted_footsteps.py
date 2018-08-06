@@ -83,6 +83,11 @@ def callback(m):
         pstep = pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
         msg = pm.toMsg(pstep)
         step.location = msg.position
+        # Normalize orientation
+        quat_original = np.array([msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w])
+        quat_normalized = quat_original/np.linalg.norm(quat_original)
+        msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w = quat_normalized[0], quat_normalized[1], quat_normalized[2], quat_normalized[3]
+        # Update step orientation
         step.orientation = msg.orientation
       print('Relocated footsteps to a local frame')
       print('Publishing...')

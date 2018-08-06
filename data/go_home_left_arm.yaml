@@ -1,4 +1,4 @@
-sequence_id: 1
+sequence_id: 4
 humanoid_body_part: 0 # Arm Go Home
 robot_side: 0  # Left Arm
 trajectory_time: 3.0

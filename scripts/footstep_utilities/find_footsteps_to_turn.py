@@ -57,7 +57,7 @@ if __name__ == '__main__':
 	# the maximum turning angle per step
 	max_angle_per_step = np.fabs(np.pi/6.0) # must be < PI/6.0 to comply with IHMC controller limits
 	# the desired final heading angle:
-	des_final_angle = np.pi/2.0
+	des_final_angle = -np.pi/2.0
 	# Final heading tolerance of 1 degree
 	rads_tolerance = np.pi/180.0
 

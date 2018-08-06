@@ -1,43 +1,41 @@
-# Yaml parameter: Description
-# default_wait_time_after_publishing: If wait_time_after_publishing is not available, this number is used instead.
-# list_of_tests: list of yaml files with parameters to run in sequence.
-#    - filepath: Location of the yaml file with a prefix of the ros package path.
-#      message_type: the type of message from the controller_msgs package
-#      wait_time_after_publishing: A required time to wait in seconds after publishing the message. This could be an estimate
+# Yaml parameters: Description
+# (required default_wait_time_after_publishing: If wait_time_after_publishing is not available, this number is used instead.
+# (required) list_of_tests: list of yaml files with parameters to run in sequence.
+#    - (required) filepath: Location of the yaml file with a prefix of the ros package path.
+#      (required) message_type: the type of message from the controller_msgs package
+#      (optional) wait_time_after_publishing: A required time to wait in seconds after publishing the message. This could be an estimate
 #                                  of the total trajectory time. This number may be very small if a bunch of messages want to be sent simultaenously.
-#      update_pose: Boolean (defaults to True) to specify if the pose of the robot should be updated when this message is published.
+#      (optional) update_pose: Boolean (defaults to True) to specify if the pose of the robot should be updated when this message is published.
 #                   If not specified, the default value of this parameter is True. 
 #                   If the value is True, the test suite state machine will wait for a pose callback to occur before publishing the message.
 #                   If the value is False, the test suite state machine will immediately publish the next message without a pose update.
-#      queued_message: Boolean (defaults to False) to specify whether this message is in the beginning or the middle of a queueable message. 
+#      (optional) queued_message: Boolean (defaults to False) to specify whether this message is in the beginning or the middle of a queueable message. 
 #                      This should be set to false if the message is at the end of the queue.
 #                      If set to True, the next yaml file will immediately be processed 
 #                      If set to False, the next yaml file will be processed after the specified wait time and after the robot has stopped moving.
 #                      If not specified, the default value of this parameter is False. As we want the robot to be stopped before sending the next message
 default_wait_time_after_publishing: 1.0
 list_of_tests:
+  - filepath: "data/converted_whole_body_right_arm_front.yaml"
+    message_type: "controller_msgs/WholeBodyTrajectoryMessage"
+    wait_time_after_publishing: 10.0   
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 1.0
+    wait_time_after_publishing: 0.5
     update_pose: False
     queued_message: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 1.0
+    wait_time_after_publishing: 0.5
     update_pose: False   
     queued_message: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 1.0  
+    wait_time_after_publishing: 0.5  
     update_pose: False
     queued_message: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 1.0
+    wait_time_after_publishing: 0.5
     update_pose: False
     queued_message: True
-  - filepath: "data/go_home_neck.yaml"
-    message_type: "controller_msgs/NeckTrajectoryMessage"
-    wait_time_after_publishing: 1.0
-    # update_pose: False   
-    # queued_message: True

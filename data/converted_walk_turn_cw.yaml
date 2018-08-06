@@ -44,14 +44,14 @@ footstep_data_list:
 #  -
 #    robot_side: 1
 #    location:
-#      x: -0.0875 #-0.1515 #0.0875
-#      y: -0.1515 #-0.0875 #-0.1515
+#      x: -0.1515 
+#      y: -0.0875 
 #      z: 0.0
 #    orientation:
 #      x: 0.0
 #      y: 0.0
-#      z: -0.25877 #-0.49992443571
-#      w: 0.965937 #0.86696902644
+#      z: -0.49992443571
+#      w: 0.86696902644
 #    predicted_contact_points_2d: []
 #    trajectory_type: 0
 #    swing_height: 0.1
@@ -65,14 +65,14 @@ footstep_data_list:
 #  -
 #    robot_side: 0
 #    location:
-#      x: 0.1515 #-0.0875
-#      y: 0.0875 #0.1515
+#      x: 0.0875
+#      y: 0.1515
 #      z: 0.0
 #    orientation:
 #      x: 0.0
 #      y: 0.0
-#      z: -0.25877 #-0.4996
-#      w: 0.965937 #0.8662
+#      z: -0.4996
+#      w: 0.8662
 #    predicted_contact_points_2d: []
 #    trajectory_type: 0
 #    swing_height: 0.1
@@ -86,7 +86,7 @@ footstep_data_list:
 # -
 #   robot_side: 1
 #   location:
-#     x: -0.175 #0.0
+#     x: -0.175 
 #     y: 0.0 #-0.175
 #     z: 0.0
 #   orientation:
@@ -107,8 +107,8 @@ footstep_data_list:
 # -
 #   robot_side: 0
 #   location:
-#     x: 0.175 #0.0
-#     y: 0.0 #0.175
+#     x: 0.175 
+#     y: 0.0 
 #     z: 0.0
 #   orientation:
 #     x: 0.0

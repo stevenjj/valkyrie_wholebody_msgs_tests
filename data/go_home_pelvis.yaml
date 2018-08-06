@@ -1,4 +1,4 @@
-sequence_id: 1
+sequence_id: 6
 humanoid_body_part: 2 # Pelvis Go Home
 robot_side: 0 
 trajectory_time: 3.0

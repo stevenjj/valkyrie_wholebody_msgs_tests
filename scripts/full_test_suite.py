@@ -31,8 +31,9 @@ import rospy
 # Define accepted types
 ACCEPTED_TYPES = ["wholebody", "neck", "walk", "load", "go_home", "wholebody_with_pause", "walk_with_pause"]
 ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
-					 "controller_msgs/NeckTrajectoryMessage", #]
-					 "controller_msgs/FootstepDataListMessage"]
+					 "controller_msgs/NeckTrajectoryMessage",
+					 "controller_msgs/FootstepDataListMessage",
+					 "controller_msgs/FootLoadBearingMessage"]
 
 #"controller_msgs/FootstepDataListMessage"
 #"controller_msgs/WholeBodyTrajectoryMessage"
@@ -223,6 +224,11 @@ class Test_Suite_State_Machine:
 			pstep = self.robot_pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
 			msg = pm.toMsg(pstep)
 			step.location = msg.position
+			# Normalize orientation
+			quat_original = np.array([msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w])
+			quat_normalized = quat_original/np.linalg.norm(quat_original)
+			msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w = quat_normalized[0], quat_normalized[1], quat_normalized[2], quat_normalized[3]
+			# Update step orientation
 			step.orientation = msg.orientation
 
 	def prepare_wholebody_msg(self, msg):
@@ -308,6 +314,11 @@ class Test_Suite_State_Machine:
 			elif self.current_test.message_type == "controller_msgs/FootstepDataListMessage":
 				self.transformFootsteps(self.current_test.message)
 				pubFootSteps.publish(self.current_test.message)
+			elif self.current_test.message_type == "controller_msgs/FootLoadBearingMessage":
+				pubFootLoadBearing.publish(self.current_test.message)
+			elif self.current_test.message_type == "controller_msgs/WholeBodyTrajectoryMessage":
+				self.prepare_wholebody_msg(self.current_test.message)
+				pubWhole.publish(self.current_test.message)
 			else:
 				can_publish = False
 
