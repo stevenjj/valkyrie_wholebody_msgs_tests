@@ -29,11 +29,6 @@ import numpy as np
 import rospy
 
 # Define accepted types
-# ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
-# 					 "controller_msgs/NeckTrajectoryMessage",
-# 					 "controller_msgs/FootstepDataListMessage",
-# 					 "controller_msgs/FootLoadBearingMessage"]
-
 ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
 					 "controller_msgs/NeckTrajectoryMessage",
 					 "controller_msgs/FootstepDataListMessage",
@@ -56,12 +51,6 @@ STATE_INDEX_TO_NAME = {0 : "STATE_LOAD_MESSAGE",
 					   4: "STATE_TERMINATE_PROGRAM"}
 
 ROBOT_STATUSES = ["STANDING", "IN_MOTION"]
-
-# Do not change these default values! If you do, be sure to change the queueable messages as well
-QUEABLE_STARTING_MESSAGE_ID = 100 # message id which indicates this is the start of a queued message 
-QUEABLE_ENDING_MESSAGE_ID = 200 # message id which indicates this is the last message part of the queue
-# A message_id with QUEABLE_STARTING_MESSAGE_ID < message_id < QUEABLE_ENDING_MESSAGE_ID will be processed as fast as possible
-# to send 
 
 class TestParams:
 	def __init__(self):
@@ -366,10 +355,10 @@ class Test_Suite_State_Machine:
 				self.disable_interrupts()
 				break
 			if (self.current_test.pause_at_time > 0.0) and (interval > self.current_test.pause_at_time):
-			      msg = StopAllTrajectoryMessage()
-			      msg.sequence_id = 10
-			      pubStopTrajectory.publish(msg)
-			      break
+				msg = StopAllTrajectoryMessage()
+				msg.sequence_id = 10
+				pubStopTrajectory.publish(msg)
+				break
 			time.sleep(0.01)
 
 
