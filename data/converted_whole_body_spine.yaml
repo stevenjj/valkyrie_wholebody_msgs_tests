@@ -1,0 +1,38 @@
+sequence_id: 1 
+jointspace_trajectory: 
+  sequence_id: 1 
+  joint_trajectory_messages: 
+    - 
+      weight: -1.0
+      trajectory_points: 
+        - 
+          time: 3.989843
+          position: 0.488240003586
+          velocity: 0.0
+          sequence_id: 1
+      sequence_id: 1
+    - 
+      weight: -1.0
+      trajectory_points: 
+        - 
+          time: 3.989843
+          position: 0.291880011559
+          velocity: 0.0
+          sequence_id: 1
+      sequence_id: 1
+    - 
+      weight: -1.0
+      trajectory_points: 
+        - 
+          time: 3.989843
+          position: 0.110469996929
+          velocity: 0.0
+          sequence_id: 1
+      sequence_id: 1
+  queueing_properties:                     
+    sequence_id: 1
+    execution_mode: 0
+    message_id: 1
+    previous_message_id: 0
+    execution_delay_time: 0.0
+

@@ -35,8 +35,7 @@ ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
 					 "controller_msgs/FootLoadBearingMessage",
 					 "controller_msgs/WholeBodyTrajectoryMessage"]
 
-#"controller_msgs/FootstepDataListMessage"
-#"controller_msgs/WholeBodyTrajectoryMessage"
+#"controller_msgs/SpineTrajectoryMessage"
 
 # Define states
 STATE_LOAD_MESSAGE = 0
@@ -305,7 +304,7 @@ class Test_Suite_State_Machine:
 			self.change_state_to(STATE_PUBLISH_MSG)
 
 	def process_state_publish_msg(self):
-		global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
+		global pubWhole, pubNeck, pubSpine, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
 		print('  Preparing message...')
 		can_publish = False
 
@@ -315,6 +314,8 @@ class Test_Suite_State_Machine:
 				pubGoHome.publish(self.current_test.message)
 			elif self.current_test.message_type == "controller_msgs/NeckTrajectoryMessage":
 				pubNeck.publish(self.current_test.message)
+			elif self.current_test.message_type == "controller_msgs/SpineTrajectoryMessage":
+				pubSpine.publish(self.current_test.message)
 			elif self.current_test.message_type == "controller_msgs/FootstepDataListMessage":
 				self.transformFootsteps(self.current_test.message)
 				pubFootSteps.publish(self.current_test.message)
@@ -406,7 +407,7 @@ class Test_Suite_State_Machine:
 
 
 def run_test(data):
-	global pubWhole, pubNeck, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
+	global pubWhole, pubNeck, pubSpine, pubFootSteps, pubFootLoadBearing, pubGoHome, pubStopTrajectory, pubPauseWalking
 	global tfListener
 
 	tfListener = TransformListener()
@@ -419,6 +420,7 @@ def run_test(data):
 	# Advertise Publishers
 	pubWhole = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
 	pubNeck = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/neck_trajectory', NeckTrajectoryMessage, queue_size=10, latch=True)
+    #pubSpine = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/spine_trajectory', SpineTrajectoryMessage, queue_size=10, latch=True)
 	pubFootSteps = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
 	pubFootLoadBearing = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/foot_load_bearing', FootLoadBearingMessage, queue_size=10, latch=True)
 	pubGoHome = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/go_home', GoHomeMessage, queue_size=10, latch=True)

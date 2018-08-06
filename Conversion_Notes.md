@@ -178,19 +178,17 @@ Converted files and their status:
 	- load_right_foot.yaml	
 		- Status: Good
 	- walk_turn_cw.yaml
-		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run 
+		- Status: Good. We enforce a normalization step on the orientation after converting the frame into the world frame.
 	- walk_turn_ccw.yaml
-		- Status: Partially working. Works with 2 steps with an orientation specification. If we add a 3rd step with a greater orientation than the first 2 steps, the script doesn't run
+		- Status: Good. We enforce a normalization step on the orientation after converting the frame into the world frame.
 	- whole_body_left_wrist 
-		- Status: Seems Ok. Left arm moves, but we don't have forearms with wrists to test.
+		- Status: Good
 	- whole_body_right_wrist 
-		- Status: Seems Ok. Right arm moves, but we don't have forearms with wrists to test.
-
-Remaining files to convert:
-	whole_body_right_arm_side_pause.launch 
+		- Status: Good
+	- whole_body_spine 	
+		- Status: Untested for now, but no reason to not work.
+	- whole_body_right_arm_side_pause
 		Status: We cannot test this because the API only allows 1 trajectory message
-	whole_body_spine 	
-		Status: The spine is just a joint trajectory message. We have to write a dedicated script for this message
 
 Converted Python scripts
 	neck.py 
@@ -198,9 +196,14 @@ Converted Python scripts
 	footstep.py 
 		- Status: Good. 
 	whole_body.py 
-		- Status: Good. We have not confirmed StopAllTrajectories message due to current API limits)
+		- Status: Good. We have not confirmed StopAllTrajectories message due to current API limits.
 	converted_load_foot.py
 		- Status: Good. Loads the foot if it is unloaded.
+	go_home.py
+		- Status: Good. Sends a single go home message
+	converted_spine.py
+		- Status: Untested for now.
+
 
 Tested ROS1 Messages
 	WholeBodyTrajectoryMessage
@@ -215,7 +218,7 @@ Tested ROS1 Messages
 		HeadTrajectoryMessage 
 			- Status: Untested. All Fields are Empty
 		HandTrajectoryMessage 
-			- Status: Untested.		
+			- Status: Untested.	
 
 	PauseWalkingMessage 
 		- Status: Good. We tested with a sequence_id greater than the foot message
@@ -224,7 +227,7 @@ Tested ROS1 Messages
 	PelvisHeightTrajectoryMessage 
 		- Status: Good.
 	FootLoadBearingMessage 
-		- Status: Acceptable. Left Foot can be loaded again once it is lifted up. But, it cannot be unloaded while being loaded and in contact with the ground
+		- Status: Good. Works as intended. Left Foot can be loaded again once it is lifted up. But, it cannot be unloaded while being loaded and in contact with the ground
 
 
 TO DO:
@@ -237,17 +240,21 @@ TO DO:
 - DONE Write foot load bearing script
 -	DONE Finish conversion of wrist
 -	Modify T-pose angles to reduce singularity shaking
-- Write spine joint trajectory script to convert spine message
 - DONE	Write Go Home script. Try using the queue.
 - DONE	Write python script which sends the entire test suite
 
 - DONE Normalize quaternion before sending out
 
-- Test unit quaternion normalization for the footsteps. 
-	- Use the turn cw script.
-	- Uncomment lines after 2 steps are successful
-- Test Go Home suite
-- Test Neck suite
-- Test Turn cw suite
-- Test right arm front then go home suite
-- Test right foot lift then down suite
+- DONE Test unit quaternion normalization for the footsteps. 
+	DONE - Use the turn cw script.
+	DONE - Uncomment lines after 2 steps are successful
+- DONE Test Go Home suite
+- DONE Test Neck suite
+- DONE Test Turn cw suite
+- DONE Test right arm front then go home suite
+- DONE Test right foot lift then down suite
+- DONE Test full suite
+- DONE Write spine joint trajectory script to convert spine message
+- Test spine script
+- Test right arm side pause script.
+- Include spine script in full test suite
