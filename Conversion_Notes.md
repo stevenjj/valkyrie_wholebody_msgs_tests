@@ -239,7 +239,6 @@ TO DO:
 - DONE Test whole body nominal 
 - DONE Write foot load bearing script
 -	DONE Finish conversion of wrist
--	Modify T-pose angles to reduce singularity shaking
 - DONE	Write Go Home script. Try using the queue.
 - DONE	Write python script which sends the entire test suite
 
@@ -255,6 +254,8 @@ TO DO:
 - DONE Test right foot lift then down suite
 - DONE Test full suite
 - DONE Write spine joint trajectory script to convert spine message
+- Modify T-pose angles to reduce singularity shaking
 - Test spine script
 - Test right arm side pause script.
 - Include spine script in full test suite
+	- Partially done. need to test individual spine test first
