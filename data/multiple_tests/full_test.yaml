@@ -21,7 +21,7 @@ list_of_tests:
   # Right Arm Front Move
   - filepath: "data/converted_whole_body_right_arm_front.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    wait_time_after_publishing: 10.0   
+    wait_time_after_publishing: 7.0   
   # GO HOME ALL
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
@@ -45,7 +45,7 @@ list_of_tests:
   # Left Arm Front Move
   - filepath: "data/converted_whole_body_left_arm_front.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    wait_time_after_publishing: 10.0   
+    wait_time_after_publishing: 7.0   
   # GO HOME ALL
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
@@ -73,11 +73,12 @@ list_of_tests:
   - filepath: "data/converted_walk_backward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_forward.yaml"
-    message_type: "controller_msgs/FootstepDataListMessage"
-    wait_time_after_publishing: 5.0    
-    pause_at_step: 2
   - filepath: "data/converted_walk_in_place.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 5.0  
-
+  - filepath: "data/converted_walk_turn_cw.yaml"
+    message_type: "controller_msgs/FootstepDataListMessage"
+    wait_time_after_publishing: 10.0
+  - filepath: "data/converted_walk_turn_ccw.yaml"
+    message_type: "controller_msgs/FootstepDataListMessage"
+    wait_time_after_publishing: 10.0

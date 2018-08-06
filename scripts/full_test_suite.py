@@ -174,6 +174,7 @@ class Test_Suite_State_Machine:
 			self.robot_stopped_moving = False
 
 	def footstep_status_callback(self, msg):
+		global pubPauseWalking
 		# Check footstep status
 		# If pause is requested. Do an interrupt and publish stop message then wait()
 		# change state to load next test
@@ -185,11 +186,10 @@ class Test_Suite_State_Machine:
 					message = PauseWalkingMessage()
 					message.pause = True     
 					message.sequence_id = 10
-					pubPause.publish(message)
+					pubPauseWalking.publish(message)
 
 					# Change state and enable an interrupt
 					self.footstep_pause_interrupt = True
-					self.change_state_to(STATE_LOAD_MESSAGE)
 
 	# Data is written w.r.t Midfoot frame. These transformations will express position and orientation w.r.t World Frame 
 	def transformSO3(self, msg):
@@ -342,11 +342,14 @@ class Test_Suite_State_Machine:
 
 		self.wait(self.current_test.wait_time_after_publishing)
 		# Load the next message only if the robot is standing or if the message is in the middle of a queue
-		if self.robot_stopped_moving or self.current_test.queued_message:
-			# Ready for the next message
-			if self.test_index < len(self.list_of_tests):
-				self.test_index += 1 
-			self.change_state_to(STATE_LOAD_MESSAGE)
+		while not rospy.is_shutdown():
+			if self.robot_stopped_moving or self.current_test.queued_message:
+				# Ready for the next message
+				if self.test_index < len(self.list_of_tests):
+					self.test_index += 1 
+				self.change_state_to(STATE_LOAD_MESSAGE)
+				break
+			time.sleep(0.01)
 
 
 	def disable_interrupts(self):
