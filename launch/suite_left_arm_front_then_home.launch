@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args python" />
+
+  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="full_test_suite.py" name="ValkyrieFullTestSuiteNode" output="screen">
+    <param name="TestSuiteDataFile" type="string" value="$(find valkyrie_testing_edi)/data/multiple_tests/left_arm_front_then_home_suite.yaml" />
+    <param name="TestSuitePackagePath" type="string" value="$(find valkyrie_testing_edi)" />
+
+  </node>
+
+</launch>

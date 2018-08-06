@@ -29,7 +29,6 @@ import numpy as np
 import rospy
 
 # Define accepted types
-ACCEPTED_TYPES = ["wholebody", "neck", "walk", "load", "go_home", "wholebody_with_pause", "walk_with_pause"]
 # ACCEPTED_MESSAGES = ["controller_msgs/GoHomeMessage",
 # 					 "controller_msgs/NeckTrajectoryMessage",
 # 					 "controller_msgs/FootstepDataListMessage",
