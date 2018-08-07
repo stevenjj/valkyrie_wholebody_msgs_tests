@@ -19,30 +19,30 @@
 default_wait_time_after_publishing: 1.0
 list_of_tests:
   # Neck Move
-  - filepath: "data/converted_neck.yaml"
+  - filepath: "data/neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 2.5
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 2.5
   # Right Foot Lift then down
-  - filepath: "data/converted_whole_body_right_foot_lift.yaml"
+  - filepath: "data/whole_body_right_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     process_next_message_immediately: True
     wait_time_after_publishing: 5.0   
-  - filepath: "data/converted_load_right_foot.yaml"
+  - filepath: "data/load_right_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
     wait_time_after_publishing: 2.0 
   # Left Foot Lift then down
-  - filepath: "data/converted_whole_body_left_foot_lift.yaml"
+  - filepath: "data/whole_body_left_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     process_next_message_immediately: True
     wait_time_after_publishing: 5.0 
-  - filepath: "data/converted_load_left_foot.yaml"
+  - filepath: "data/load_left_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
     wait_time_after_publishing: 2.0
   # Right Arm Front Move
-  - filepath: "data/converted_whole_body_right_arm_front.yaml"
+  - filepath: "data/whole_body_right_arm_front.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -66,7 +66,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Front Move
-  - filepath: "data/converted_whole_body_left_arm_front.yaml"
+  - filepath: "data/whole_body_left_arm_front.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -90,7 +90,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Right Arm Front Yaw Torso Move
-  - filepath: "data/converted_whole_body_right_arm_front_yaw_torso.yaml"
+  - filepath: "data/whole_body_right_arm_front_yaw_torso.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -114,7 +114,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Low Move
-  - filepath: "data/converted_whole_body_left_arm_front_yaw_torso.yaml"
+  - filepath: "data/whole_body_left_arm_front_yaw_torso.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -138,7 +138,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Right Arm Front Move
-  - filepath: "data/converted_whole_body_right_arm_low.yaml"
+  - filepath: "data/whole_body_right_arm_low.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -162,7 +162,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Low Move
-  - filepath: "data/converted_whole_body_left_arm_low.yaml"
+  - filepath: "data/whole_body_left_arm_low.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -187,7 +187,7 @@ list_of_tests:
     wait_time_after_publishing: 3.0
   
   # Right Arm Bend Torso Move
-  - filepath: "data/converted_whole_body_right_arm_left_bend_torso.yaml"
+  - filepath: "data/whole_body_right_arm_left_bend_torso.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -211,7 +211,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Bend Torso Move
-  - filepath: "data/converted_whole_body_left_arm_right_bend_torso.yaml"
+  - filepath: "data/whole_body_left_arm_right_bend_torso.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -235,7 +235,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Right Arm Side Move
-  - filepath: "data/converted_whole_body_right_arm_side.yaml"
+  - filepath: "data/whole_body_right_arm_side.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -259,7 +259,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Side Move
-  - filepath: "data/converted_whole_body_left_arm_side.yaml"
+  - filepath: "data/whole_body_left_arm_side.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -283,7 +283,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Right Arm Wrist Move
-  - filepath: "data/converted_whole_body_right_wrist.yaml"
+  - filepath: "data/whole_body_right_wrist.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -307,7 +307,7 @@ list_of_tests:
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
   # Left Arm Wrist Move
-  - filepath: "data/converted_whole_body_left_wrist.yaml"
+  - filepath: "data/whole_body_left_wrist.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     wait_time_after_publishing: 7.0   
   # GO HOME ALL
@@ -332,18 +332,18 @@ list_of_tests:
     wait_time_after_publishing: 3.0
 
   # Walk forward, walk back, walk forward, pause after 2 steps, then step in place
-  - filepath: "data/converted_walk_forward.yaml"
+  - filepath: "data/walk_forward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_backward.yaml"
+  - filepath: "data/walk_backward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_in_place.yaml"
+  - filepath: "data/walk_in_place.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 5.0  
-  - filepath: "data/converted_walk_turn_cw.yaml"
+  - filepath: "data/walk_turn_cw.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_turn_ccw.yaml"
+  - filepath: "data/walk_turn_ccw.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0

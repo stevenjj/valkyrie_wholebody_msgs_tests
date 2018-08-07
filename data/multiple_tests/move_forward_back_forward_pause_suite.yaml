@@ -18,13 +18,13 @@
 #      (optional) pause_at_time: Positive real number. Time during a trajectory (not a footstep) should a StopAllTrajectories message be sent 
 default_wait_time_after_publishing: 1.0
 list_of_tests:
-  - filepath: "data/converted_walk_forward.yaml"
+  - filepath: "data/walk_forward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_backward.yaml"
+  - filepath: "data/walk_backward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0
-  - filepath: "data/converted_walk_forward.yaml"
+  - filepath: "data/walk_forward.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
     wait_time_after_publishing: 10.0    
     pause_at_step: 2

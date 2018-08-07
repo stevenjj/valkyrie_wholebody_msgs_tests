@@ -18,11 +18,11 @@
 #      (optional) pause_at_time: Positive real number. Time during a trajectory (not a footstep) should a StopAllTrajectories message be sent 
 default_wait_time_after_publishing: 1.0
 list_of_tests:
-  - filepath: "data/converted_whole_body_right_foot_lift.yaml"
+  - filepath: "data/whole_body_right_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
     process_next_message_immediately: True
     wait_time_after_publishing: 5.0   
-  - filepath: "data/converted_load_right_foot.yaml"
+  - filepath: "data/load_right_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
     wait_time_after_publishing: 0.5
     update_pose: False
