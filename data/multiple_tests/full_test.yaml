@@ -9,7 +9,7 @@
 #                   If not specified, the default value of this parameter is True. 
 #                   If the value is True, the test suite state machine will wait for a pose callback to occur before publishing the message.
 #                   If the value is False, the test suite state machine will immediately publish the next message without a pose update.
-#      (optional) queued_message: Boolean (defaults to False) to specify whether this message is in the beginning or the middle of a queueable message. 
+#      (optional) process_next_message_immediately: Boolean (defaults to False) to specify whether the next message should be processed immediately after the wait
 #                      This should be set to false if the message is at the end of the queue.
 #                      If set to True, the next yaml file will immediately be processed 
 #                      If set to False, the next yaml file will be processed after the specified wait time and after the robot has stopped moving.
@@ -28,7 +28,7 @@ list_of_tests:
   # Right Foot Lift then down
   - filepath: "data/converted_whole_body_right_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    queued_message: True
+    process_next_message_immediately: True
     wait_time_after_publishing: 5.0   
   - filepath: "data/converted_load_right_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
@@ -36,7 +36,7 @@ list_of_tests:
   # Left Foot Lift then down
   - filepath: "data/converted_whole_body_left_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    queued_message: True
+    process_next_message_immediately: True
     wait_time_after_publishing: 5.0 
   - filepath: "data/converted_load_left_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
@@ -49,19 +49,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -73,19 +73,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -97,19 +97,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -121,19 +121,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -145,19 +145,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -169,19 +169,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -194,19 +194,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -218,19 +218,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -242,19 +242,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -266,19 +266,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -290,19 +290,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0
@@ -314,19 +314,19 @@ list_of_tests:
   - filepath: "data/go_home_pelvis.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_chest.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_left_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_right_arm.yaml"
     message_type: "controller_msgs/GoHomeMessage"
     wait_time_after_publishing: 0.5  
-    queued_message: True
+    process_next_message_immediately: True
   - filepath: "data/go_home_neck.yaml"
     message_type: "controller_msgs/NeckTrajectoryMessage"
     wait_time_after_publishing: 3.0

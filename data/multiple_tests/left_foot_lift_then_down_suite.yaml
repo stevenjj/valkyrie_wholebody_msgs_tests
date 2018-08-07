@@ -9,19 +9,21 @@
 #                   If not specified, the default value of this parameter is True. 
 #                   If the value is True, the test suite state machine will wait for a pose callback to occur before publishing the message.
 #                   If the value is False, the test suite state machine will immediately publish the next message without a pose update.
-#      (optional) queued_message: Boolean (defaults to False) to specify whether this message is in the beginning or the middle of a queueable message. 
+#      (optional) process_next_message_immediately: Boolean (defaults to False) to specify whether the next message should be processed immediately after the wait
 #                      This should be set to false if the message is at the end of the queue.
 #                      If set to True, the next yaml file will immediately be processed 
 #                      If set to False, the next yaml file will be processed after the specified wait time and after the robot has stopped moving.
 #                      If not specified, the default value of this parameter is False. As we want the robot to be stopped before sending the next message
+#      (optional) pause_at_step: Integer. An integer which sets at what point should the step be paused
+#      (optional) pause_at_time: Positive real number. Time during a trajectory (not a footstep) should a StopAllTrajectories message be sent 
 default_wait_time_after_publishing: 1.0
 list_of_tests:
   - filepath: "data/converted_whole_body_left_foot_lift.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    queued_message: True
+    process_next_message_immediately: True
     wait_time_after_publishing: 5.0   
   - filepath: "data/converted_load_left_foot.yaml"
     message_type: "controller_msgs/FootLoadBearingMessage"
     wait_time_after_publishing: 0.5
     update_pose: False
-    queued_message: True
+    process_next_message_immediately: True

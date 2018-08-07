@@ -56,7 +56,7 @@ class TestParams:
 		self.filepath = ""
 		self.wait_time_after_publishing = 0.0
 		self.update_pose = True
-		self.queued_message = False # whether or not the message is part of a queue
+		self.process_next_message_immediately = False # whether or not the next message should be processed immediately
 		self.pause_at_step = -1 # If negative, steps will not be paused
 		self.pause_at_time = -1.0 # If negative, the trajectory will not be paused
 		self.message_type = "unspecified message type"
@@ -115,8 +115,8 @@ class Test_Suite_State_Machine:
 				test_params.pause_at_step =  test_info['pause_at_step']
 			if 'pause_at_time' in test_info:
 				test_params.pause_at_time =  test_info['pause_at_time']
-			if 'queued_message' in test_info:
-				test_params.queued_message =  test_info['queued_message']
+			if 'process_next_message_immediately' in test_info:
+				test_params.process_next_message_immediately =  test_info['process_next_message_immediately']
 
 			try:
 				if test_params.load_message():
@@ -336,15 +336,15 @@ class Test_Suite_State_Machine:
 
 	def process_state_wait_for_execution(self):
 		print('  Waiting for execution...')
-		if self.current_test.queued_message:
+		if self.current_test.process_next_message_immediately:
 			print "  Waiting for", self.current_test.wait_time_after_publishing, "seconds"
 		else:
 			print "  Waiting for", self.current_test.wait_time_after_publishing, "seconds and for the robot to stop moving"
 
 		self.wait(self.current_test.wait_time_after_publishing)
-		# Load the next message only if the robot is standing or if the message is in the middle of a queue
+		# Load the next message only if the robot is standing or if the next message should be processed immediately
 		while not rospy.is_shutdown():
-			if self.robot_stopped_moving or self.current_test.queued_message:
+			if self.robot_stopped_moving or self.current_test.process_next_message_immediately:
 				# Ready for the next message
 				if self.test_index < len(self.list_of_tests):
 					self.test_index += 1 
