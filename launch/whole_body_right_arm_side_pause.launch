@@ -7,7 +7,7 @@
 
   <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="whole_body.py" name="ValkyrieWholeBodyTestNode" output="screen">
     <param name="DataFile" type="string" value="$(find valkyrie_testing_edi)/data/whole_body_right_arm_side.yaml" />
-    <param name="PrepTime" type="double" value="5" />
-    <param name="PauseAt" type="double" value="3" />
+    <param name="PrepTime" type="double" value="7.0" />
+    <param name="PauseAt" type="double" value="3.0" />
   </node>
 </launch>

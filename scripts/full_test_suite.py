@@ -371,6 +371,7 @@ class Test_Suite_State_Machine:
 			if (self.current_test.pause_at_time > 0.0) and (interval > self.current_test.pause_at_time):
 				msg = StopAllTrajectoryMessage()
 				msg.sequence_id = 10
+				print("Sending Pause message")
 				pubStopTrajectory.publish(msg)
 				break
 			time.sleep(0.01)

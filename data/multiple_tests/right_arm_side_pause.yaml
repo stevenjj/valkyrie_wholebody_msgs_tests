@@ -18,21 +18,7 @@
 #      (optional) pause_at_time: Positive real number. Time during a trajectory (not a footstep) should a StopAllTrajectories message be sent 
 default_wait_time_after_publishing: 1.0
 list_of_tests:
-  - filepath: "data/whole_body_right_arm_front.yaml"
+  - filepath: "data/whole_body_right_arm_side.yaml"
     message_type: "controller_msgs/WholeBodyTrajectoryMessage"
-    wait_time_after_publishing: 7.0   
-  - filepath: "data/go_home_pelvis.yaml"
-    message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 0.0
-    process_next_message_immediately: True
-  - filepath: "data/go_home_chest.yaml"
-    message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 0.0
-    process_next_message_immediately: True
-  - filepath: "data/go_home_left_arm.yaml"
-    message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 0.0  
-    process_next_message_immediately: True
-  - filepath: "data/go_home_right_arm.yaml"
-    message_type: "controller_msgs/GoHomeMessage"
-    wait_time_after_publishing: 3.0
+    wait_time_after_publishing: 6.0
+    pause_at_time: 2.0   

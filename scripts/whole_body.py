@@ -39,6 +39,7 @@ def wait(t, pause=False):
     if pause and pauseAt>0.0 and pauseAt<robotTime-t0:
       msg=StopAllTrajectoryMessage()
       msg.sequence_id = 3
+      print "Sending Pause message"
       pubStop.publish(msg)
       break
     time.sleep(0.01)
