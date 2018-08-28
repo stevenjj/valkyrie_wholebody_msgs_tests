@@ -211,7 +211,7 @@ if __name__ == '__main__':
         # Get whole body trajectopry from YAML 
         message = message_converter.convert_dictionary_to_ros_message('controller_msgs/WholeBodyTrajectoryMessage', data)
         transformWholeBody(message)
-        print('Executing prep move...')
+        print('Executing wholebody move...')
         maxT = 0.0
         msg = getEndposeTrajectory(message, prepTime)
         pubWhole.publish(msg)

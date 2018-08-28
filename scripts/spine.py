@@ -89,7 +89,7 @@ if __name__ == '__main__':
       if stop:
         print('Preparing the spine message')
         message = message_converter.convert_dictionary_to_ros_message('controller_msgs/SpineTrajectoryMessage', data)
-        print('Executing prep move...')
+        print('Executing spine move...')
         maxT = 0.0
         for msg in message.jointspace_trajectory.joint_trajectory_messages:
           getMaxT(msg.trajectory_points)

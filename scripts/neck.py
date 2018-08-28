@@ -85,15 +85,19 @@ if __name__ == '__main__':
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
     while not rospy.is_shutdown():
-      print('Preparing the neck message')
-      message = message_converter.convert_dictionary_to_ros_message('controller_msgs/NeckTrajectoryMessage', data)
-      print('Executing prep move...')
-      maxT = 0.0
-      for msg in message.jointspace_trajectory.joint_trajectory_messages:
-        getMaxT(msg.trajectory_points)
-      pubWhole.publish(message)
-      print('Waiting for execution...')
-      wait(maxT, True)
+      if stop:
+        print('Preparing the neck message')
+        message = message_converter.convert_dictionary_to_ros_message('controller_msgs/NeckTrajectoryMessage', data)
+        print('Executing neck move...')
+        maxT = 0.0
+        for msg in message.jointspace_trajectory.joint_trajectory_messages:
+          getMaxT(msg.trajectory_points)
+        pubWhole.publish(message)
+        print('Waiting for execution...')
+        wait(maxT, True)
+        break
+      else:
+        time.sleep(0.1)
 
       # if stop:
       #   print('Preparing the neck message')
