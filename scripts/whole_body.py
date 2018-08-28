@@ -156,17 +156,19 @@ def callback(m):
   robotTime = m.header.stamp.to_sec()
   if ready:    
     if not stop:
+      # Wait for transform
+      tfListener.waitForTransform("/pelvis", "/leftCOP_Frame", rospy.Time(), rospy.Duration(4.0))
+      tfListener.waitForTransform("/pelvis", "/rightCOP_Frame", rospy.Time(), rospy.Duration(4.0))
+
       # Get current robot pose
-      pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
-      pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
+      pos1, rot1 = tfListener.lookupTransform("/pelvis", "/leftCOP_Frame",rospy.Time())
+      pos2, rot2 = tfListener.lookupTransform("/pelvis", "/rightCOP_Frame",rospy.Time())
+
       pos = (np.array(pos1)+np.array(pos2))*0.5
       rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
       midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
-      # release/0.10 changed from ankle to sole frames for specifying footsteps. This is a transform extracted by Doug
-      # soleToAnkleFrame.setTranslation(new Vector3D(footLength / 2.0 - footBack, 0.0, -ValkyriePhysicalProperties.ankleHeight))
-      # with: footLength = 0.24, footBack = 0.068, ankleHeight = 0.09
-      ankleToSoleOffset = pm.Vector(0.24 / 2.0 - 0.068, 0.0, -0.09)
-      pose = pm.fromMsg(m.pose.pose)*midFeet.Inverse()*pm.Frame(pm.Rotation(), ankleToSoleOffset)
+      pose = pm.fromMsg(m.pose.pose)*midFeet   
+
       stop = True
 
 if __name__ == '__main__':

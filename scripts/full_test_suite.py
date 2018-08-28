@@ -151,25 +151,19 @@ class Test_Suite_State_Machine:
 		# Gets the SE3 transform from world to the midfeet frame.
 		if self.state == STATE_UPDATE_ROBOT_POSE and not(self.updated_robot_pose):
 			print ('  Robot Pose Callback')
+			# Wait for transform
+			tfListener.waitForTransform("/pelvis", "/leftCOP_Frame", rospy.Time(), rospy.Duration(4.0))
+			tfListener.waitForTransform("/pelvis", "/rightCOP_Frame", rospy.Time(), rospy.Duration(4.0))
+
 			# Get current robot pose
-			pos1, rot1 = tfListener.lookupTransform("/leftFoot", "/pelvis",rospy.Time())
-			pos2, rot2 = tfListener.lookupTransform("/rightFoot", "/pelvis",rospy.Time())
+			pos1, rot1 = tfListener.lookupTransform("/pelvis", "/leftCOP_Frame",rospy.Time())
+			pos2, rot2 = tfListener.lookupTransform("/pelvis", "/rightCOP_Frame",rospy.Time())
+
 			pos = (np.array(pos1)+np.array(pos2))*0.5
 			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
 			midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
-			ankleToSoleOffset = pm.Vector(0.24 / 2.0 - 0.068, 0.0, -0.09)
-			self.robot_pose = pm.fromMsg(msg.pose.pose)*midFeet.Inverse()*pm.Frame(pm.Rotation(), ankleToSoleOffset)			
+			self.robot_pose = pm.fromMsg(msg.pose.pose)*midFeet			
 
-			'''
-			# Ideally we look up the CoP frames correctly.
-			pos1, rot1 =  tfListener.lookupTransform("/pelvis", "/leftCOP_Frame", rospy.Time())
-			pos2, rot2 =  tfListener.lookupTransform("/pelvis", "/rightCOP_Frame", rospy.Time())
-			# Then the robot pose should be:
-			pos = (np.array(pos1)+np.array(pos2))*0.5
-			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
-			midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))			
-			self.robot_pose = pm.fromMsg(m.pose.pose)*midFeet		
-			'''
 			self.updated_robot_pose = True
 
 		return
