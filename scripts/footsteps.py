@@ -20,18 +20,31 @@ from tf_conversions import transformations
 import tf_conversions.posemath as pm
 import time
 
+GAZEBO_ENV = False
+def check_environment_variables():
+  global GAZEBO_ENV
+  if ('IS_GAZEBO' in os.environ and (os.environ['IS_GAZEBO'] == 'true')):
+    print 'shell environment variable IS_GAZEBO is set to true'
+    GAZEBO_ENV = True
+  else:
+    GAZEBO_ENV = False
+
 def status(m):
   global ready
-  global lstReady
   global stop
-  global hasStoppedMoving
-  if m.data=='STANDING':
-    ready = True
+  global GAZEBO_ENV
+
+  if GAZEBO_ENV:
+    ready = True  
+    lstReady = ready
   else:
-    ready = False
-  if stop and ready==True and lstReady==False:
-    hasStoppedMoving = True
-  lstReady = ready
+    if m.data=='STANDING':
+      ready = True
+    else:
+      ready = False
+    if stop and ready==True and lstReady==False:
+      hasStoppedMoving = True
+
 
 def footStatus(m):
   global pause
@@ -96,6 +109,7 @@ def callback(m):
       print('Waiting for execution...')
 
 if __name__ == '__main__':
+  check_environment_variables()  
   rospy.init_node('ValkyrieShakeout')
   if not rospy.has_param('~DataFile'):
     print('Please specify the data file (YAML)!')

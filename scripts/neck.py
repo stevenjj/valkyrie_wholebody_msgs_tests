@@ -21,14 +21,29 @@ import tf_conversions.posemath as pm
 import time
 from copy import deepcopy
 
+GAZEBO_ENV = False
+
+def check_environment_variables():
+  global GAZEBO_ENV
+  if ('IS_GAZEBO' in os.environ and (os.environ['IS_GAZEBO'] == 'true')):
+    print 'shell environment variable IS_GAZEBO is set to true'
+    GAZEBO_ENV = True
+  else:
+    GAZEBO_ENV = False
+
 def status(m):
   global ready
   global stop
   global pauseAt
-  if m.data=='STANDING':
+  global GAZEBO_ENV
+
+  if GAZEBO_ENV:
     ready = True
   else:
-    ready = False
+    if m.data=='STANDING':
+     ready = True
+    else:
+     ready = False
 
 def wait(t, pause=False):
   global robotTime
@@ -51,6 +66,7 @@ def callback(m):
       stop = True
 
 if __name__ == '__main__':
+  check_environment_variables()  
   rospy.init_node('ValkyrieShakeout')
   if not rospy.has_param('~DataFile'):
     print('Please specify the data file (YAML)!')
@@ -69,17 +85,27 @@ if __name__ == '__main__':
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_pose", Odometry, callback)
     rospy.Subscriber("/ihmc_ros/valkyrie/output/robot_motion_status", String, status)
     while not rospy.is_shutdown():
-      if stop:
-        print('Preparing the neck message')
-        message = message_converter.convert_dictionary_to_ros_message('controller_msgs/NeckTrajectoryMessage', data)
-        print('Executing prep move...')
-        maxT = 0.0
-        for msg in message.jointspace_trajectory.joint_trajectory_messages:
-          getMaxT(msg.trajectory_points)
-        pubWhole.publish(message)
-        print('Waiting for execution...')
-        wait(maxT, True)
-        break
-      else:
-        time.sleep(0.1)
+      print('Preparing the neck message')
+      message = message_converter.convert_dictionary_to_ros_message('controller_msgs/NeckTrajectoryMessage', data)
+      print('Executing prep move...')
+      maxT = 0.0
+      for msg in message.jointspace_trajectory.joint_trajectory_messages:
+        getMaxT(msg.trajectory_points)
+      pubWhole.publish(message)
+      print('Waiting for execution...')
+      wait(maxT, True)
+
+      # if stop:
+      #   print('Preparing the neck message')
+      #   message = message_converter.convert_dictionary_to_ros_message('controller_msgs/NeckTrajectoryMessage', data)
+      #   print('Executing prep move...')
+      #   maxT = 0.0
+      #   for msg in message.jointspace_trajectory.joint_trajectory_messages:
+      #     getMaxT(msg.trajectory_points)
+      #   pubWhole.publish(message)
+      #   print('Waiting for execution...')
+      #   wait(maxT, True)
+      #   break
+      # else:
+      #   time.sleep(0.1)
     print('Done')

@@ -51,6 +51,15 @@ STATE_INDEX_TO_NAME = {0 : "STATE_LOAD_MESSAGE",
 
 ROBOT_STATUSES = ["STANDING", "IN_MOTION"]
 
+GAZEBO_ENV = False
+def check_environment_variables():
+	global GAZEBO_ENV
+	if ('IS_GAZEBO' in os.environ and (os.environ['IS_GAZEBO'] == 'true')):
+		print 'shell environment variable IS_GAZEBO is set to true'
+		GAZEBO_ENV = True
+	else:
+		GAZEBO_ENV = False
+
 class TestParams:
 	def __init__(self):
 		self.filepath = ""
@@ -166,11 +175,16 @@ class Test_Suite_State_Machine:
 		return
 
 	def robot_motion_status_callback(self, msg):
+		global GAZEBO_ENV
 		self.robot_status = msg.data
-		if self.robot_status == "STANDING":
+
+		if GAZEBO_ENV:
 			self.robot_stopped_moving = True
 		else:
-			self.robot_stopped_moving = False
+			if self.robot_status == "STANDING":
+				self.robot_stopped_moving = True
+			else:
+				self.robot_stopped_moving = False
 
 	def footstep_status_callback(self, msg):
 		global pubPauseWalking
@@ -447,6 +461,7 @@ def run_test(data):
 
 if __name__ == '__main__':
     rospy.init_node('ValkyrieTestSuite')
+    check_environment_variables()
     if not rospy.has_param('~TestSuiteDataFile'):
         print('Please specify the test suite data file (YAML)!')
     else:	
