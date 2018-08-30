@@ -33,6 +33,7 @@ def status(m):
   global ready
   global stop
   global GAZEBO_ENV
+  global lstReady
 
   if GAZEBO_ENV:
     ready = True  
