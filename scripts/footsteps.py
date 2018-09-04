@@ -45,6 +45,7 @@ def status(m):
       ready = False
     if stop and ready==True and lstReady==False:
       hasStoppedMoving = True
+    lstReady = ready
 
 
 def footStatus(m):
