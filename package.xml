@@ -15,6 +15,6 @@
   <depend>std_msgs</depend>
   <depend>tf_conversions</depend>
   <depend>yaml</depend>
-  <depend>ihmc_msgs</depend>
+  <depend>controller_msgs</depend>
   <depend>val_description</depend>
 </package>
