@@ -5,7 +5,7 @@ project(valkyrie_testing_edi)
 find_package(catkin REQUIRED )
 
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs ihmc_msgs nav_msgs rospy_message_converter std_msgs tf_conversions yaml
+  CATKIN_DEPENDS geometry_msgs controller_msgs nav_msgs rospy_message_converter std_msgs tf_conversions yaml
 )
 
 #############
