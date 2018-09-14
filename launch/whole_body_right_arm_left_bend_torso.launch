@@ -5,8 +5,8 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args python" />
 
-  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_testing_edi" type="whole_body.py" name="ValkyrieWholeBodyTestNode" output="screen">
-    <param name="DataFile" type="string" value="$(find valkyrie_testing_edi)/data/whole_body_right_arm_left_bend_torso.yaml" />
+  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_wholebody_msgs_tests" type="whole_body.py" name="ValkyrieWholeBodyTestNode" output="screen">
+    <param name="DataFile" type="string" value="$(find valkyrie_wholebody_msgs_tests)/data/whole_body_right_arm_left_bend_torso.yaml" />
     <param name="PrepTime" type="double" value="5" />
     <param name="PauseAt" type="double" value="-1" />
   </node>

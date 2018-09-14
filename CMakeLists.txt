@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(valkyrie_testing_edi)
+project(valkyrie_wholebody_msgs_tests)
 
 
 find_package(catkin REQUIRED )

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>valkyrie_testing_edi</name>
+  <name>valkyrie_wholebody_msgs_tests</name>
   <version>0.0.0</version>
-  <description>The valkyrie_testing_edi package</description>
+  <description>The valkyrie test scripts pacakge package. Forked from https://github.com/ipab-slmc/valkyrie_testing_edi . Modified for the new IHMC interface with an additional suite test capability. </description>
 
-  <maintainer email="v.ivan@ed.ac.uk">Vladimir Ivan</maintainer>
+  <maintainer email="stevenjens.m.jorgensen@nasa.gov">Steven Jens Jorgensen</maintainer>
 
   <license>BSD</license>
 

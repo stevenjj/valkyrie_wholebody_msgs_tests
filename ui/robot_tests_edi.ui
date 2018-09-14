@@ -13,7 +13,7 @@
 		<widget name="Tests" row="0" col="0" type="GridGroupBox">
 		    <widget name="" row="0" col="0" type="GridGroupBox">
 				<widget name="Start state publisher" row="0" col="0" type="PushButton">
-						<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi robot_state.launch,robot_state" argTypes="str,str"/>
+						<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests robot_state.launch,robot_state" argTypes="str,str"/>
 				</widget>
 				<widget name="Stop state publisher" row="0" col="1" type="PushButton">
 						<object name="manager" method="stopProgram" args="robot_state" argTypes="str"/>
@@ -28,19 +28,19 @@
 					<object name="manager" method="stopProgram" args="walk_turn_cw" argTypes="str"/>
 				</widget>
 				<widget name="Forward" row="1" col="0" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi walk_forward.launch,walk_forward" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests walk_forward.launch,walk_forward" argTypes="str,str"/>
 				</widget>
 				<widget name="Forward pasue" row="1" col="2" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi walk_forward_pause.launch,walk_forward_pause" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests walk_forward_pause.launch,walk_forward_pause" argTypes="str,str"/>
 				</widget>
 				<widget name="Backward" row="1" col="2" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi walk_backward.launch,walk_backward" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests walk_backward.launch,walk_backward" argTypes="str,str"/>
 				</widget>
 				<widget name="Turn CCW" row="1" col="3" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi walk_turn_ccw.launch,walk_turn_ccw" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests walk_turn_ccw.launch,walk_turn_ccw" argTypes="str,str"/>
 				</widget>
 				<widget name="Turn CW" row="1" col="4" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi walk_turn_cw.launch,walk_turn_cw" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests walk_turn_cw.launch,walk_turn_cw" argTypes="str,str"/>
 				</widget>
 			</widget>
 			<widget name="Upper body" row="2" col="0" type="GridGroupBox">
@@ -65,52 +65,52 @@
 					<object name="manager" method="stopProgram" args="body_right_5" argTypes="str"/>
 				</widget>
 				<widget name="Nominal" row="1" col="0" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_nominal.launch,body_nominal" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_nominal.launch,body_nominal" argTypes="str,str"/>
 				</widget>
 				<widget name="Spine" row="1" col="1" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_spine.launch,body_spine" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_spine.launch,body_spine" argTypes="str,str"/>
 				</widget>
 				<widget name="T-pose" row="1" col="2" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_T_pose.launch,body_Tpose" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_T_pose.launch,body_Tpose" argTypes="str,str"/>
 				</widget>
 				<widget name="Neck" row="1" col="3" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi neck.launch,body_neck" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests neck.launch,body_neck" argTypes="str,str"/>
 				</widget>
 				<widget name="Left arm front" row="2" col="0" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_arm_front.launch,body_left_0" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_arm_front.launch,body_left_0" argTypes="str,str"/>
 				</widget>
 				<widget name="Left arm front + torso" row="2" col="1" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_arm_front_yaw_torso.launch,body_left_1" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_arm_front_yaw_torso.launch,body_left_1" argTypes="str,str"/>
 				</widget>
 				<widget name="Left arm low" row="2" col="2" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_arm_low.launch,body_left_2" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_arm_low.launch,body_left_2" argTypes="str,str"/>
 				</widget>
 				<widget name="Left arm across" row="2" col="3" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_arm_right_bend_torso.launch,body_left_3" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_arm_right_bend_torso.launch,body_left_3" argTypes="str,str"/>
 				</widget>
 				<widget name="Left arm side" row="2" col="4" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_arm_side.launch,body_left_4" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_arm_side.launch,body_left_4" argTypes="str,str"/>
 				</widget>
 				<widget name="Left wrist" row="2" col="5" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_wrist.launch,body_left_5" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_wrist.launch,body_left_5" argTypes="str,str"/>
 				</widget>
 				<widget name="Right arm front" row="3" col="0" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_arm_front.launch,body_right_0" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_arm_front.launch,body_right_0" argTypes="str,str"/>
 				</widget>
 				<widget name="Right arm front + torso" row="3" col="1" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_arm_front_yaw_torso.launch,body_right_1" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_arm_front_yaw_torso.launch,body_right_1" argTypes="str,str"/>
 				</widget>
 				<widget name="Right arm low" row="3" col="2" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_arm_low.launch,body_right_2" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_arm_low.launch,body_right_2" argTypes="str,str"/>
 				</widget>
 				<widget name="Right arm across" row="3" col="3" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_arm_left_bend_torso.launch,body_right_3" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_arm_left_bend_torso.launch,body_right_3" argTypes="str,str"/>
 				</widget>
 				<widget name="Right arm side" row="3" col="4" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_arm_side.launch,body_right_4" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_arm_side.launch,body_right_4" argTypes="str,str"/>
 				</widget>
 				<widget name="Right wrist" row="3" col="5" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_wrist.launch,body_right_5" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_wrist.launch,body_right_5" argTypes="str,str"/>
 				</widget>
 			</widget>
 			<widget name="Legs" row="3" col="0" type="GridGroupBox">
@@ -119,10 +119,10 @@
 					<object name="manager" method="stopProgram" args="foot_right" argTypes="str"/>
 				</widget>
 				<widget name="Lift left foot" row="1" col="0" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_left_foot_lift.launch,foot_left" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_left_foot_lift.launch,foot_left" argTypes="str,str"/>
 				</widget>
 				<widget name="Lift right foot" row="1" col="1" type="PushButton">
-					<object name="manager" method="startProgram" args="roslaunch valkyrie_testing_edi whole_body_right_foot_lift.launch,foot_right" argTypes="str,str"/>
+					<object name="manager" method="startProgram" args="roslaunch valkyrie_wholebody_msgs_tests whole_body_right_foot_lift.launch,foot_right" argTypes="str,str"/>
 				</widget>
 			</widget>
 		</widget>
