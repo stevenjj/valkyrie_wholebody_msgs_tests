@@ -343,7 +343,7 @@ list_of_tests:
     wait_time_after_publishing: 5.0  
   - filepath: "data/walk_turn_cw.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
-    wait_time_after_publishing: 10.0
+    wait_time_after_publishing: 15.0
   - filepath: "data/walk_turn_ccw.yaml"
     message_type: "controller_msgs/FootstepDataListMessage"
-    wait_time_after_publishing: 10.0
+    wait_time_after_publishing: 15.0
