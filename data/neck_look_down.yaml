@@ -8,7 +8,7 @@ jointspace_trajectory:
             - 
               sequence_id: 2
               time: 2.0
-              position: 1.0
+              position: 0.5
               velocity: 0.0
           weight: -1.0
         - 
