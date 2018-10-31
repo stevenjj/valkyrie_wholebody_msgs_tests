@@ -4,7 +4,7 @@ footstep_data_list:
     location: 
       x: 0.0
       y: -0.125
-      z: 0.0
+      z: -0.033
     orientation: 
       x: 0.0
       y: 0.0
@@ -12,7 +12,7 @@ footstep_data_list:
       w: 1.0
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
@@ -25,7 +25,7 @@ footstep_data_list:
     location: 
       x: 0.0
       y: 0.125
-      z: 0.0
+      z: -0.033
     orientation: 
       x: 0.0
       y: 0.0
@@ -33,7 +33,7 @@ footstep_data_list:
       w: 1.0
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
@@ -42,12 +42,12 @@ footstep_data_list:
     touchdown_duration: -1 # New message set as the Default value 
     sequence_id: 0
 execution_timing: 0
-default_swing_duration: 1.20000004768
-default_transfer_duration: 1.0
-final_transfer_duration: 1.0
+default_swing_duration: 1.2
+default_transfer_duration: 1.32
+final_transfer_duration: 1.32
 sequence_id: 1
 
-trust_height_of_footsteps: False
+trust_height_of_footsteps: True
 are_footsteps_adjustable: False
 offset_footsteps_with_execution_error: False
 queueing_properties:
