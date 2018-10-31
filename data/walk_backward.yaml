@@ -4,7 +4,7 @@ footstep_data_list:
     location: 
       x: -0.0993053415536
       y: -0.125051392704
-      z: 0.00552486225291
+      z: -0.033
     orientation: 
       x: 0.000143423919287
       y: -0.000188183942786
@@ -12,12 +12,12 @@ footstep_data_list:
       w: 0.999999594462
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
-    swing_duration: 0.0
-    transfer_duration: 0.0
+    swing_duration: 1.2
+    transfer_duration: 1.32
     touchdown_duration: -1
     sequence_id: 1
   - 
@@ -25,7 +25,7 @@ footstep_data_list:
     location: 
       x: -0.219754655382
       y: 0.133724150967
-      z: 0.00555387285164
+      z: -0.033
     orientation: 
       x: 0.000144363042285
       y: -0.000187464473883
@@ -33,12 +33,12 @@ footstep_data_list:
       w: 0.999991439278
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
-    swing_duration: 0.0
-    transfer_duration: 0.0
+    swing_duration: 1.2
+    transfer_duration: 1.32
     touchdown_duration: -1
     sequence_id: 1
   - 
@@ -46,7 +46,7 @@ footstep_data_list:
     location: 
       x: -0.341909731592
       y: -0.130367410581
-      z: 0.00543208762347
+      z: -0.033
     orientation: 
       x: 0.000143571884728
       y: -0.000188071079281
@@ -54,12 +54,12 @@ footstep_data_list:
       w: 0.99999996861
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
-    swing_duration: 0.0
-    transfer_duration: 0.0
+    swing_duration: 1.2
+    transfer_duration: 1.32
     touchdown_duration: -1
     sequence_id: 1
   - 
@@ -67,7 +67,7 @@ footstep_data_list:
     location: 
       x: -0.34504803311
       y: 0.129621470537
-      z: 0.00550556950596
+      z: -0.033
     orientation: 
       x: 0.000143597638678
       y: -0.00018805141614
@@ -75,23 +75,23 @@ footstep_data_list:
       w: 0.999999970523
     predicted_contact_points_2d: []
     trajectory_type: 0
-    swing_height: 0.1
+    swing_height: 0.025
     custom_position_waypoints: []
     swing_trajectory: []
     swing_trajectory_blend_duration: 0.0
-    swing_duration: 0.0
-    transfer_duration: 0.0
+    swing_duration: 1.2
+    transfer_duration: 1.32
     touchdown_duration: -1
     sequence_id: 1
 execution_timing: 0
 default_swing_duration: 1.20000004768
-default_transfer_duration: 1.0
-final_transfer_duration: 1.0
+default_transfer_duration: 1.2
+final_transfer_duration: 1.32
 #execution_mode: 0
 #previous_message_id: 0
 sequence_id: 1
 
-trust_height_of_footsteps: False
+trust_height_of_footsteps: True
 are_footsteps_adjustable: False
 offset_footsteps_with_execution_error: False
 queueing_properties:
