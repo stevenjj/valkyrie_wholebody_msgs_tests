@@ -21,5 +21,6 @@ install(PROGRAMS scripts/footsteps.py
 							   scripts/load_foot.py
 							   scripts/neck.py
 							   scripts/spine.py
+							   scripts/hand_foot_test.py
 							   scripts/whole_body.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/scripts)
 
