@@ -34,8 +34,6 @@ class StationaryHandWhileWalkingExecutor:
         self.right_hand_ihmc_offset = pm.Frame(pm.Rotation.RPY(0.0, 0.0, -np.pi/2.0), pm.Vector(0.025, -0.07, 0.0))
         self.left_hand_ihmc_offset = pm.Frame(pm.Rotation.RPY(0.0, 0.0, np.pi/2.0), pm.Vector(0.025, 0.07, 0.0))
 
-        print self.right_hand_ihmc_offset
-
         self.footsteps_msg = FootstepDataListMessage()
         self.hand_msg = HandTrajectoryMessage()
 
@@ -61,7 +59,6 @@ class StationaryHandWhileWalkingExecutor:
             # Load YAML data
             self.footsteps_data = load(open(rospy.get_param('~FootstepsDataFile', '')))
             self.footsteps_msg = message_converter.convert_dictionary_to_ros_message('controller_msgs/FootstepDataListMessage', self.footsteps_data)
-            print "Range of number of Footsteps = ", range(len(self.footsteps_msg.footstep_data_list))
         else:
             print('Please specify the FootstepsDataFile ROS parameter (YAML)! Check the launch file for this script.')
             exit()
@@ -75,6 +72,8 @@ class StationaryHandWhileWalkingExecutor:
             print('Please specify the HandDataFile ROS parameter (YAML)! Check the launch file for this script.')
             exit()
 
+        rospy.loginfo("Successful Initialization")
+        print "Number of Footsteps: ", len(self.footsteps_msg.footstep_data_list)
 
 
     def robot_pose_callback(self, msg):
@@ -124,7 +123,8 @@ class StationaryHandWhileWalkingExecutor:
         if msg.footstep_status == FootstepStatusMessage().FOOTSTEP_STATUS_COMPLETED:
             status = "Completed"
 
-        print "  ", foot, status, "step index:", msg.footstep_index
+        #print "  ", foot, status, "step index:", msg.footstep_index
+        rospy.loginfo("  %s %s with step index: %i", foot, status, msg.footstep_index)
 
         if status == "Completed" and self.messages_sent and (msg.footstep_index == len(self.footsteps_msg.footstep_data_list)):
             self.completed_footsteps = True
@@ -154,7 +154,7 @@ class StationaryHandWhileWalkingExecutor:
       msg.angular_velocity = Vector3(vel.rot.x(), vel.rot.y(), vel.rot.z())
 
     def send_hand_message(self):
-        print "Preparing Hand Message..."
+        rospy.loginfo("Preparing Hand Message...")        
         self.hand_msg.se3_trajectory.queueing_properties.message_id = 3  
         self.hand_msg.se3_trajectory.queueing_properties.previous_message_id = 2
         self.hand_msg.se3_trajectory.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE   
@@ -162,8 +162,7 @@ class StationaryHandWhileWalkingExecutor:
         for msg in self.hand_msg.se3_trajectory.taskspace_trajectory_points:
             self.transformSE3_hand(msg, self.hand_msg.robot_side)
 
-        print "Publishing Hand Message..."    
-        print self.hand_msg
+        rospy.loginfo("Publishing Hand Message...")
         self.pubHandTrajectory.publish(self.hand_msg)
 
     def send_footsteps(self):
@@ -179,7 +178,7 @@ class StationaryHandWhileWalkingExecutor:
             msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w = quat_normalized[0], quat_normalized[1], quat_normalized[2], quat_normalized[3]
             # Update step orientation
             step.orientation = msg.orientation
-        print "Relocated footsteps to a local frame"
+        rospy.loginfo("Relocated footsteps to a local frame")
 
         self.footsteps_msg.queueing_properties.previous_message_id = 1
         self.footsteps_msg.queueing_properties.message_id = 2
@@ -187,7 +186,7 @@ class StationaryHandWhileWalkingExecutor:
         # self.footsteps_msg.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE   
         self.footsteps_msg.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_OVERRIDE
 
-        print "Sending Footsteps..."
+        rospy.loginfo("Publishing Footstep Data List...")
         self.pubFootsteps.publish(self.footsteps_msg)
 
     def send_prepare_for_locomotion(self):
@@ -198,18 +197,19 @@ class StationaryHandWhileWalkingExecutor:
         message.prepare_pelvis = True
         self.pubPrepareForLocomotion.publish(message)
 
+    def send_messages(self):
+       self.send_prepare_for_locomotion()
+       rospy.sleep(1.0)
+       self.send_footsteps()
+       rospy.sleep(0.1)
+       self.send_hand_message()
+       rospy.sleep(1.0)
+       self.messages_sent = True        
+
     def run(self):
         while not rospy.is_shutdown():
-            rospy.loginfo("Hello World")
             if self.robot_pose_ready and not self.messages_sent:
-               self.send_prepare_for_locomotion()
-               rospy.sleep(1.0)
-               self.send_footsteps()
-               rospy.sleep(0.1)
-               self.send_hand_message()
-               rospy.sleep(1.0)
-               self.messages_sent = True
-
+                self.send_messages()
             if self.messages_sent and self.completed_footsteps:
                 break
 
