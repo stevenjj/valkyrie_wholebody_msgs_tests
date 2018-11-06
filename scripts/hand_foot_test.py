@@ -238,6 +238,14 @@ def send_stop_trajectories():
     message.sequence_id = 1
     pubStopTrajectories.publish(message)
 
+def send_prepare_for_locomotion():
+    global pubPrepareForLocomotion
+    message = PrepareForLocomotionMessage()
+    message.sequence_id = 1
+    message.prepare_manipulation = False
+    message.prepare_pelvis = True
+    pubPrepareForLocomotion.publish(message)
+
 def footstep_status_callback(msg):
     print "Footstep Status: "
 
@@ -252,7 +260,7 @@ def footstep_status_callback(msg):
 
 
 if __name__ == '__main__':
-    global tfListener, pubFootsteps, footsteps_data, pubWholeBody, pubHandTrajectory, pubStopTrajectories, wholebody_data, footsteps_sent, upperbody_trajectory_sent, hand_data
+    global tfListener, pubFootsteps, footsteps_data, pubWholeBody, pubHandTrajectory, pubStopTrajectories, pubPrepareForLocomotion, wholebody_data, footsteps_sent, upperbody_trajectory_sent, hand_data
     rospy.init_node('Valkyrie_Hand_Feet_Test')
 
     # Load Data
@@ -286,6 +294,7 @@ if __name__ == '__main__':
     pubWholeBody = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
     pubStopTrajectories = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True )
     pubHandTrajectory = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/hand_trajectory', HandTrajectoryMessage, queue_size=10, latch=True)
+    pubPrepareForLocomotion = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/prepare_for_locomotion', PrepareForLocomotionMessage, queue_size=10, latch=True)
 
     while not rospy.is_shutdown():
         if not(robot_pose_ready):
@@ -294,8 +303,11 @@ if __name__ == '__main__':
 
         if robot_pose_ready and not footsteps_sent:
             print "Robot Pose is Ready."
-            print "  Sending Stop All Trajectories"
-            send_stop_trajectories()
+            # print "  Sending Stop All Trajectories"
+            # send_stop_trajectories()
+            
+            print "  Sending Prepare For Locomotion Message"
+            send_prepare_for_locomotion()
             rospy.sleep(1.0)
 
             print "  Preparing Footsteps Message..."
@@ -316,3 +328,12 @@ if __name__ == '__main__':
 
     print "Program Ends"
 
+'''      for (RobotSide robotSide : RobotSide.values)
+      {
+         RigidBodyTransform controlFrameToWristTransform = new RigidBodyTransform();
+         controlFrameToWristTransform.setTranslation(0.025, robotSide.negateIfRightSide(0.07), 0.0);
+         controlFrameToWristTransform.appendYawRotation(robotSide.negateIfRightSide(Math.PI * 0.5));
+         handControlFrameToWristTransforms.put(robotSide, controlFrameToWristTransform);
+      }
+   }
+'''
