@@ -24,10 +24,6 @@ import tf_conversions.posemath as pm
 
 global robot_pose_ready, footsteps_sent, upperbody_trajectory_sent, update_robot_pose_once
 
-robot_pose_ready = False
-footsteps_sent = False
-upperbody_trajectory_sent = False
-update_robot_pose_once = False
 
 # def load_message(self):
 #     data = load(open(self.filepath))
@@ -261,6 +257,13 @@ def footstep_status_callback(msg):
 
 if __name__ == '__main__':
     global tfListener, pubFootsteps, footsteps_data, pubWholeBody, pubHandTrajectory, pubStopTrajectories, pubPrepareForLocomotion, wholebody_data, footsteps_sent, upperbody_trajectory_sent, hand_data
+
+    robot_pose_ready = False
+    footsteps_sent = False
+    upperbody_trajectory_sent = False
+    update_robot_pose_once = False
+
+
     rospy.init_node('Valkyrie_Hand_Feet_Test')
 
     # Load Data
