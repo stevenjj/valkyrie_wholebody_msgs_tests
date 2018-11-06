@@ -28,13 +28,13 @@ se3_trajectory:
       time: 5.0
       position: 
         x: 0.0
-        y: 0.0 #-0.389 
+        y: 0.0
         z: 0.0 
       orientation: 
-        x: 0.0 #0.2198 
-        y: 0.0 #0.26268 
-        z: 0.0 #0.64562 
-        w: 1.0 #0.68252
+        x: 0.0  
+        y: 0.0 
+        z: 0.0 
+        w: 1.0 
       linear_velocity: 
         x: 0.0
         y: 0.0
