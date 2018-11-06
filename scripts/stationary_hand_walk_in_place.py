@@ -169,8 +169,6 @@ class StationaryHandWhileWalkingExecutor:
         self.pubHandTrajectory.publish(self.hand_msg)
 
     def send_footsteps(self):
-        global pubFootsteps, footsteps_data
-
         for step in self.footsteps_msg.footstep_data_list:
             pstep = self.mid_feet_pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
             msg = pm.toMsg(pstep)
