@@ -1,0 +1,63 @@
+robot_side: 1
+se3_trajectory:
+  sequence_id: 1
+  angular_selection_matrix:
+    sequence_id: 1
+    x_selected: true
+    y_selected: true
+    z_selected: true
+  linear_selection_matrix:
+    sequence_id: 1
+    x_selected: true
+    y_selected: true
+    z_selected: true
+  angular_weight_matrix:
+    sequence_id: 1
+    weight_frame_id: 0
+    x_weight: -1
+    y_weight: -1
+    z_weight: -1
+  linear_weight_matrix:
+    sequence_id: 1
+    weight_frame_id: 0
+    x_weight: -1
+    y_weight: -1
+    z_weight: -1      
+  taskspace_trajectory_points: 
+    - 
+      time: 5.0
+      position: 
+        x: 0.0
+        y: 0.0 
+        z: 0.0 
+      orientation: 
+        x: 0.0 
+        y: 0.0 
+        z: 0.0 
+        w: 1.0 
+      linear_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      angular_velocity: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      sequence_id: 1
+  frame_information: 
+    trajectory_reference_frame_id: 83766130
+    data_reference_frame_id: 83766130
+  use_custom_control_frame: False
+  control_frame_pose: 
+    position: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0
+#execution_mode: 0
+#previous_message_id: 0
+sequence_id: 1
