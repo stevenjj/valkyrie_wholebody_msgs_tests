@@ -155,9 +155,10 @@ class StationaryHandWhileWalkingExecutor:
 
     def send_hand_message(self):
         rospy.loginfo("Preparing Hand Message...")        
-        self.hand_msg.se3_trajectory.queueing_properties.message_id = 3  
-        self.hand_msg.se3_trajectory.queueing_properties.previous_message_id = 2
-        self.hand_msg.se3_trajectory.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE   
+        self.hand_msg.se3_trajectory.queueing_properties.message_id = 2  
+        self.hand_msg.se3_trajectory.queueing_properties.previous_message_id = 1
+        # Override also works, but we're leaving it to queue as it is the correct implementation
+        self.hand_msg.se3_trajectory.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE  
 
         for msg in self.hand_msg.se3_trajectory.taskspace_trajectory_points:
             self.transformSE3_hand(msg, self.hand_msg.robot_side)
@@ -180,10 +181,7 @@ class StationaryHandWhileWalkingExecutor:
             step.orientation = msg.orientation
         rospy.loginfo("Relocated footsteps to a local frame")
 
-        self.footsteps_msg.queueing_properties.previous_message_id = 1
-        self.footsteps_msg.queueing_properties.message_id = 2
-
-        # self.footsteps_msg.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE   
+        self.footsteps_msg.queueing_properties.message_id = 1
         self.footsteps_msg.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_OVERRIDE
 
         rospy.loginfo("Publishing Footstep Data List...")
