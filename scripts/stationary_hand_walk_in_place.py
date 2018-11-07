@@ -48,6 +48,8 @@ class StationaryHandWhileWalkingExecutor:
         self.footstep_status_sub =  rospy.Subscriber("/ihmc/valkyrie/humanoid_control/output/footstep_status", FootstepStatusMessage, self.footstep_status_callback)
         # Declare Publishers
         self.pubPrepareForLocomotion = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/prepare_for_locomotion', PrepareForLocomotionMessage, queue_size=10, latch=True)
+        self.pubStopAllTrajectories = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/stop_all_trajectory', StopAllTrajectoryMessage, queue_size=10, latch=True)
+
         self.pubFootsteps = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
         self.pubHandTrajectory = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/hand_trajectory', HandTrajectoryMessage, queue_size=10, latch=True)
 
@@ -167,8 +169,6 @@ class StationaryHandWhileWalkingExecutor:
         self.pubHandTrajectory.publish(self.hand_msg)
 
     def send_footsteps(self):
-        global pubFootsteps, footsteps_data
-
         for step in self.footsteps_msg.footstep_data_list:
             pstep = self.mid_feet_pose*pm.Frame(pm.Rotation.Quaternion(step.orientation.x, step.orientation.y, step.orientation.z, step.orientation.w), pm.Vector(step.location.x, step.location.y, step.location.z))
             msg = pm.toMsg(pstep)
@@ -195,13 +195,21 @@ class StationaryHandWhileWalkingExecutor:
         message.prepare_pelvis = True
         self.pubPrepareForLocomotion.publish(message)
 
+    def send_stop_trajectories(self):
+        rospy.loginfo("Sending StopAllTrajectoryMessage...")
+        message = StopAllTrajectoryMessage()
+        message.sequence_id = 1
+        self.pubStopAllTrajectories.publish(message)        
+
     def send_messages(self):
+       self.send_stop_trajectories()
+       rospy.sleep(1.0) # 1.0
        self.send_prepare_for_locomotion()
-       rospy.sleep(1.0)
+       rospy.sleep(1.0) # 1.0
        self.send_footsteps()
-       rospy.sleep(0.1)
        self.send_hand_message()
        rospy.sleep(1.0)
+
        self.messages_sent = True        
 
     def run(self):
