@@ -1,0 +1,11 @@
+<launch>
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args python" />
+
+  <node launch-prefix="$(arg launch_prefix)" pkg="valkyrie_wholebody_msgs_tests" type="stationary_hand_walk_in_place.py" name="ValkyrieWalkingTestNode" output="screen">
+    <param name="FootstepsDataFile" type="string" value="$(find valkyrie_wholebody_msgs_tests)/data/walk_in_place.yaml" />
+    <param name="HandDataFile" type="string" value="$(find valkyrie_wholebody_msgs_tests)/data/right_hand_stationary.yaml" />
+  </node>
+
+</launch>
