@@ -52,6 +52,7 @@ class StationaryHandWhileWalkingExecutor:
 
         self.pubFootsteps = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/footstep_data_list', FootstepDataListMessage, queue_size=10, latch=True)
         self.pubHandTrajectory = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/hand_trajectory', HandTrajectoryMessage, queue_size=10, latch=True)
+        self.pubWholeBody = rospy.Publisher('/ihmc/valkyrie/humanoid_control/input/whole_body_trajectory', WholeBodyTrajectoryMessage, queue_size=10, latch=True)
 
         # Declare a TF Listener
         self.tfListener = TransformListener()
@@ -167,6 +168,25 @@ class StationaryHandWhileWalkingExecutor:
 
         rospy.loginfo("Publishing Hand Message...")
         self.pubHandTrajectory.publish(self.hand_msg)
+
+    def send_wholebody_hand_message(self):
+        rospy.loginfo("Preparing Wholebody Hand Message...")        
+        message = WholeBodyTrajectoryMessage()
+        self.hand_msg.se3_trajectory.queueing_properties.message_id = 2  
+        self.hand_msg.se3_trajectory.queueing_properties.previous_message_id = 1
+        # Override also works, but we're leaving it to queue as it is the correct implementation
+        self.hand_msg.se3_trajectory.queueing_properties.execution_mode = QueueableMessage().EXECUTION_MODE_QUEUE  
+
+        for msg in self.hand_msg.se3_trajectory.taskspace_trajectory_points:
+            self.transformSE3_hand(msg, self.hand_msg.robot_side)
+
+        rospy.loginfo("Publishing Wholebody Hand Message...")
+        if self.hand_msg.robot_side == FootstepStatusMessage().ROBOT_SIDE_LEFT:
+            message.left_hand_trajectory_message = self.hand_msg
+        else:
+            message.right_hand_trajectory_message = self.hand_msg
+
+        self.pubWholeBody.publish(message)      
 
     def send_footsteps(self):
         for step in self.footsteps_msg.footstep_data_list:

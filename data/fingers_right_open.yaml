@@ -1,0 +1,60 @@
+sequence_id: 0
+robot_side: 1
+valkyrie_finger_motor_names:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+jointspace_trajectory:
+  sequence_id: 1
+  joint_trajectory_messages:
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0
+  - sequence_id: 1
+    trajectory_points:
+    - sequence_id: 1
+      time: 3.0
+      position: 0.0
+      velocity: 0.0
+    weight: -1.0      
+  queueing_properties: 
+    sequence_id: 1
+    execution_mode: 0
+    message_id: 1
+    previous_message_id: 0
+    execution_delay_time: 0.0
