@@ -163,12 +163,15 @@ class Test_Suite_State_Machine:
 			rot = pm.transformations.quaternion_slerp(rot1,rot2,0.5)
 			midFeet = pm.Frame(pm.Rotation.Quaternion(rot[0], rot[1], rot[2], rot[3]), pm.Vector(pos[0], pos[1], pos[2]))
 
-			# release/0.10 changed from ankle to sole frames for specifying footsteps. This is a transform extracted by Doug
-			# soleToAnkleFrame.setTranslation(new Vector3D(footLength / 2.0 - footBack, 0.0, -ValkyriePhysicalProperties.ankleHeight))
-			# with: footLength = 0.24, footBack = 0.068, ankleHeight = 0.09
-			ankleToSoleOffset = pm.Vector(0.24 / 2.0 - 0.068, 0.0, -0.09)
-			self.robot_pose = pm.fromMsg(msg.pose.pose)*midFeet*pm.Frame(pm.Rotation(), ankleToSoleOffset)
+			# From IHMC's ValkyriePhysicalProperties.java:
+			# soleToAnkleFrame.setTranslation(new Vector3D(footLength / 2.0 - footBack, 0.0, -ValkyriePhysicalProperties.ankleHeight));
+			footsizeReduction = 0.01
+			footLength = 0.25 - footsizeReduction
+			ankleHeight = 0.09
+			footBack = 0.073 - footsizeReduction/2.0
 
+			ankleToSoleOffset = pm.Vector(footLength/2.0 - footBack, 0.0, -ankleHeight)
+			self.robot_pose = pm.fromMsg(msg.pose.pose)*midFeet*pm.Frame(pm.Rotation(), ankleToSoleOffset)
 			self.updated_robot_pose = True
 
 		return
